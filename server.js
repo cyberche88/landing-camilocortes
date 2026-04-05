@@ -44,7 +44,7 @@ app.post('/create-preference', async (req, res) => {
                     picture_url: `${baseUrl}/og-image.jpg`,   // opcional
                     category_id: 'tickets',
                     quantity:    1,
-                    unit_price:  270000,
+                    unit_price:  280000,
                     currency_id: 'COP'
                 }],
 
