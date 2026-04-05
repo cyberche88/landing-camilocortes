@@ -33,8 +33,10 @@ exports.handler = async (event) => {
     try {
         const { name = '', email = '', phone = '', country = 'CO' } = JSON.parse(event.body || '{}');
 
-        // URL del sitio — Netlify la inyecta automáticamente en producción
-        const siteUrl = process.env.URL || process.env.DEPLOY_PRIME_URL || 'https://tu-sitio.netlify.app';
+        // DEPLOY_PRIME_URL es siempre la URL .netlify.app (más estable que el dominio custom)
+        // URL es el dominio personalizado si está configurado
+        const siteUrl = process.env.DEPLOY_PRIME_URL || process.env.URL || 'https://tu-sitio.netlify.app';
+        console.log(`[MP] siteUrl usado: ${siteUrl}`);
 
         console.log(`[MP] Creando preferencia — Comprador: ${name} <${email}> — siteUrl: ${siteUrl}`);
 
