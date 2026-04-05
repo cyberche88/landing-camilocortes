@@ -47,7 +47,7 @@ exports.handler = async (event) => {
                     description: '2 días · 11 y 12 de Abril · Bogotá',
                     category_id: 'tickets',
                     quantity:    1,
-                    unit_price:  1000,
+                    unit_price:  270000,
                     currency_id: 'COP'
                 }],
 
