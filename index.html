@@ -1039,6 +1039,37 @@
             transition: transform 0.35s ease;
         }
         .sp-card-sm:hover::before { transform: scaleX(1); }
+        .sp-card-sm {
+            padding: 0;
+            overflow: hidden;
+        }
+        .sp-sm-photo-wrap {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+        }
+        .sp-sm-photo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .sp-card-sm:hover .sp-sm-photo-wrap img { transform: scale(1.04); }
+        .sp-sm-photo-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, var(--surface-card));
+            pointer-events: none;
+        }
+        .sp-sm-info {
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+
         .sp-sm-flag {
             font-family: var(--font-head);
             font-size: 0.6rem;
@@ -2485,24 +2516,39 @@
         <div class="speakers-also">
 
             <div class="sp-card-sm reveal">
-                <div class="sp-sm-flag">Italia</div>
-                <div class="sp-sm-name">Giorgio Trabaldo</div>
-                <div class="sp-sm-role">Líder Multinivel Internacional</div>
-                <div class="sp-sm-bio">Uno de los networkers más exitosos de Europa. Giorgio ha construido organizaciones de decenas de miles de personas y es reconocido por sus estrategias de duplicación a escala global.</div>
+                <div class="sp-sm-photo-wrap">
+                    <img src="speakers/giorgio-trabaldo.png" alt="Giorgio Trabaldo">
+                </div>
+                <div class="sp-sm-info">
+                    <div class="sp-sm-flag">Italia</div>
+                    <div class="sp-sm-name">Giorgio Trabaldo</div>
+                    <div class="sp-sm-role">Líder Multinivel Internacional</div>
+                    <div class="sp-sm-bio">Uno de los networkers más exitosos de Europa. Giorgio ha construido organizaciones de decenas de miles de personas y es reconocido por sus estrategias de duplicación a escala global.</div>
+                </div>
             </div>
 
             <div class="sp-card-sm reveal">
-                <div class="sp-sm-flag">Latinoamérica</div>
-                <div class="sp-sm-name">Charlie Villarreal</div>
-                <div class="sp-sm-role">Emprendedor Digital · Liderazgo y Mentalidad</div>
-                <div class="sp-sm-bio">Referente en mentalidad emprendedora y network marketing en Latinoamérica. Charlie inspira con su historia y equipa con estrategias que realmente funcionan en el mercado hispano.</div>
+                <div class="sp-sm-photo-wrap">
+                    <img src="speakers/charlie-villarreal.png" alt="Charlie Villarreal">
+                </div>
+                <div class="sp-sm-info">
+                    <div class="sp-sm-flag">Latinoamérica</div>
+                    <div class="sp-sm-name">Charlie Villarreal</div>
+                    <div class="sp-sm-role">Emprendedor Digital · Liderazgo y Mentalidad</div>
+                    <div class="sp-sm-bio">Referente en mentalidad emprendedora y network marketing en Latinoamérica. Charlie inspira con su historia y equipa con estrategias que realmente funcionan en el mercado hispano.</div>
+                </div>
             </div>
 
             <div class="sp-card-sm reveal">
-                <div class="sp-sm-flag">Colombia</div>
-                <div class="sp-sm-name">Eduardo Otero</div>
-                <div class="sp-sm-role">Estratega de Negocios · Educación Financiera</div>
-                <div class="sp-sm-bio">Eduardo combina décadas de experiencia en negocios con una pasión profunda por enseñar a las personas a construir riqueza. Su sesión de educación financiera es una de las más esperadas del evento.</div>
+                <div class="sp-sm-photo-wrap">
+                    <img src="speakers/eduardo-otero.png" alt="Eduardo Otero">
+                </div>
+                <div class="sp-sm-info">
+                    <div class="sp-sm-flag">Colombia</div>
+                    <div class="sp-sm-name">Eduardo Otero</div>
+                    <div class="sp-sm-role">Estratega de Negocios · Educación Financiera</div>
+                    <div class="sp-sm-bio">Eduardo combina décadas de experiencia en negocios con una pasión profunda por enseñar a las personas a construir riqueza. Su sesión de educación financiera es una de las más esperadas del evento.</div>
+                </div>
             </div>
 
         </div>
