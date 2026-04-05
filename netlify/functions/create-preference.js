@@ -70,10 +70,11 @@ exports.handler = async (event) => {
                 },
                 auto_return: 'approved',
 
-                payment_methods: { installments: 1 },
+                // Sin restricciones de método de pago — dejar que MP muestre todo
                 statement_descriptor: 'BE IMPARABLES',
                 external_reference:   `EVENTO-${Date.now()}`,
-                notification_url:     `${siteUrl}/.netlify/functions/webhook`,
+                // Usar siempre la URL .netlify.app para el webhook (más estable que dominio custom)
+                notification_url: `https://landing-camilocortes.netlify.app/.netlify/functions/webhook`,
             }
         });
 
