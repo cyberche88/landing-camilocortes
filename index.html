@@ -3391,8 +3391,47 @@
             const item = btn.closest('.faq-item');
             const was  = item.classList.contains('active');
             document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
-            if (!was) item.classList.add('active');
+            if (!was) {
+                item.classList.add('active');
+                const q = btn.querySelector('.faq-q-text');
+                track('faq_open', { event_category: 'engagement', event_label: q ? q.textContent.trim().slice(0, 60) : '' });
+            }
         });
+    });
+
+    // ─── SCROLL DEPTH ───────────────────────────
+    (function initScrollTracking() {
+        const milestones = [25, 50, 75, 90];
+        const fired = new Set();
+        function onScroll() {
+            const scrolled = window.scrollY + window.innerHeight;
+            const total    = document.documentElement.scrollHeight;
+            const pct      = Math.round((scrolled / total) * 100);
+            milestones.forEach(m => {
+                if (pct >= m && !fired.has(m)) {
+                    fired.add(m);
+                    track('scroll_depth', { event_category: 'engagement', event_label: m + '%', value: m });
+                }
+            });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    // ─── VIDEO TESTIMONIOS ──────────────────────
+    (function initVideoTracking() {
+        const video = document.querySelector('.testi-video-inner video');
+        if (!video) return;
+        let playTracked = false;
+        video.addEventListener('play', () => {
+            if (playTracked) return;
+            playTracked = true;
+            track('video_play', { event_category: 'engagement', event_label: 'Video testimonios' });
+        });
+    })();
+
+    // ─── WHATSAPP BUTTON ────────────────────────
+    document.querySelector('.wa-float').addEventListener('click', () => {
+        track('click_whatsapp', { event_category: 'engagement', event_label: 'Botón flotante WA' });
     });
 
     // ─── FOMO NOTIFICATIONS ─────────────────────
@@ -3467,8 +3506,25 @@
         }
     }
 
+    // ── Tracking helper (GA4 + Meta Pixel) ─────────
+    function track(eventName, params) {
+        if (typeof gtag === 'function') gtag('event', eventName, params || {});
+        if (typeof fbq  === 'function') {
+            const fbMap = {
+                'InitiateCheckout': ['InitiateCheckout', params],
+                'Purchase':         ['Purchase', { value: 280000, currency: 'COP' }],
+                'click_comprar':    ['AddToCart', params],
+                'click_whatsapp':   ['Contact', params],
+                'video_play':       ['ViewContent', params],
+            };
+            if (fbMap[eventName]) fbq('track', fbMap[eventName][0], fbMap[eventName][1] || {});
+            else fbq('trackCustom', eventName, params || {});
+        }
+    }
+
     // Abrir modal (muestra el formulario directo)
     function openPayment() {
+        track('click_comprar', { event_category: 'ecommerce', event_label: 'Abrir modal pago' });
         setPayOverlay(null); // asegura que no haya overlay visible
         document.getElementById('pay-modal').classList.add('on');
         document.body.style.overflow = 'hidden';
@@ -3546,6 +3602,7 @@
                 ? (data.sandbox_init_point || data.init_point)
                 : data.init_point;
 
+            track('InitiateCheckout', { event_category: 'ecommerce', value: 280000, currency: 'COP' });
             window.location.href = url;
 
         } catch (err) {
@@ -3578,9 +3635,16 @@
         document.getElementById('pay-modal').classList.add('on');
         document.body.style.overflow = 'hidden';
 
-        if (status === 'approved')   setPayOverlay('success');
-        else if (status === 'rejected') setPayOverlay('failure');
-        else                         setPayOverlay('pending');
+        if (status === 'approved') {
+            setPayOverlay('success');
+            track('Purchase', { event_category: 'ecommerce', value: 280000, currency: 'COP', transaction_id: p.get('payment_id') || p.get('merchant_order_id') || '' });
+        } else if (status === 'rejected') {
+            setPayOverlay('failure');
+            track('payment_rejected', { event_category: 'ecommerce' });
+        } else {
+            setPayOverlay('pending');
+            track('payment_pending', { event_category: 'ecommerce' });
+        }
     })();
 </script>
 
