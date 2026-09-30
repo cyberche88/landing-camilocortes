@@ -14,6 +14,12 @@
   to     = "/.netlify/functions/webhook"
   status = 200
 
+# Redirige /trm → Netlify Function (precio 89 USD → COP con TRM del día)
+[[redirects]]
+  from   = "/trm"
+  to     = "/.netlify/functions/trm"
+  status = 200
+
 [functions]
   node_bundler = "esbuild"
 
