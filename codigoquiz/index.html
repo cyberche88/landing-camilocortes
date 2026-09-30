@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Código del Futuro — Descubre tu Código Financiero</title>
+<meta name="description" content="Responde 5 preguntas y descubre tu perfil financiero, tu Índice de Libertad y qué debes desbloquear para generar ingresos en dólares con IA. Test gratis, 2 minutos.">
+
+<!-- ===== Open Graph / redes ===== -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://camiloecortes.com/codigoquiz">
+<meta property="og:title" content="Descubre tu Código Financiero — El Código del Futuro">
+<meta property="og:description" content="Test gratis de 2 min: tu perfil financiero + tu Índice de Libertad /100. 18 de octubre · Ágora, Bogotá.">
+<meta property="og:image" content="https://camiloecortes.com/codigoquiz/media/poster-revelado.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://camiloecortes.com/codigoquiz/media/poster-revelado.png">
+
+<!-- ===== Google Analytics 4 (mismo ID del sitio principal) ===== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KLQXEPBHXZ"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-KLQXEPBHXZ');
+</script>
+
+<!-- ===== Meta Pixel (mismo ID del sitio principal) ===== -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3559974890833540');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3559974890833540&ev=PageView&noscript=1"/></noscript>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  :root{
+    color-scheme:dark;
+    --bg:#080611;--bg-2:#0E0A1E;--surface:#150F2B;--surface-2:#1D1640;--line:#2E2359;
+    --violet:#9B5CF6;--violet-hi:#B98CFF;--gold:#F0B54A;--gold-hi:#FFD27A;--mint:#3DDC97;--wa:#25D366;
+    --red:#FF7A7A;--blue:#6FB4FF;
+    --text:#F4F1FF;--muted:#A99FC9;--muted-2:#726A94;
+    --radius:16px;--maxw:660px;
+    --display:'Chakra Petch',system-ui,sans-serif;--body:'Manrope',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace;
+  }
+  body{min-height:100vh;background:radial-gradient(1100px 560px at 20% -5%,rgba(155,92,246,.16),transparent 60%),radial-gradient(900px 520px at 95% 8%,rgba(240,181,74,.10),transparent 58%),var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:20px;padding-block:0}
+  .screen{min-height:100vh;display:flex;flex-direction:column}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--violet-hi);font-weight:700}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+  .wordmark{font-family:var(--display);font-weight:700;letter-spacing:.34em;font-size:12px;color:var(--muted);text-transform:uppercase}
+
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,7.8vw,50px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0}
+  h1 .hl{color:var(--gold);text-shadow:0 0 24px rgba(240,181,74,.35)}
+  .lede{color:var(--muted);font-size:clamp(15px,4vw,17px);text-wrap:pretty;margin:0}
+
+  .hero{padding-block:34px 8px;display:flex;flex-direction:column;gap:20px}
+  .hero-head{display:flex;flex-direction:column;gap:16px}
+
+  .btn{appearance:none;border:0;cursor:pointer;width:100%;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.02em;color:#0A0714;background:linear-gradient(180deg,var(--gold-hi),var(--gold));border-radius:14px;padding:18px 20px;box-shadow:0 10px 34px rgba(240,181,74,.28);transition:transform .12s,box-shadow .12s;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 14px 44px rgba(240,181,74,.36)}
+  .btn:active{transform:translateY(0)}
+  .btn.wa{background:linear-gradient(180deg,#3ee87e,var(--wa));box-shadow:0 10px 34px rgba(37,211,102,.28);color:#04120C}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none}
+  .btn:focus-visible{outline:2px solid var(--violet-hi);outline-offset:3px}
+  .micro{font-size:12.5px;color:var(--muted-2);text-align:center}
+  .micro b{color:var(--muted)}
+
+  .hero-meta{display:flex;flex-direction:column;gap:12px}
+  .hero-badges{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:6px 11px;background:var(--surface);display:inline-flex;align-items:center;gap:7px}
+  .chip b{color:var(--text);font-weight:700}
+  .countdown{display:flex;gap:9px}
+  .cd-cell{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 4px;text-align:center}
+  .cd-num{font-family:var(--mono);font-size:23px;color:var(--gold-hi);line-height:1;font-variant-numeric:tabular-nums}
+  .cd-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;font-family:var(--display)}
+
+  .hero-clip{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#05040D;line-height:0}
+  .hero-clip video{width:100%;height:auto;display:block}
+
+  .trust{display:flex;flex-direction:column;gap:11px;border-top:1px solid var(--line);padding-top:18px}
+  .trust-row{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--muted)}
+  .tick{color:var(--mint);flex:0 0 auto;font-weight:700}
+  .trust-row b{color:var(--text);font-weight:600}
+
+  .quiz{padding-block:28px 30px;display:none;flex-direction:column;gap:22px;flex:1}
+  .quiz.active{display:flex}
+  .progress{height:6px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+  .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--gold));transition:width .35s ease}
+  .qcount{font-family:var(--display);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-hi);font-weight:700}
+  .qtext{font-family:var(--display);font-weight:700;font-size:clamp(21px,5.6vw,28px);line-height:1.18;text-wrap:balance;margin:0}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{text-align:left;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:13px;padding:16px;font-size:15.5px;font-family:var(--body);font-weight:500;display:flex;align-items:center;gap:13px;transition:border-color .12s,background .12s,transform .1s}
+  .opt:hover{border-color:var(--violet);background:var(--surface-2)}
+  .opt:active{transform:scale(.99)}
+  .opt .key{flex:0 0 auto;width:26px;height:26px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--violet-hi)}
+  .opt:focus-visible{outline:2px solid var(--violet-hi);outline-offset:2px}
+  .qback{align-self:flex-start;background:none;border:0;color:var(--muted-2);font-family:var(--body);font-size:13px;cursor:pointer;padding:4px 0}
+  .qback:hover{color:var(--muted)}
+
+  .result{padding-block:28px;display:none;flex-direction:column;gap:18px;flex:1}
+  .result.active{display:flex}
+  .reveal-lbl{font-family:var(--display);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:center}
+
+  .badge{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .badge-emblem{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:44px;
+    background:radial-gradient(circle at 50% 35%,var(--surface-2),var(--surface));
+    border:2px solid var(--bem,var(--gold));box-shadow:0 0 30px var(--bemglow,rgba(240,181,74,.35)),inset 0 0 20px rgba(0,0,0,.4);position:relative}
+  .badge-emblem::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--bem,var(--gold));opacity:.35}
+  .badge-tier{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--bem,var(--gold));border:1px solid var(--line);border-radius:999px;padding:5px 12px;text-transform:uppercase}
+
+  .archetype{font-family:var(--display);font-weight:700;font-size:clamp(27px,6.6vw,38px);line-height:1.04;letter-spacing:-.01em;text-align:center;text-wrap:balance;margin:0;color:var(--gold);text-shadow:0 0 26px rgba(240,181,74,.3)}
+  .arch-desc{color:var(--muted);text-align:center;font-size:15.5px;text-wrap:pretty;margin:0 auto;max-width:46ch}
+
+  .cc-lbl{font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);font-weight:700}
+
+  .index-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .index-row{display:flex;align-items:baseline;gap:4px;margin-top:6px}
+  .index-num{font-family:var(--mono);font-size:44px;line-height:1;color:var(--idxc,var(--gold-hi));font-variant-numeric:tabular-nums;transition:color .3s}
+  .index-max{font-family:var(--mono);font-size:18px;color:var(--muted-2)}
+  .index-bar{height:10px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin:12px 0 10px}
+  .index-bar > i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--red),var(--gold),var(--mint));transition:width 1.1s ease}
+  .index-cap{font-size:14px;color:var(--muted);margin:0;line-height:1.5}
+  .index-cap b{color:var(--text)}
+
+  .cost-card{background:linear-gradient(160deg,rgba(255,122,122,.08),var(--surface));border:1px solid rgba(255,122,122,.32);border-radius:var(--radius);padding:18px}
+  .cost-card p{margin:8px 0 0;font-size:15px;color:var(--text);line-height:1.5}
+  .cost-card .cc-lbl{color:var(--red)}
+
+  .code-card{background:linear-gradient(160deg,var(--surface-2),var(--surface));border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative;overflow:hidden}
+  .code-card::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 9px,rgba(155,92,246,.05) 9px 10px);pointer-events:none}
+  .code-loading{margin-top:12px;position:relative}
+  .cl-text{font-family:var(--mono);font-size:13px;color:var(--violet-hi);letter-spacing:.05em}
+  .cl-bar{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin-top:9px}
+  .cl-bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--gold));transition:width 1.5s linear}
+  .code-val{font-family:var(--mono);font-size:clamp(25px,7.2vw,36px);color:var(--gold-hi);letter-spacing:.05em;margin-top:8px;word-break:break-all;position:relative}
+  .code-lock{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--mint);position:relative}
+
+  .stack{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .stack h3{font-family:var(--display);font-size:16px;margin:0 0 12px}
+  .stack-item{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--muted);padding:7px 0}
+  .stack-item b{color:var(--text);font-weight:600}
+
+  .cta-group{display:flex;flex-direction:column;gap:11px}
+  .spots{font-family:var(--display);font-size:13px;color:var(--gold-hi);text-align:center;letter-spacing:.03em}
+  .disclaimer{font-size:11.5px;color:var(--muted-2);text-align:center;line-height:1.5}
+  .share-note{font-size:12px;color:var(--muted);text-align:center;line-height:1.5;margin:0}
+  .share-note b{color:var(--violet-hi)}
+
+  footer{padding-block:26px 34px;text-align:center;color:var(--muted-2);font-size:12.5px;border-top:1px solid var(--line);margin-top:10px}
+  footer .fb{font-family:var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-size:11px}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="screen">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-head">
+        <span class="wordmark">El Código del Futuro</span>
+        <span class="eyebrow"><span class="dot"></span> El código será revelado · 18 Oct</span>
+        <h1>Tu sueldo se queda corto. <span class="hl">Tu código financiero</span>, no.</h1>
+        <p class="lede">Responde 5 preguntas y descubre por qué tu dinero no crece — y qué debes desbloquear para generar ingresos en dólares con IA, sin renunciar a tu empleo.</p>
+        <button class="btn" id="startBtn">Descubre tu Código Financiero →</button>
+        <p class="micro">Sin costo · 2 minutos · <b>tu código se activa el 18 de octubre.</b></p>
+      </div>
+
+      <div class="hero-meta">
+        <div class="hero-badges">
+          <span class="chip">📅 <b>Domingo 18 Oct</b></span>
+          <span class="chip">📍 <b>Ágora · Bogotá</b></span>
+          <span class="chip">⏱️ <b>Quiz 2 min</b></span>
+        </div>
+        <div class="countdown" aria-label="Cuenta regresiva">
+          <div class="cd-cell"><div class="cd-num" id="cdD">--</div><div class="cd-lbl">Días</div></div>
+          <div class="cd-cell"><div class="cd-num" id="cdH">--</div><div class="cd-lbl">Horas</div></div>
+          <div class="cd-cell"><div class="cd-num" id="cdM">--</div><div class="cd-lbl">Min</div></div>
+          <div class="cd-cell"><div class="cd-num" id="cdS">--</div><div class="cd-lbl">Seg</div></div>
+        </div>
+      </div>
+
+      <div class="hero-clip">
+        <video autoplay muted loop playsinline poster="media/poster-revelado.png">
+          <source src="media/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="trust">
+        <div class="trust-row"><span class="tick">✓</span><span>Descubre tu <b>perfil financiero</b> y tu Índice de Libertad en 2 minutos.</span></div>
+        <div class="trust-row"><span class="tick">✓</span><span>Recibe un <b>código personal</b> que desbloquea tu entrada al evento.</span></div>
+        <div class="trust-row"><span class="tick">✓</span><span>Aprende a construir un <b>ingreso en dólares</b> apalancando IA y tecnología.</span></div>
+      </div>
+    </section>
+
+    <!-- ===== QUIZ ===== -->
+    <section class="quiz" id="quiz" aria-live="polite">
+      <button class="qback" id="backBtn" hidden>← Anterior</button>
+      <div class="qcount" id="qCount">Pregunta 1 de 5</div>
+      <div class="progress"><i id="progBar"></i></div>
+      <h2 class="qtext" id="qText"></h2>
+      <div class="opts" id="qOpts"></div>
+    </section>
+
+    <!-- ===== RESULT ===== -->
+    <section class="result" id="result">
+      <div class="reveal-lbl">Tu perfil financiero es</div>
+
+      <div class="badge">
+        <div class="badge-emblem" id="badgeIcon">🏃</div>
+        <div class="badge-tier" id="badgeTier">Nivel</div>
+      </div>
+
+      <h2 class="archetype" id="archName"></h2>
+      <p class="arch-desc" id="archDesc"></p>
+
+      <div class="index-card">
+        <div class="cc-lbl">Tu Índice de Libertad Financiera</div>
+        <div class="index-row"><span class="index-num" id="idxNum">--</span><span class="index-max">/ 100</span></div>
+        <div class="index-bar"><i id="idxBar"></i></div>
+        <p class="index-cap" id="idxCap"></p>
+      </div>
+
+      <div class="cost-card">
+        <div class="cc-lbl">⚠️ Lo que te está costando seguir igual</div>
+        <p id="costText"></p>
+      </div>
+
+      <div class="code-card">
+        <div class="cc-lbl">Tu código financiero</div>
+        <div class="code-loading" id="codeLoading">
+          <div class="cl-text" id="clText">Descifrando tu código…</div>
+          <div class="cl-bar"><i id="clBar"></i></div>
+        </div>
+        <div class="code-val" id="codeVal" hidden>CF-----</div>
+        <div class="code-lock" id="codeLock" hidden>🔒 Se desbloquea en El Código del Futuro · 18 Oct · Ágora, Bogotá</div>
+      </div>
+
+      <div class="stack">
+        <h3>Lo que desbloqueas con tu código en el evento</h3>
+        <div class="stack-item"><span class="tick">✓</span><span>Acceso al <b>lanzamiento del producto</b> que cambia las reglas de la libertad financiera</span></div>
+        <div class="stack-item"><span class="tick">✓</span><span>Masterclass en vivo: <b>ingresos en dólares con IA</b></span></div>
+        <div class="stack-item"><span class="tick">✓</span><span>Acceso seguro a <b>mercados financieros</b>, paso a paso</span></div>
+        <div class="stack-item"><span class="tick">✓</span><span>Networking + <b>bono exclusivo</b> solo para asistentes</span></div>
+      </div>
+
+      <div class="cta-group">
+        <p class="spots">🔥 Cupos limitados para Bogotá · asegura el tuyo</p>
+        <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">Reclamar mi código por WhatsApp 🔓</a>
+        <a class="btn ghost" id="shareBtn" href="#" target="_blank" rel="noopener">Reta a un amigo 🔥</a>
+        <p class="share-note">Comparte tu perfil, etiqueta a <b>@be</b> y descubre quién de tus amigos está más cerca de su libertad financiera.</p>
+        <button class="btn ghost" id="retryBtn">Repetir el quiz</button>
+        <p class="disclaimer">Al reclamar tu código te escribimos por WhatsApp con los detalles de tu entrada a El Código del Futuro.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="fb">be · Imparables</div>
+      El Código del Futuro · Domingo 18 de octubre · Centro de Convenciones Ágora, Bogotá<br>
+      Un nuevo capítulo comienza.
+    </footer>
+  </div>
+</div>
+
+<script>
+const CONFIG = {
+  // Tu WhatsApp (código país + número, sin + ni espacios):
+  waNumber:"573005367545",
+  // Fecha/hora del evento:
+  eventDate:"2026-10-18T18:00:00",
+  // Déjalo vacío: el botón "Reta a un amigo" usará automáticamente la URL donde esté publicada la página.
+  landingUrl:""
+};
+
+const QUESTIONS = [
+  { q:"¿Qué es lo que más te quita el sueño hoy?", opts:[
+    {t:"El dinero no me alcanza aunque trabajo mucho", a:"corredor", p:1},
+    {t:"No tengo tiempo para nada ni para mí", a:"corredor", p:1},
+    {t:"Ahorro, pero siento que mi dinero no crece", a:"guardian", p:2},
+    {t:"Depender de un solo sueldo me da miedo", a:"estratega", p:2} ]},
+  { q:"Tu ingreso principal hoy viene de…", opts:[
+    {t:"Un empleo fijo, y es lo único que tengo", a:"estratega", p:1},
+    {t:"Mi trabajo, pero ya busco algo más", a:"explorador", p:3},
+    {t:"Trabajo por horas / independiente, sin parar", a:"corredor", p:1},
+    {t:"Tengo ahorros pero quietos en el banco", a:"guardian", p:2} ]},
+  { q:"Si hoy perdieras tu ingreso principal, ¿cuánto aguantarías?", opts:[
+    {t:"Menos de un mes", a:"corredor", p:1},
+    {t:"Uno a tres meses", a:"estratega", p:2},
+    {t:"Tengo colchón, pero me estresaría igual", a:"guardian", p:2},
+    {t:"Ya estoy construyendo otras fuentes", a:"explorador", p:4} ]},
+  { q:"Cuando piensas en invertir o en los mercados, sientes…", opts:[
+    {t:"Curiosidad, pero no sé por dónde empezar", a:"explorador", p:3},
+    {t:"Miedo a perder lo que tanto me costó", a:"guardian", p:2},
+    {t:"Que es solo para gente con mucho dinero", a:"estratega", p:1},
+    {t:"No tengo tiempo de estudiar eso", a:"corredor", p:1} ]},
+  { q:"¿Qué te gustaría desbloquear en los próximos 12 meses?", opts:[
+    {t:"Un ingreso extra en dólares", a:"explorador", p:3},
+    {t:"Recuperar mi tiempo y libertad", a:"corredor", p:2},
+    {t:"Que mi dinero por fin trabaje para mí", a:"guardian", p:2},
+    {t:"Dejar de depender de un solo sueldo", a:"estratega", p:2} ]}
+];
+
+const ARCHETYPES = {
+  estratega:{name:"El Estratega Dormido",icon:"🧠",color:"#B98CFF",glow:"rgba(155,92,246,.4)",
+    desc:"Tienes visión y disciplina, pero un solo ingreso te tiene anclado. Tu potencial está intacto — solo le falta un vehículo para despertar.",
+    cost:"Cada año que dependes de un solo ingreso, un solo despido puede borrar en semanas lo que te costó años construir. La estabilidad que sientes es prestada."},
+  corredor:{name:"El Corredor Sin Tiempo",icon:"🏃",color:"#FFD27A",glow:"rgba(240,181,74,.4)",
+    desc:"Corres todo el día cambiando horas por dinero, y aún así no alcanza. Necesitas un sistema que trabaje sin ti para recuperar tu vida.",
+    cost:"A este ritmo, en 5 años habrás entregado más de 10.000 horas de tu vida por un sueldo que la inflación se sigue comiendo. Tiempo que no vuelve."},
+  guardian:{name:"El Guardián Cauteloso",icon:"🛡️",color:"#6FB4FF",glow:"rgba(111,180,255,.4)",
+    desc:"Cuidas cada peso, pero el dinero quieto pierde valor con la inflación. Es hora de aprender a hacerlo crecer de forma segura.",
+    cost:"Tu dinero guardado pierde cerca de 1 de cada 3 pesos de poder de compra en 5 años. Ahorrar sin invertir ya no es cuidar tu dinero: es verlo derretirse."},
+  explorador:{name:"El Explorador Listo",icon:"🧭",color:"#3DDC97",glow:"rgba(61,220,151,.4)",
+    desc:"Ya sabes que el empleo solo no basta y estás buscando salidas. Solo te falta el mapa y el vehículo correcto para acelerar.",
+    cost:"Ya sientes que quieres más — pero cada mes sin el sistema correcto es ventaja que le regalas a los que empezaron antes que tú. La idea sin acción no paga."}
+};
+
+function tierFor(idx){
+  if(idx<40) return "Nivel: En la rueda";
+  if(idx<60) return "Nivel: Despertando";
+  if(idx<80) return "Nivel: En construcción";
+  return "Nivel: Casi imparable";
+}
+function idxColor(idx){ return idx<45?"var(--red)":(idx<70?"var(--gold-hi)":"var(--mint)"); }
+
+let idx=0; const answers=[];
+const el=(id)=>document.getElementById(id);
+const hero=el('hero'), quiz=el('quiz'), result=el('result');
+const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+function tick(){
+  const target=new Date(CONFIG.eventDate).getTime();
+  let d=Math.max(0,target-Date.now());
+  const days=Math.floor(d/86400000); d-=days*86400000;
+  const hrs=Math.floor(d/3600000); d-=hrs*3600000;
+  const min=Math.floor(d/60000); d-=min*60000;
+  const sec=Math.floor(d/1000);
+  const pad=(n)=>String(n).padStart(2,'0');
+  el('cdD').textContent=days; el('cdH').textContent=pad(hrs);
+  el('cdM').textContent=pad(min); el('cdS').textContent=pad(sec);
+}
+tick(); setInterval(tick,1000);
+
+function renderQ(){
+  const Q=QUESTIONS[idx];
+  el('qCount').textContent=`Pregunta ${idx+1} de ${QUESTIONS.length}`;
+  el('progBar').style.width=`${(idx/QUESTIONS.length)*100}%`;
+  el('qText').textContent=Q.q;
+  el('backBtn').hidden=idx===0;
+  const box=el('qOpts'); box.innerHTML='';
+  const keys=['A','B','C','D'];
+  Q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='opt';
+    b.innerHTML=`<span class="key">${keys[i]}</span><span>${o.t}</span>`;
+    b.addEventListener('click',()=>choose(i));
+    box.appendChild(b);
+  });
+}
+function choose(i){
+  answers[idx]=QUESTIONS[idx].opts[i];
+  if(idx<QUESTIONS.length-1){idx++;renderQ();}
+  else{showResult();}
+}
+el('backBtn').addEventListener('click',()=>{if(idx>0){idx--;renderQ();}});
+
+function makeCode(profileKey){
+  let h=0; const s=answers.map(a=>a.a).join('')+profileKey;
+  for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))>>>0;}
+  const rnd=Math.floor(Math.random()*1296)>>>0;
+  const b36=(n)=>n.toString(36).toUpperCase().padStart(2,'0');
+  return `CF-${b36(h%1296)}${b36((h>>>8)%1296)}-${b36(rnd)}`;
+}
+function tally(){
+  const c={}; answers.forEach(a=>c[a.a]=(c[a.a]||0)+1);
+  let best='explorador',max=-1;
+  ['estratega','corredor','guardian','explorador'].forEach(k=>{if((c[k]||0)>max){max=c[k]||0;best=k;}});
+  return best;
+}
+function computeIndex(){
+  const sum=answers.reduce((s,a)=>s+(a.p||1),0);
+  return Math.round(((sum-5)/15)*63 + 22);
+}
+
+function showResult(){
+  el('progBar').style.width='100%';
+  const key=tally(), arch=ARCHETYPES[key], code=makeCode(key), index=computeIndex();
+
+  const badge=el('badgeIcon');
+  badge.textContent=arch.icon;
+  badge.style.setProperty('--bem',arch.color);
+  badge.style.setProperty('--bemglow',arch.glow);
+  el('badgeTier').textContent=tierFor(index);
+  el('badgeTier').style.setProperty('--bem',arch.color);
+
+  el('archName').textContent=arch.name;
+  el('archName').style.color=arch.color;
+  el('archDesc').textContent=arch.desc;
+
+  el('idxNum').textContent=index;
+  el('idxNum').style.setProperty('--idxc',idxColor(index));
+  el('idxCap').innerHTML=`Solo el <b>${index}%</b> de tu libertad financiera está construida. El otro <b>${100-index}%</b> depende de que no falles ni un solo mes. Eso se puede cambiar.`;
+  el('costText').textContent=arch.cost;
+
+  el('codeVal').textContent=code;
+  const msg=`¡Hola! 🔓 Acabo de descubrir mi Código Financiero.\n\n*Perfil:* ${arch.name}\n*Índice de Libertad:* ${index}/100\n*Mi código:* ${code}\n\nQuiero reclamar mi código y asegurar mi entrada a *El Código del Futuro* (domingo 18 de octubre · Ágora, Bogotá). ¿Me cuentas cómo?`;
+  el('waBtn').setAttribute('href',`https://wa.me/${CONFIG.waNumber}?text=${encodeURIComponent(msg)}`);
+
+  const shareUrl = CONFIG.landingUrl || location.href;
+  const share=`🔓 Hice el test del Código Financiero y mi perfil es *${arch.name}* (Índice de Libertad ${index}/100). ¿Cuál es el tuyo? Haz el tuyo aquí 👉 ${shareUrl}`;
+  el('shareBtn').setAttribute('href',`https://wa.me/?text=${encodeURIComponent(share)}`);
+
+  hero.style.display='none'; quiz.classList.remove('active'); result.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  // Tracking: registra que alguien completó el quiz
+  if(window.fbq){ try{ fbq('track','Lead',{content_name:'Quiz Codigo Financiero', archetype:arch.name}); }catch(e){} }
+  if(window.gtag){ try{ gtag('event','quiz_completado',{archetype:arch.name, indice:index}); }catch(e){} }
+
+  const revealNow=()=>{ el('codeLoading').hidden=true; el('codeVal').hidden=false; el('codeLock').hidden=false; };
+  requestAnimationFrame(()=>{ el('idxBar').style.width=`${index}%`; });
+  if(reduce){ revealNow(); return; }
+  el('codeLoading').hidden=false; el('codeVal').hidden=true; el('codeLock').hidden=true;
+  el('clBar').style.width='0';
+  requestAnimationFrame(()=>{ el('clBar').style.width='100%'; });
+  setTimeout(()=>{ el('clText').textContent='Código descifrado ✔'; },1500);
+  setTimeout(revealNow,1750);
+}
+
+el('startBtn').addEventListener('click',()=>{
+  hero.style.display='none'; quiz.classList.add('active');
+  idx=0; answers.length=0; renderQ(); window.scrollTo({top:0});
+});
+el('retryBtn').addEventListener('click',()=>{
+  result.classList.remove('active');
+  idx=0; answers.length=0;
+  hero.style.display='flex'; el('progBar').style.width='0%';
+  window.scrollTo({top:0});
+});
+</script>
+</body>
+</html>
