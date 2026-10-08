@@ -15,7 +15,8 @@ const CORS_HEADERS = {
 };
 
 // Precio en USD; se cobra en COP convertido con la TRM del día.
-const USD_PRICE = 149;
+const USD_PRICE = 89;
+const FEE_PCT = 0.05; // fee de servicio digital (cubre comisión de la pasarela MercadoPago)
 const FALLBACK_TRM = 4200; // conservador, solo si fallan las 2 fuentes
 
 async function fetchJSON(url, ms = 6000) {
@@ -68,25 +69,37 @@ exports.handler = async (event) => {
         const siteUrl = process.env.DEPLOY_PRIME_URL || process.env.URL || 'https://tu-sitio.netlify.app';
         console.log(`[MP] siteUrl usado: ${siteUrl}`);
 
-        // Precio dinámico: 149 USD -> COP con la TRM del día
+        // Precio dinámico: 89 USD -> COP con la TRM del día + fee de servicio
         const { trm, source } = await getTRM();
-        const unitPrice = Math.round(USD_PRICE * trm);
-        console.log(`[MP] Preferencia — ${name} <${email}> — TRM(${source})=${trm} → ${unitPrice} COP`);
+        const ticketPrice = Math.round(USD_PRICE * trm);
+        const feePrice    = Math.round(ticketPrice * FEE_PCT);
+        console.log(`[MP] Preferencia — ${name} <${email}> — TRM(${source})=${trm} → ticket=${ticketPrice} fee=${feePrice} COP`);
 
         const client = new MercadoPagoConfig({ accessToken, options: { timeout: 8000 } });
         const preference = new Preference(client);
 
         const result = await preference.create({
             body: {
-                items: [{
-                    id:          'ENTRADA-EL-CODIGO-DEL-FUTURO',
-                    title:       'El Código del Futuro — Entrada General',
-                    description: '18 de Octubre · 8:00am–6:00pm · Centro de Convenciones Ágora, Bogotá',
-                    category_id: 'tickets',
-                    quantity:    1,
-                    unit_price:  unitPrice,
-                    currency_id: 'COP'
-                }],
+                items: [
+                    {
+                        id:          'ENTRADA-EL-CODIGO-DEL-FUTURO',
+                        title:       'El Código del Futuro — Entrada General',
+                        description: '18 de Octubre · 8:00am–6:00pm · Centro de Convenciones Ágora, Bogotá',
+                        category_id: 'tickets',
+                        quantity:    1,
+                        unit_price:  ticketPrice,
+                        currency_id: 'COP'
+                    },
+                    {
+                        id:          'FEE-SERVICIO-DIGITAL',
+                        title:       'Fee de servicio digital',
+                        description: 'Comisión de la pasarela de pago',
+                        category_id: 'services',
+                        quantity:    1,
+                        unit_price:  feePrice,
+                        currency_id: 'COP'
+                    }
+                ],
 
                 payer: {
                     name:  name  || undefined,

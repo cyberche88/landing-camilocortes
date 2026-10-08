@@ -10,7 +10,8 @@ const CORS = {
   'Cache-Control': 'no-store, max-age=0'
 };
 
-const USD_PRICE = 149;
+const USD_PRICE = 89;
+const FEE_PCT = 0.05; // fee de servicio digital (cubre comisión de la pasarela MercadoPago)
 const FALLBACK_TRM = 4200; // conservador, solo si fallan las 2 fuentes
 
 async function fetchJSON(url, ms = 6000) {
@@ -41,10 +42,12 @@ async function getTRM() {
 
 exports.handler = async () => {
   const { trm, source } = await getTRM();
-  const cop = Math.round(USD_PRICE * trm);
+  const cop   = Math.round(USD_PRICE * trm);   // ticket
+  const fee   = Math.round(cop * FEE_PCT);     // fee de servicio digital
+  const total = cop + fee;                     // total a pagar
   return {
     statusCode: 200,
     headers: CORS,
-    body: JSON.stringify({ usd: USD_PRICE, trm, cop, source })
+    body: JSON.stringify({ usd: USD_PRICE, trm, cop, fee, total, source })
   };
 };
