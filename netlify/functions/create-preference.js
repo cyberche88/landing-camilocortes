@@ -70,7 +70,7 @@ exports.handler = async (event) => {
 
         // Precio dinámico: 89 USD -> COP con la TRM del día
         const { trm, source } = await getTRM();
-        const unitPrice = 5000; /* === PRECIO DE PRUEBA $1.000 COP — REVERTIR A: Math.round(USD_PRICE * trm) === */
+        const unitPrice = Math.round(USD_PRICE * trm);
         console.log(`[MP] Preferencia — ${name} <${email}> — TRM(${source})=${trm} → ${unitPrice} COP`);
 
         const client = new MercadoPagoConfig({ accessToken, options: { timeout: 8000 } });
