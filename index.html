@@ -295,7 +295,7 @@ let LAST_COP = null;
 function fmtCOP(n){ return '$' + Math.round(n).toLocaleString('es-CO') + ' COP'; }
 async function loadPrice(){
   try{
-    const r = await fetch('/trm'); const j = await r.json();
+    const r = await fetch('/trm?t=' + Date.now()); const j = await r.json();
     if(j && j.cop){ LAST_COP = j.cop;
       document.getElementById('priceCop').innerHTML = '≈ <b>'+fmtCOP(j.cop)+'</b> · TRM hoy';
     } else { document.getElementById('priceCop').textContent='Precio en pesos según TRM del día'; }
