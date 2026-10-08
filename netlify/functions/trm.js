@@ -1,6 +1,6 @@
 /**
  * Netlify Function — TRM del día (USD -> COP)
- * Devuelve el precio del ticket ($89 USD) convertido a COP con la TRM vigente.
+ * Devuelve el precio del ticket ($149 USD) convertido a COP con la TRM vigente.
  * Se invoca via /trm (redirigido en netlify.toml).
  */
 
@@ -10,7 +10,7 @@ const CORS = {
   'Cache-Control': 'public, max-age=3600' // cachea 1h (la TRM cambia 1 vez/día)
 };
 
-const USD_PRICE = 89;
+const USD_PRICE = 149;
 const FALLBACK_TRM = 4200; // conservador, solo si fallan las 2 fuentes
 
 async function fetchJSON(url, ms = 6000) {
