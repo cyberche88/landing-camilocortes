@@ -232,7 +232,7 @@ fbq('init','3559974890833540');fbq('track','PageView');
     <h2>Cupos limitados para Bogotá 🔥</h2>
     <div class="buy">
       <div class="price-row">
-        <span class="price-usd">US$149</span>
+        <span class="price-usd">US$89</span>
         <span class="price-cop" id="priceCop">Calculando precio en pesos…</span>
       </div>
       <p class="price-note" id="priceNote">Pago 100% seguro con tarjeta, PSE, Nequi y más vía MercadoPago. Se cobra en pesos a la TRM del día.</p>
@@ -260,7 +260,7 @@ fbq('init','3559974890833540');fbq('track','PageView');
     <div class="faq">
       <details><summary>¿Dónde y cuándo es?</summary><p>Domingo 18 de octubre, de 8:00am a 6:00pm, en el Centro de Convenciones Ágora, Bogotá.</p></details>
       <details><summary>¿Necesito saber de tecnología o finanzas?</summary><p>No. El evento está pensado para empezar desde cero. Si tienes un empleo y quieres más, es para ti.</p></details>
-      <details><summary>¿Cómo pago?</summary><p>Con tarjeta, PSE, Nequi y otros medios vía MercadoPago. El valor es US$149, cobrado en pesos colombianos a la TRM del día.</p></details>
+      <details><summary>¿Cómo pago?</summary><p>Con tarjeta, PSE, Nequi y otros medios vía MercadoPago. El valor es US$89, cobrado en pesos colombianos a la TRM del día.</p></details>
       <details><summary>¿Me llega la entrada?</summary><p>Sí. Al completar el pago recibes la confirmación por correo. Te contactamos por WhatsApp con los detalles.</p></details>
     </div>
   </section>
@@ -296,8 +296,9 @@ function fmtCOP(n){ return '$' + Math.round(n).toLocaleString('es-CO') + ' COP';
 async function loadPrice(){
   try{
     const r = await fetch('/trm?t=' + Date.now()); const j = await r.json();
-    if(j && j.cop){ LAST_COP = j.cop;
-      document.getElementById('priceCop').innerHTML = '≈ <b>'+fmtCOP(j.cop)+'</b> · TRM hoy';
+    if(j && j.cop){ const total = j.total || j.cop; LAST_COP = total;
+      document.getElementById('priceCop').innerHTML = '≈ <b>'+fmtCOP(total)+'</b> · TRM hoy';
+      if(j.fee){ document.getElementById('priceNote').textContent = 'Incluye entrada ('+fmtCOP(j.cop)+') + fee de servicio digital ('+fmtCOP(j.fee)+'). Pago seguro con tarjeta, PSE, Nequi y más vía MercadoPago · se cobra en pesos a la TRM del día.'; }
     } else { document.getElementById('priceCop').textContent='Precio en pesos según TRM del día'; }
   }catch(e){ document.getElementById('priceCop').textContent='Precio en pesos según TRM del día'; }
 }
