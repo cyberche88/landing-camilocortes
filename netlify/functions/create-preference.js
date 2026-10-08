@@ -96,6 +96,8 @@ exports.handler = async (event) => {
                         : undefined,
                 },
 
+                metadata: { nombre: name, correo: email, telefono: phone },
+
                 back_urls: {
                     success: `${siteUrl}/?status=approved`,
                     failure: `${siteUrl}/?status=rejected`,
