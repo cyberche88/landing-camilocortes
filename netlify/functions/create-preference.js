@@ -15,7 +15,7 @@ const CORS_HEADERS = {
 };
 
 // Precio en USD; se cobra en COP convertido con la TRM del día.
-const USD_PRICE = 89;
+const USD_PRICE = 149;
 const FALLBACK_TRM = 4200; // conservador, solo si fallan las 2 fuentes
 
 async function fetchJSON(url, ms = 6000) {
@@ -68,7 +68,7 @@ exports.handler = async (event) => {
         const siteUrl = process.env.DEPLOY_PRIME_URL || process.env.URL || 'https://tu-sitio.netlify.app';
         console.log(`[MP] siteUrl usado: ${siteUrl}`);
 
-        // Precio dinámico: 89 USD -> COP con la TRM del día
+        // Precio dinámico: 149 USD -> COP con la TRM del día
         const { trm, source } = await getTRM();
         const unitPrice = Math.round(USD_PRICE * trm);
         console.log(`[MP] Preferencia — ${name} <${email}> — TRM(${source})=${trm} → ${unitPrice} COP`);
