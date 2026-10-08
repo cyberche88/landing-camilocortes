@@ -7,7 +7,7 @@
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json',
-  'Cache-Control': 'public, max-age=3600' // cachea 1h (la TRM cambia 1 vez/día)
+  'Cache-Control': 'no-store, max-age=0'
 };
 
 const USD_PRICE = 149;
