@@ -399,6 +399,15 @@ form.addEventListener('submit', async (e)=>{
     b.innerHTML='<div class="banner"><b>Pago en proceso</b><br>Te confirmaremos por correo apenas se apruebe.</div>';
   }
 })();
+
+// ---- Track clics a WhatsApp (canal de contacto) ----
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[href*="wa.link"], a[href*="wa.me"], a[href*="whatsapp"], a.wa-float');
+  if(!a) return;
+  const label = (a.getAttribute('aria-label') || a.textContent || 'whatsapp').trim().replace(/\s+/g,' ').slice(0,40);
+  if(window.fbq){ try{ fbq('track','Contact',{content_name:'whatsapp', content_category:label}); }catch(_){}}
+  if(window.gtag){ try{ gtag('event','whatsapp_click',{event_category:'engagement', event_label:label}); }catch(_){}}
+}, true);
 </script>
 
 <!-- Botón flotante de WhatsApp -->
