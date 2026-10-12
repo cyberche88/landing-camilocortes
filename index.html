@@ -88,6 +88,11 @@ fbq('init','3559974890833540');fbq('track','PageView');
   .wa-cta{max-width:540px;margin:28px auto 0;text-align:center}
   .wa-cta p{color:#b7b3c7;font-size:15px;line-height:1.5;margin:0 0 12px}
   .wa-cta .btn.wa{width:auto;display:inline-flex;padding:16px 28px;font-size:16px}
+  .price-old{font-family:var(--display);font-weight:700;font-size:26px;color:#8a8699;text-decoration:line-through;text-decoration-color:#e0607f;margin-right:4px;vertical-align:middle}
+  .launch{margin:10px 0 2px;display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-weight:700;font-size:14px;color:#0A0714;background:linear-gradient(180deg,var(--gold-hi),var(--gold));border-radius:10px;padding:8px 14px}
+  .launch b{font-variant-numeric:tabular-nums}
+  .aforo{margin:12px 0 2px;font-size:13.5px;color:#d9b36a}
+  .tb-urg{color:#ffd27a!important}.tb-urg b{color:#fff;font-variant-numeric:tabular-nums}
 
   /* sections */
   section.blk{padding-block:34px}
@@ -153,7 +158,7 @@ fbq('init','3559974890833540');fbq('track','PageView');
 <body>
 
 <div class="topbar"><div class="in">
-  <span class="tb-l">🔓 El Código del Futuro · <b>18 OCT · Ágora, Bogotá</b></span>
+  <span class="tb-l tb-urg" id="tbUrg">🔥 Tarifa de lanzamiento <b>US$89</b> — sube en <b id="pcTop">--:--:--</b></span>
   <a class="tb-cta" href="#comprar">Asegurar entrada</a>
 </div></div>
 
@@ -251,9 +256,12 @@ fbq('init','3559974890833540');fbq('track','PageView');
     <h2>Cupos limitados para Bogotá 🔥</h2>
     <div class="buy">
       <div class="price-row">
-        <span class="price-usd">US$89</span>
+        <span class="price-old" id="priceOld">US$149</span>
+        <span class="price-usd" id="priceUsd">US$89</span>
         <span class="price-cop" id="priceCop">Calculando precio en pesos…</span>
       </div>
+      <div class="launch" id="launchBox">🔥 Tarifa de lanzamiento · sube a US$149 en <b id="pcBuy">--:--:--</b></div>
+      <div class="aforo">🎟️ Aforo limitado del Centro de Convenciones Ágora · entradas por agotarse</div>
       <p class="price-note" id="priceNote">Pago 100% seguro con tarjeta, PSE, Nequi y más vía MercadoPago. Se cobra en pesos a la TRM del día.</p>
 
       <div class="incluye">
@@ -286,7 +294,7 @@ fbq('init','3559974890833540');fbq('track','PageView');
     <div class="faq">
       <details><summary>¿Dónde y cuándo es?</summary><p>Domingo 18 de octubre, de 8:00am a 6:00pm, en el Centro de Convenciones Ágora, Bogotá.</p></details>
       <details><summary>¿Necesito saber de tecnología o finanzas?</summary><p>No. El evento está pensado para empezar desde cero. Si tienes un empleo y quieres más, es para ti.</p></details>
-      <details><summary>¿Cómo pago?</summary><p>Con tarjeta, PSE, Nequi y otros medios vía MercadoPago. El valor es US$89, cobrado en pesos colombianos a la TRM del día.</p></details>
+      <details><summary>¿Cómo pago?</summary><p>Con tarjeta, PSE, Nequi y otros medios vía MercadoPago. El valor de la entrada aparece arriba (tarifa de lanzamiento por tiempo limitado), cobrado en pesos colombianos a la TRM del día.</p></details>
       <details><summary>¿Me llega la entrada?</summary><p>Sí. Al completar el pago recibes la confirmación por correo. Te contactamos por WhatsApp con los detalles.</p></details>
     </div>
   </section>
@@ -299,7 +307,7 @@ fbq('init','3559974890833540');fbq('track','PageView');
 </div>
 
 <script>
-const CONFIG = { eventDate:"2026-10-18T08:00:00" };
+const CONFIG = { eventDate:"2026-10-18T08:00:00", priceEnd:"2026-10-13T23:59:00-05:00" };
 
 // ---- Countdown ----
 function tick(){
@@ -316,6 +324,23 @@ function tick(){
 }
 tick(); setInterval(tick,1000);
 
+// ---- Countdown de precio (tarifa de lanzamiento US$89 -> US$149) ----
+function priceTick(){
+  const end=Date.parse(CONFIG.priceEnd); let d=end-Date.now(); const launch=d>0;
+  const tb=document.getElementById('tbUrg'), lb=document.getElementById('launchBox'), po=document.getElementById('priceOld'), pu=document.getElementById('priceUsd');
+  if(launch){
+    const p=(n)=>String(n).padStart(2,'0');
+    const h=Math.floor(d/3600000);d-=h*3600000;const m=Math.floor(d/60000);d-=m*60000;const s=Math.floor(d/1000);
+    const txt=p(h)+':'+p(m)+':'+p(s);
+    const a=document.getElementById('pcTop'), b=document.getElementById('pcBuy');
+    if(a)a.textContent=txt; if(b)b.textContent=txt;
+  } else {
+    if(lb)lb.style.display='none'; if(po)po.style.display='none'; if(pu)pu.textContent='US$149';
+    if(tb)tb.innerHTML='⏳ Últimas entradas · <b>18 OCT · Ágora, Bogotá</b>';
+  }
+}
+priceTick(); setInterval(priceTick,1000);
+
 // ---- Precio dinámico (TRM del día) ----
 let LAST_COP = null;
 function fmtCOP(n){ return '$' + Math.round(n).toLocaleString('es-CO') + ' COP'; }
@@ -323,6 +348,8 @@ async function loadPrice(){
   try{
     const r = await fetch('/trm?t=' + Date.now()); const j = await r.json();
     if(j && j.cop){ const total = j.total || j.cop; LAST_COP = total;
+      if(j.usd){ document.getElementById('priceUsd').textContent='US$'+j.usd;
+        if(j.usd>=149){ const po=document.getElementById('priceOld'),lb=document.getElementById('launchBox'); if(po)po.style.display='none'; if(lb)lb.style.display='none'; } }
       document.getElementById('priceCop').innerHTML = '≈ <b>'+fmtCOP(total)+'</b> · TRM hoy';
       if(j.fee){ document.getElementById('priceNote').textContent = 'Incluye entrada ('+fmtCOP(j.cop)+') + fee de servicio digital ('+fmtCOP(j.fee)+'). Pago seguro con tarjeta, PSE, Nequi y más vía MercadoPago · se cobra en pesos a la TRM del día.'; }
     } else { document.getElementById('priceCop').textContent='Precio en pesos según TRM del día'; }

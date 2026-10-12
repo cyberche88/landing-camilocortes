@@ -10,7 +10,9 @@ const CORS = {
   'Cache-Control': 'no-store, max-age=0'
 };
 
-const USD_PRICE = 89;
+// Tarifa de lanzamiento US$89 hasta el deadline; luego sube a US$149 automáticamente.
+const LAUNCH_END = Date.parse('2026-10-13T23:59:00-05:00');
+const USD_PRICE = Date.now() < LAUNCH_END ? 89 : 149;
 const FEE_PCT = 0.05; // fee de servicio digital (cubre comisión de la pasarela MercadoPago)
 const FALLBACK_TRM = 4200; // conservador, solo si fallan las 2 fuentes
 
