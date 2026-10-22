@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08070F">
+<title>VUELO 40 · ¿A qué edad trabajar será opcional para ti?</title>
+<meta name="description" content="Juego gratis de 2 minutos: vive 40 años de decisiones de dinero, descubre a qué edad trabajar podría volverse opcional para ti y reta a tus amigos.">
+<link rel="canonical" href="https://camiloecortes.com/vuelo40">
+
+<!-- ===== Open Graph / redes ===== -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://camiloecortes.com/vuelo40">
+<meta property="og:title" content="VUELO 40 · ¿A qué edad trabajar será opcional para ti?">
+<meta property="og:description" content="40 años de decisiones de dinero en 2 minutos. Juega gratis, compara tu vuelo y reta a tus amigos.">
+<meta property="og:image" content="https://camiloecortes.com/vuelo40/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://camiloecortes.com/vuelo40/assets/og.jpg">
+
+<!-- ===== Google Analytics 4 (mismo ID del sitio principal) ===== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KLQXEPBHXZ"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-KLQXEPBHXZ');
+</script>
+
+<!-- ===== Meta Pixel (mismo ID del sitio principal) ===== -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3559974890833540');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3559974890833540&ev=PageView&noscript=1"/></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one phone-width cockpit column. Four screens swap in place: puerta de embarque → check-in → vuelo → aterrizaje.
+   Single deliberate night-sky world (dark only), NOW brand violet→teal as the one bold accent. */
+:root{
+  --night:#08070F;
+  --panel:#12101C;
+  --panel-2:#1A1727;
+  --line:#2A2640;
+  --ink:#F4F2FB;
+  --mute:#9891B3;
+  --violet:#8F63FF;
+  --teal:#2FE6C6;
+  --amber:#FFC24B;
+  --red:#FF5577;
+  --pass-ink:#14111F;
+  --pass-mute:#6E6886;
+  --pass-bg:#F4F2FB;
+  --pass-line:#D6D2E6;
+  --glow-v:rgba(143,99,255,.35);
+  --glow-t:rgba(47,230,198,.16);
+  --veil:rgba(8,7,15,.92);
+  --grad:linear-gradient(90deg,var(--violet),var(--teal));
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;
+  background:
+    radial-gradient(520px 380px at 90% -8%, var(--glow-v), transparent 62%),
+    radial-gradient(520px 420px at -12% 108%, var(--glow-t), transparent 60%),
+    var(--night);
+  background-attachment:fixed;
+  color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+#app{
+  box-sizing:border-box;min-height:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:18px 28px;
+}
+.screen{flex:1;display:flex;flex-direction:column;gap:18px;position:relative}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+
+/* top bar */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mark{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-weight:700;font-size:13px;letter-spacing:.14em}
+.mark svg{width:18px;height:18px;flex:none}
+
+/* departure board */
+.board{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;font-family:var(--f-mono);font-size:clamp(10px,2.9vw,12px)}
+.board-head,.board-row{display:grid;grid-template-columns:4.2em 1fr auto;gap:8px;align-items:center}
+.board-head{color:var(--mute);font-size:.85em;letter-spacing:.16em;padding-bottom:8px;border-bottom:1px dashed var(--line);margin-bottom:4px}
+.board-row{padding:6px 0;font-weight:700;letter-spacing:.02em;white-space:nowrap;min-width:0}
+.board-row > span{overflow:hidden;min-width:0}
+@media (max-width:390px){.board{padding:12px 10px;font-size:10.5px}.board-head,.board-row{grid-template-columns:3.6em 1fr auto;gap:6px}.board-row{letter-spacing:0}}
+.ch{display:inline-block;min-width:.66em;text-align:center;background:var(--panel-2);border-radius:2px;margin-right:1px;animation:flip .55s both;transform-origin:50% 50%}
+.st-amber{color:var(--amber)} .st-red{color:var(--red)} .st-mute{color:var(--mute)}
+.blink{animation:blink 1.1s steps(2,start) infinite}
+@keyframes flip{0%{transform:rotateX(90deg);opacity:.2}60%{transform:rotateX(-12deg);opacity:1}100%{transform:rotateX(0)}}
+@keyframes blink{to{visibility:hidden}}
+
+.hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(27px,7.6vw,38px);line-height:1.08;letter-spacing:-.01em}
+.hero p{color:var(--mute);font-size:17px;max-width:34ch}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.meta span::before{content:"● ";color:var(--teal)}
+
+/* buttons */
+.btn{appearance:none;box-sizing:border-box;border:0;border-radius:999px;cursor:pointer;width:100%;display:inline-flex;text-align:center;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:.01em;padding:17px 22px;color:var(--night);background:var(--grad);
+  box-shadow:0 12px 34px -12px var(--glow-v);transition:transform .15s ease}
+.btn:active{transform:scale(.98)}
+.btn svg{width:18px;height:18px}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none;font-family:var(--f-body);font-weight:600;font-size:15px;padding:14px 18px}
+.btn:focus-visible,.opt:focus-visible,.chip input:focus-visible + span,input:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+a.btn{text-decoration:none}
+.spacer{flex:1}
+
+/* check-in */
+.ticket{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:18px}
+.ticket h2{font-family:var(--f-display);font-size:22px;font-weight:700}
+.field{display:flex;flex-direction:column;gap:8px}
+.field-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.field label,.field .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.field output{font-family:var(--f-mono);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.field .hint{font-size:13px;color:var(--mute)}
+input[type=text]{width:100%;box-sizing:border-box;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--ink);font:500 16px var(--f-body)}
+input[type=text]::placeholder{color:var(--mute)}
+input[type=range]{width:100%;accent-color:var(--teal);height:28px}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:block;height:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:14px;font-weight:600;background:var(--panel-2)}
+.field .chip span{font-family:var(--f-body);letter-spacing:0;text-transform:none;color:var(--ink)}
+.chip span small{display:block;letter-spacing:.04em;font-family:var(--f-mono);font-weight:500;font-size:11px;color:var(--mute);margin-top:2px}
+.chip input:checked + span{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
+.fuel{border-top:1px dashed var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.fuel b{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,7.2vw,32px);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.fuel p{color:var(--mute);font-size:14px}
+
+/* flight */
+.hud-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.route-line{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
+.route-line b{color:var(--ink)}
+.age-big{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;font-variant-numeric:tabular-nums;text-align:right}
+.age-big small{display:block;font-family:var(--f-mono);font-weight:500;font-size:10px;letter-spacing:.16em;color:var(--mute);margin-bottom:4px}
+.sky{position:relative;flex:1;min-height:180px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.sky canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.inst > div{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 8px 7px;min-width:0;transition:border-color .3s}
+.inst small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inst b{display:block;font-family:var(--f-mono);font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap;margin-top:2px}
+.inst .d{display:block;height:13px;font-family:var(--f-mono);font-size:10px;font-weight:700;white-space:nowrap;opacity:0;transition:opacity .25s}
+.inst .d.show{opacity:1}
+.inst > div.f-good{animation:fgood 1.6s ease-out}
+.inst > div.f-bad{animation:fbad 1.6s ease-out}
+@keyframes fgood{0%,30%{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal) inset}100%{border-color:var(--line);box-shadow:none}}
+@keyframes fbad{0%,30%{border-color:var(--red);box-shadow:0 0 0 2px var(--red) inset}100%{border-color:var(--line);box-shadow:none}}
+#s-flight{gap:12px}
+.neg{color:var(--red)} .pos{color:var(--teal)}
+.pillars{display:flex;gap:6px}
+.pill{flex:1;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:7px 4px;border-radius:999px;border:1px solid var(--line);color:var(--mute);white-space:nowrap}
+.pill i{font-style:normal;color:var(--teal);margin-left:4px}
+
+/* decision card */
+.card{position:relative;z-index:5;background:var(--panel-2);border:1px solid var(--line);border-radius:22px;padding:20px;
+  display:flex;flex-direction:column;gap:14px;animation:rise .32s cubic-bezier(.2,.8,.2,1);touch-action:pan-y;will-change:transform}
+#s-flight.deciding .pillars{display:none}
+.card.shock{border-color:var(--red)}
+.kick{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);display:flex;justify-content:space-between;gap:8px}
+.card.shock .kick{color:var(--red)}
+.q{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.25}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{appearance:none;cursor:pointer;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:14px;padding:13px 14px;
+  font:500 15px/1.35 var(--f-body);display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+.opt:hover{border-color:var(--violet)}
+.opt .ar{font-family:var(--f-mono);color:var(--teal);font-weight:700;flex:none}
+.swipe-hint{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-align:center}
+.verdict{align-self:flex-start;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border-radius:999px;color:var(--night)}
+.v-good{background:var(--teal)} .v-bad{background:var(--amber)} .v-shock{background:var(--red)}
+.fb{font-size:16px}
+.eff{font-family:var(--f-mono);font-size:13px;color:var(--mute)}
+@keyframes rise{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+
+/* landing */
+.pass{background:var(--pass-bg);color:var(--pass-ink);border-radius:20px;overflow:hidden;position:relative;animation:rise .5s cubic-bezier(.2,.8,.2,1)}
+.pass-head{background:var(--grad);color:var(--night);padding:13px 18px;display:flex;justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.pass-body{padding:18px;display:flex;flex-direction:column;gap:16px}
+.route{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:8px}
+.route .code{font-family:var(--f-display);font-weight:800;font-size:34px;line-height:1}
+.route .city{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pass-mute);margin-top:4px}
+.route .to{text-align:right}
+.route svg{width:26px;height:26px;margin-bottom:14px;color:var(--pass-mute)}
+.pass-name{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+.pass-name b{color:var(--pass-ink);font-size:14px;display:block;letter-spacing:.06em;margin-top:2px}
+.pass-title{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.12}
+.pass-sub{font-size:15px;color:var(--pass-ink)}
+.status{align-self:flex-start;font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.16em;padding:6px 10px;border-radius:6px;color:var(--pass-ink)}
+.s-land{background:var(--teal)} .s-circle{background:var(--amber)} .s-crash{background:var(--red)}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
+.kv small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+.kv b{font-family:var(--f-mono);font-size:15px;font-variant-numeric:tabular-nums}
+.perf{position:relative;height:1px;border-top:2px dashed var(--pass-line);margin:0 -18px}
+.perf::before,.perf::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--night)}
+.perf::before{left:-11px} .perf::after{right:-11px}
+.pdots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pdots div{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--pass-mute)}
+.pdots span{display:flex;gap:4px;margin-top:5px}
+.pdots i{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--pass-ink);box-sizing:border-box}
+.pdots i.on{background:var(--pass-ink)}
+.blind{font-size:14px}
+.blind b{font-family:var(--f-mono);letter-spacing:.06em}
+.barcode{height:44px;background:repeating-linear-gradient(90deg,var(--pass-ink) 0 2px,transparent 2px 4px,var(--pass-ink) 4px 5px,transparent 5px 8px,var(--pass-ink) 8px 11px,transparent 11px 12px,var(--pass-ink) 12px 13px,transparent 13px 17px)}
+.section{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.section h3{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.2}
+.section p{color:var(--mute);font-size:15px}
+.section p b{color:var(--ink)}
+.chart-wrap{position:relative;height:220px}
+.chart-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--mute)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.event{border-color:var(--violet);background:linear-gradient(180deg,var(--panel-2),var(--panel))}
+.event-date{font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--teal)}
+.pillar-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.pillar-list li{font-size:15px;color:var(--mute)}
+.pillar-list b{color:var(--ink);font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-right:6px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.legal{font-size:12px;color:var(--mute);line-height:1.5}
+
+/* share overlay */
+.overlay{position:fixed;inset:0;z-index:20;background:var(--veil);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.overlay img{max-height:62vh;max-width:100%;border-radius:16px;box-shadow:0 20px 60px -10px var(--glow-v)}
+.overlay p{color:var(--mute);font-size:14px;text-align:center;max-width:36ch}
+.overlay .row2{width:100%;max-width:420px}
+
+/* intro (full-bleed cinematic) */
+.intro{position:fixed;inset:0;z-index:40;background:#000;overflow:hidden;transition:opacity .8s ease}
+.intro.out{opacity:0;pointer-events:none}
+.intro video,#bgv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.iv{opacity:0;transition:opacity 1s ease;transform:scale(1.04)}
+.iv.pre{opacity:.55;filter:blur(2px)}
+.iv.on{opacity:1;filter:none;animation:kb 7s linear forwards}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.13)}}
+.intro-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,4,11,.62) 0%,rgba(5,4,11,.06) 30%,rgba(5,4,11,.22) 60%,rgba(5,4,11,.94) 100%)}
+.intro-ui{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;box-sizing:border-box;max-width:480px;margin:0 auto;
+  padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.intro-start{display:flex;flex-direction:column;gap:14px}
+.intro-start h1{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,8.4vw,42px);line-height:1.05}
+.intro-start p{color:#DAD6EC;font-size:16px}
+.intro-hp{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.intro-hp svg{width:22px;height:22px;flex:none}
+.duel-tag{align-self:flex-start;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 11px;border-radius:999px;background:var(--amber);color:var(--night)}
+.intro-cap{min-height:130px;display:flex;flex-direction:column;gap:10px}
+.intro-cap .ey{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);opacity:0;transform:translateY(10px);transition:opacity .8s ease,transform .8s ease}
+.intro-cap .big{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,10vw,52px);line-height:1.02;opacity:0;transform:translateY(16px);transition:opacity .9s ease .15s,transform .9s cubic-bezier(.2,.8,.2,1) .15s;text-wrap:balance}
+.intro-cap.show .ey,.intro-cap.show .big{opacity:1;transform:none}
+.intro-skip{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:max(14px,env(safe-area-inset-left,0px));z-index:2;appearance:none;border:1px solid rgba(255,255,255,.3);background:rgba(8,7,15,.45);color:#fff;
+  font:600 13px var(--f-body);padding:9px 14px;border-radius:999px;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.intro-skip:focus-visible,.mute:focus-visible,.dec:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+#bgv{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
+#bgv.on{opacity:1}
+#bgv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,15,.8) 0%,rgba(8,7,15,.52) 36%,rgba(8,7,15,.84) 68%,rgba(8,7,15,.97) 100%)}
+.mute{position:fixed;z-index:45;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(18,16,28,.82);color:var(--ink);display:grid;place-items:center;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:0}
+.mute svg{width:18px;height:18px}
+.topbar{padding-right:48px}
+.duel-banner{background:linear-gradient(90deg,rgba(255,194,75,.16),rgba(255,194,75,.05));border:1px solid rgba(255,194,75,.5);border-radius:14px;padding:12px 14px;font-size:15px}
+.duel-banner b{color:var(--amber)}
+.duel-lock{color:var(--amber);font-size:14px}
+.locked{opacity:.5;pointer-events:none}
+/* letter from your 65-year-old self */
+.letter{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.letter-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+.letter-av{width:36px;height:36px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font:800 12px var(--f-display);color:var(--night);flex:none}
+.letter-head b{display:block;font-size:15px}
+.letter-head small{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;color:var(--teal);text-transform:uppercase}
+.letter-body{display:flex;flex-direction:column;gap:8px;padding:14px;min-height:64px}
+.bub{align-self:flex-start;max-width:88%;background:var(--panel-2);border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:10px 12px;font-size:15px;line-height:1.42;animation:rise .35s ease-out}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:var(--panel-2);border-radius:4px 16px 16px 16px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--mute);animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.letter-note{font-size:11px;color:var(--mute);padding:0 14px 12px}
+/* badges */
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.badge{font-family:var(--f-mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;background:var(--pass-ink);color:var(--pass-bg);display:inline-flex;align-items:center;gap:6px}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.badges-lbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+/* duel result */
+.duel{border-color:rgba(255,194,75,.55)}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;text-align:center}
+.vs .who{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.vs .res{font-family:var(--f-display);font-weight:800;font-size:21px;margin-top:4px;line-height:1.1}
+.vs .sub{font-size:13px;color:var(--mute);margin-top:2px}
+.vs .x{font-family:var(--f-display);font-weight:800;color:var(--amber)}
+.verdict-big{font-family:var(--f-display);font-weight:800;font-size:20px;text-align:center;text-wrap:balance}
+/* rewind */
+.decs{display:flex;flex-direction:column;gap:8px}
+.dec{appearance:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;color:var(--ink);font:500 14px var(--f-body)}
+.dec .age{font-family:var(--f-mono);font-size:11px;color:var(--mute)}
+.dec .mk{font-family:var(--f-mono);font-weight:700;font-size:11px;letter-spacing:.06em}
+.dec.good .mk{color:var(--teal)} .dec.bad .mk{color:var(--amber)}
+.dec[aria-pressed="true"]{border-color:var(--violet);box-shadow:inset 0 0 0 1px var(--violet)}
+.rw-out{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px;color:var(--mute);animation:rise .3s ease-out}
+.rw-out b{color:var(--ink)}
+/* event boarding pass */
+.evpass{background:linear-gradient(160deg,#1C1532,#0E0C18 62%);color:var(--ink);border:1px solid rgba(143,99,255,.5)}
+.evpass .route .city,.evpass .kv small,.evpass .badges-lbl{color:var(--mute)}
+.evpass .route svg{color:var(--mute)}
+.evpass .perf{border-top-color:rgba(255,255,255,.16)}
+.evpass .pass-sub{color:var(--mute)}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;margin-top:6px}
+.countdown div{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:8px 4px}
+.countdown b{display:block;font-family:var(--f-display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums}
+.countdown small{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
+.live{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--teal);text-align:center}
+
+@media (max-height:720px){
+  #app{padding-block:10px 14px}
+  .sky{min-height:150px}
+  .card{padding:16px;gap:10px}
+  .q{font-size:17px}
+  .opt{padding:11px 12px;font-size:14px}
+  .age-big{font-size:32px}
+}
+@media (prefers-reduced-motion: reduce){
+  .ch,.card,.pass,.bub,.rw-out{animation:none}
+  .iv.on{animation:none}
+  .blink{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="bgv" aria-hidden="true"><video id="bg-video" muted playsinline loop preload="metadata" poster="/vuelo40/assets/i3_lounge_poster.jpg" src="/vuelo40/assets/i3_lounge.mp4"></video></div>
+
+<div class="intro" id="intro">
+  <video id="iv1" class="iv pre" muted playsinline preload="auto" poster="/vuelo40/assets/i1_exterior_poster.jpg" src="/vuelo40/assets/i1_exterior.mp4"></video>
+  <video id="iv2" class="iv" muted playsinline preload="auto" poster="/vuelo40/assets/i2_hall_poster.jpg" src="/vuelo40/assets/i2_hall.mp4"></video>
+  <div class="intro-shade"></div>
+  <button class="intro-skip" id="intro-skip" type="button">Saltar intro</button>
+  <div class="intro-ui">
+    <div class="intro-cap" id="intro-cap" hidden aria-live="polite"><span class="ey" id="cap-ey"></span><span class="big" id="cap-big"></span></div>
+    <div class="intro-start" id="intro-start">
+      <span class="duel-tag" id="duel-tag" hidden>Te retaron</span>
+      <div class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>VUELO 40</div>
+      <h1 id="intro-title">Tu vuelo está por salir.</h1>
+      <p id="intro-sub">40 años de decisiones de dinero en 2 minutos. ¿A qué edad trabajar podría volverse opcional para ti?</p>
+      <div class="intro-hp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2.5" y="14" width="4.5" height="7" rx="1.5"/><rect x="17" y="14" width="4.5" height="7" rx="1.5"/></svg>Ponte audífonos y sube el volumen</div>
+      <button class="btn" id="intro-enter" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg><span id="intro-enter-label">Entrar al aeropuerto</span></button>
+    </div>
+  </div>
+</div>
+
+<button class="mute" id="mute" type="button" aria-label="Silenciar"></button>
+
+<div id="app">
+
+  <!-- 1 · PUERTA DE EMBARQUE -->
+  <section class="screen" id="s-gate">
+    <div class="topbar">
+      <div class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>VUELO 40</div>
+      <div class="eyebrow">por Camilo Cortés</div>
+    </div>
+
+    <div class="board" aria-label="Tablero de salidas">
+      <div class="board-head"><span>VUELO</span><span>DESTINO</span><span>ESTADO</span></div>
+      <div class="board-row" id="row1"></div>
+      <div class="board-row" id="row2"></div>
+      <div class="board-row" id="row3"></div>
+    </div>
+    <div class="duel-banner" id="duel-banner" hidden></div>
+
+    <div class="hero" style="display:flex;flex-direction:column;gap:14px">
+      <h1>Por tus manos van a pasar más de <span class="grad">mil millones</span> de pesos.</h1>
+      <p>¿Cuántos llegan contigo a destino? Vive 40 años de decisiones de dinero en 2 minutos y descubre a qué edad trabajar podría volverse opcional para ti.</p>
+    </div>
+    <div class="meta"><span>Gratis</span><span>Sin registro</span><span>2 minutos</span></div>
+    <div class="spacer"></div>
+    <button class="btn" id="go-checkin" type="button">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>
+      Abordar
+    </button>
+  </section>
+
+  <!-- 2 · CHECK-IN -->
+  <section class="screen" id="s-checkin" hidden>
+    <div class="topbar">
+      <div class="mark">CHECK-IN</div>
+      <div class="eyebrow">V40 · SAS → TOP</div>
+    </div>
+    <form class="ticket" id="checkin-form" novalidate>
+      <h2>Tu tarjeta de embarque</h2>
+      <p class="duel-lock" id="duel-lock" hidden></p>
+      <div class="field">
+        <label for="f-name">Nombre para tu pase (opcional)</label>
+        <input type="text" id="f-name" maxlength="22" autocomplete="given-name" placeholder="Ej. Juan">
+      </div>
+      <div class="field" id="fld-age">
+        <div class="field-top"><label for="f-age">Tu edad hoy</label><output id="o-age" for="f-age">28 años</output></div>
+        <input type="range" id="f-age" min="18" max="50" step="1" value="28">
+      </div>
+      <div class="field" id="fld-income">
+        <div class="field-top"><label for="f-income">Ingreso neto al mes</label><output id="o-income" for="f-income">$2.600.000</output></div>
+        <input type="range" id="f-income" min="1400000" max="15000000" step="100000" value="2600000">
+        <span class="hint">Referencia: el salario neto promedio en Colombia ronda los $2,6 millones (OCDE).</span>
+      </div>
+      <div class="field" id="fld-s" role="radiogroup" aria-labelledby="lbl-left">
+        <span class="lbl" id="lbl-left">¿Cuánto te queda a fin de mes?</span>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="f-s" id="f-s1" value="-0.05"><span>Me falta plata<small>gasto más de lo que gano</small></span></label>
+          <label class="chip"><input type="radio" name="f-s" id="f-s2" value="0.02" checked><span>Casi nada<small>menos del 5%</small></span></label>
+          <label class="chip"><input type="radio" name="f-s" id="f-s3" value="0.10"><span>Algo<small>cerca del 10%</small></span></label>
+          <label class="chip"><input type="radio" name="f-s" id="f-s4" value="0.20"><span>Bastante<small>20% o más</small></span></label>
+        </div>
+      </div>
+      <div class="field" id="fld-nif">
+        <div class="field-top"><label for="f-nif">Tu NIF · al mes</label><output id="o-nif" for="f-nif">$2.600.000</output></div>
+        <input type="range" id="f-nif" min="1000000" max="40000000" step="100000" value="2600000">
+        <span class="hint" id="nif-hint">¿Con cuánto al mes vivirías tranquilo sin trabajar? Ese es tu Número de Independencia Financiera.</span>
+      </div>
+      <div class="fuel" aria-live="polite">
+        <span class="eyebrow">Combustible de tu vida laboral</span>
+        <b id="fuel-total">$1.154.400.000</b>
+        <p id="fuel-note">Es lo que pasará por tus manos de aquí a los 65. Ahora veamos cuánto llega contigo.</p>
+      </div>
+    </form>
+    <button class="btn" id="go-fly" type="button">Despegar</button>
+  </section>
+
+  <!-- 3 · VUELO -->
+  <section class="screen" id="s-flight" hidden>
+    <div class="hud-top">
+      <div>
+        <div class="route-line">VUELO <b>V40</b></div>
+        <div class="route-line">Sueldo a sueldo <b>→</b> Trabajo opcional</div>
+      </div>
+      <div class="age-big"><small>EDAD</small><span id="h-age">28</span></div>
+    </div>
+    <div class="inst" aria-live="polite">
+      <div id="c-nw"><small>Patrimonio</small><b id="h-nw">$0</b><span class="d" id="d-nw"></span></div>
+      <div id="c-debt"><small>Deuda</small><b id="h-debt">$0</b><span class="d" id="d-debt"></span></div>
+      <div id="c-fuel"><small>Ahorro/mes</small><b id="h-fuel">$0</b><span class="d" id="d-fuel"></span></div>
+      <div id="c-nif"><small>Meta</small><b id="h-nif">$0</b><span class="d" id="d-nif"></span></div>
+    </div>
+    <div class="sky" id="sky"><canvas id="sky-canvas" aria-label="Trayectoria de tu patrimonio" role="img"></canvas></div>
+    <div class="pillars" aria-label="Pilares">
+      <div class="pill" id="p-genera">Genera<i>0</i></div>
+      <div class="pill" id="p-crece">Haz crecer<i>0</i></div>
+      <div class="pill" id="p-protege">Protege<i>0</i></div>
+    </div>
+    <div class="card" id="card" hidden></div>
+  </section>
+
+  <!-- 4 · ATERRIZAJE -->
+  <section class="screen" id="s-land" hidden>
+    <div class="topbar">
+      <div class="mark">ATERRIZAJE</div>
+      <div class="eyebrow">V40 · 65 años</div>
+    </div>
+
+    <div class="letter" id="letter">
+      <div class="letter-head"><div class="letter-av">65</div><div><b id="lt-name">Tú, a los 65</b><small>Mensaje del futuro</small></div></div>
+      <div class="letter-body" id="lt-body" aria-live="polite"></div>
+      <p class="letter-note">Mensaje ilustrativo de tu yo del futuro, escrito según tus decisiones en la simulación.</p>
+    </div>
+
+    <article class="pass" id="pass">
+      <div class="pass-head"><span>Pase de abordar</span><span>Vuelo 40</span></div>
+      <div class="pass-body">
+        <div class="route">
+          <div><div class="code">SAS</div><div class="city">Sueldo a sueldo</div></div>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>
+          <div class="to"><div class="code">TOP</div><div class="city">Trabajo opcional</div></div>
+        </div>
+        <div class="pass-name">Pasajero<b id="r-name">TÚ</b></div>
+        <span class="status" id="r-status">ATERRIZÓ</span>
+        <div>
+          <div class="pass-title" id="r-title">Aterrizaje en trabajo opcional</div>
+          <p class="pass-sub" id="r-sub"></p>
+        </div>
+        <div class="kv">
+          <div><small>Pasó por tus manos</small><b id="r-life">$0</b></div>
+          <div><small>A los 65 tienes</small><b id="r-nw">$0</b></div>
+          <div><small>Tu NIF</small><b id="r-nif">$0</b><small id="r-goal" style="margin-top:3px;letter-spacing:.04em;text-transform:none"></small></div>
+          <div><small>Hora de llegada</small><b id="r-eta">—</b></div>
+        </div>
+        <div class="perf" aria-hidden="true"></div>
+        <div class="pdots" id="r-pillars"></div>
+        <p class="blind" id="r-blind"></p>
+        <div><div class="badges-lbl" id="r-badges-lbl">Insignias</div><div class="badges" id="r-badges"></div></div>
+        <div class="barcode" aria-hidden="true"></div>
+      </div>
+    </article>
+
+    <div class="section duel" id="duel-res" hidden>
+      <span class="eyebrow">Duelo</span>
+      <div class="vs">
+        <div><div class="who">Tú</div><div class="res" id="vs-me"></div><div class="sub" id="vs-me-sub"></div></div>
+        <div class="x">VS</div>
+        <div><div class="who" id="vs-op-name"></div><div class="res" id="vs-op"></div><div class="sub" id="vs-op-sub"></div></div>
+      </div>
+      <div class="verdict-big" id="vs-verdict"></div>
+    </div>
+
+    <div class="row2">
+      <a class="btn" id="go-duel" href="#" target="_blank" rel="noopener">Retar a un amigo</a>
+      <button class="btn btn-ghost" id="go-share" type="button">Compartir mi pase</button>
+    </div>
+
+    <article class="pass evpass" id="evpass">
+      <div class="pass-head"><span>Pase de abordar · Evento</span><span>V40 → DXB</span></div>
+      <div class="pass-body">
+        <div class="route">
+          <div><div class="code" id="ev-from">TÚ</div><div class="city">Pasajero</div></div>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>
+          <div class="to"><div class="code">DXB</div><div class="city">En vivo desde Dubái</div></div>
+        </div>
+        <div>
+          <div class="pass-title">The Future Is NOW</div>
+          <p class="pass-sub">Lanzamiento mundial, online y gratis. Aprende el sistema completo: Genera, Haz crecer y Protege.</p>
+        </div>
+        <div class="kv">
+          <div><small>Fecha</small><b>14–15 NOV</b></div>
+          <div><small>Abordaje</small><b>9:00 A.M. COL</b></div>
+          <div><small>Puerta</small><b>ONLINE</b></div>
+          <div><small>Tarifa</small><b>GRATIS</b></div>
+        </div>
+        <div class="perf" aria-hidden="true"></div>
+        <div><div class="badges-lbl">Abordaje en</div>
+          <div class="countdown" id="cd"><div><b id="cd-d">--</b><small>días</small></div><div><b id="cd-h">--</b><small>horas</small></div><div><b id="cd-m">--</b><small>min</small></div><div><b id="cd-s">--</b><small>seg</small></div></div>
+          <div class="live" id="cd-live" hidden></div>
+        </div>
+        <a class="btn" id="cta-register" href="https://futureisnowevent.com/camilo-cortes?lang=es" target="_blank" rel="noopener">Reservar mi entrada gratis</a>
+        <a class="btn btn-ghost" id="cta-cal" href="#" target="_blank" rel="noopener">Agregar a mi calendario</a>
+        <a class="btn btn-ghost" id="cta-wa" href="#" target="_blank" rel="noopener">Contarle mi resultado a Camilo por WhatsApp</a>
+      </div>
+    </article>
+
+    <div class="section" id="rewind">
+      <span class="eyebrow">Corrige tu vuelo</span>
+      <h3>Cambia una decisión y vuelve a volar</h3>
+      <p>Misma vida, mismas turbulencias. Toca una decisión para cambiarla y mira a dónde habrías llegado.</p>
+      <div class="decs" id="decs"></div>
+      <div class="rw-out" id="rw-out" hidden></div>
+    </div>
+
+    <div class="section">
+      <span class="eyebrow">Repetición</span>
+      <h3>La misma vida, tres vuelos</h3>
+      <p>Mismo sueldo, misma edad, mismas turbulencias. Solo cambian las decisiones: sin sistema, las tuyas, y con sistema.</p>
+      <button class="btn" id="go-system" type="button">Ver los tres vuelos</button>
+      <div id="sys-out" hidden style="display:flex;flex-direction:column;gap:12px">
+        <div class="chart-wrap"><canvas id="cmp-canvas" role="img" aria-label="Comparación de patrimonio: tu vuelo contra vuelo con sistema"></canvas></div>
+        <div class="legend"><span><i style="background:var(--red)"></i>Sin sistema</span><span><i style="background:var(--violet)"></i>Tu vuelo</span><span><i style="background:var(--teal)"></i>Con sistema</span></div>
+        <p id="sys-text"></p>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost" id="go-again" type="button">Volar otra vez</button>
+
+    <p class="legal">Simulación educativa con supuestos simplificados, en pesos de hoy: inversión diversificada con rentabilidad real ilustrativa de 5% anual, cuenta de ahorros −2% real por inflación, deuda de tarjeta ~22% real. Tu NIF (Número de Independencia Financiera) es el ingreso mensual con el que vivirías sin trabajar; el patrimonio necesario se estima como 28 veces ese ingreso anual (retiros de ~3,6% al año, más conservador que la regla del 4%). No incluye pensión. No es asesoría financiera ni promesa de resultados; las inversiones pueden perder valor.</p>
+  </section>
+</div>
+
+<div class="overlay" id="share" hidden>
+  <img id="share-img" alt="Tu pase de abordar de Vuelo 40">
+  <p>Mantén presionada la imagen para guardarla y súbela a tus historias.</p>
+  <div class="row2">
+    <a class="btn" id="share-wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+    <button class="btn btn-ghost" id="share-close" type="button">Cerrar</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const CFG = {
+    retireAge: 65,
+    rCash: -0.02, rInv: 0.05, rDebt: 0.22,
+    gBase: 0.005, gSkill: 0.015, sideShare: 0.15,
+    fiMult: 28,
+    yearMs: reduce ? 40 : 230,
+    eventUrl: 'https://futureisnowevent.com/camilo-cortes?lang=es',
+    waNumber: '573005367545',
+    shareUrl: 'https://camiloecortes.com/vuelo40'
+  };
+
+  // ---------- tracking hook (Meta Pixel when deployed) ----------
+  function track(name, data) {
+    try { if (window.fbq) window.fbq('trackCustom', name, data || {}); } catch (e) {}
+    try { (window.dataLayer = window.dataLayer || []).push({ event: name, ...(data || {}) }); } catch (e) {}
+  }
+
+  // ---------- formatting ----------
+  const nf = new Intl.NumberFormat('es-CO', { maximumFractionDigits: 0 });
+  const fmtFull = n => (n < 0 ? '−$' : '$') + nf.format(Math.abs(Math.round(n)));
+  // short form for instruments and charts ("$1.154 M"), long form for sentences ("$1.154 millones")
+  const fmtNum = (n, unit) => {
+    const a = Math.abs(n), sign = n < 0 ? '−' : '';
+    if (a >= 1e7) return sign + '$' + nf.format(Math.round(a / 1e6)) + unit;
+    if (a >= 1e5) return sign + '$' + (a / 1e6).toLocaleString('es-CO', { maximumFractionDigits: 1 }) + unit;
+    return sign + '$' + nf.format(Math.round(a));
+  };
+  const fmtM = n => fmtNum(n, ' M');
+  const fmtL = n => fmtNum(n, ' millones');
+  const roundM = n => Math.max(1, Math.round(n / 1e6)) * 1e6;
+
+  // ---------- screens ----------
+  const screens = ['s-gate', 's-checkin', 's-flight', 's-land'];
+  const bgv = $('#bgv'), bgVideo = $('#bg-video');
+  const playV = v => { try { const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} };
+  function show(id) {
+    screens.forEach(s => { $('#' + s).hidden = s !== id; });
+    const lounge = id === 's-gate' || id === 's-checkin';
+    bgv.classList.toggle('on', lounge);
+    if (lounge) playV(bgVideo); else { try { bgVideo.pause(); } catch (e) {} }
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- audio: loaded clips + synthesized airport / flight sounds ----------
+  const AU = { ctx: null, master: null, buf: {}, muted: false, nodes: {} };
+  const FILES = { pa_bienvenida: '/vuelo40/assets/pa_bienvenida.mp3', pa_checkin: '/vuelo40/assets/pa_checkin.mp3', pa_aterrizaje: '/vuelo40/assets/pa_aterrizaje.mp3', pa_evento: '/vuelo40/assets/pa_evento.mp3',
+    ding: '/vuelo40/assets/sfx_ding.mp3', whoosh: '/vuelo40/assets/sfx_whoosh.mp3', drone: '/vuelo40/assets/sfx_drone.mp3', alarm: '/vuelo40/assets/sfx_alarm.mp3' };
+  try { AU.muted = localStorage.getItem('v40_muted') === '1'; } catch (e) {}
+  function audioSetup() {
+    if (AU.ctx) return;
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+    try { AU.ctx = new AC(); } catch (e) { return; }
+    AU.master = AU.ctx.createGain(); AU.master.gain.value = AU.muted ? 0 : 0.9; AU.master.connect(AU.ctx.destination);
+    const sr = AU.ctx.sampleRate, len = sr * 3, wn = AU.ctx.createBuffer(1, len, sr), bn = AU.ctx.createBuffer(1, len, sr);
+    const w = wn.getChannelData(0), bd = bn.getChannelData(0); let last = 0;
+    for (let i = 0; i < len; i++) { w[i] = Math.random() * 2 - 1; last = (last + 0.02 * w[i]) / 1.02; bd[i] = last * 3.5; }
+    AU.white = wn; AU.brown = bn;
+    Object.entries(FILES).forEach(([k, url]) => {
+      fetch(url).then(r => r.ok ? r.arrayBuffer() : Promise.reject(new Error(url)))
+        .then(ab => new Promise((res, rej) => AU.ctx.decodeAudioData(ab, res, rej)))
+        .then(bf => { AU.buf[k] = bf; }).catch(() => {});
+    });
+  }
+  function audioUnlock() { audioSetup(); if (AU.ctx && AU.ctx.state !== 'running') { try { return Promise.race([AU.ctx.resume(), wait(600)]).catch(() => {}); } catch (e) {} } return Promise.resolve(); }
+  const actx = () => AU.ctx && AU.ctx.state === 'running';
+  const at = () => AU.ctx.currentTime;
+  function play(name, vol = 1, delay = 0) {
+    if (!actx() || !AU.buf[name]) return null;
+    const src = AU.ctx.createBufferSource(), gn = AU.ctx.createGain(); src.buffer = AU.buf[name]; gn.gain.value = vol;
+    src.connect(gn); gn.connect(AU.master); src.start(at() + delay); return src;
+  }
+  function noise(type) { const n = AU.ctx.createBufferSource(); n.buffer = type === 'white' ? AU.white : AU.brown; n.loop = true; return n; }
+  function env(gn, t0, peak, a, hold, r) { gn.gain.setValueAtTime(0.0001, t0); gn.gain.exponentialRampToValueAtTime(peak, t0 + a); gn.gain.setValueAtTime(peak, t0 + a + hold); gn.gain.exponentialRampToValueAtTime(0.0001, t0 + a + hold + r); }
+  function jet(delay = 0, dur = 4.2, vol = 0.9) { // jet fly-by with doppler sweep, left to right
+    if (!actx()) return; const t0 = at() + delay;
+    const src = noise('brown'), bp = AU.ctx.createBiquadFilter(), gn = AU.ctx.createGain();
+    bp.type = 'bandpass'; bp.Q.value = 0.7; bp.frequency.setValueAtTime(240, t0); bp.frequency.exponentialRampToValueAtTime(980, t0 + dur * 0.5); bp.frequency.exponentialRampToValueAtTime(170, t0 + dur);
+    const wh = noise('white'), hb = AU.ctx.createBiquadFilter(), wg = AU.ctx.createGain();
+    hb.type = 'bandpass'; hb.Q.value = 5; hb.frequency.setValueAtTime(3000, t0); hb.frequency.exponentialRampToValueAtTime(4300, t0 + dur * 0.5); hb.frequency.exponentialRampToValueAtTime(2200, t0 + dur);
+    env(gn, t0, vol, dur * 0.5, 0.05, dur * 0.5); env(wg, t0, vol * 0.1, dur * 0.5, 0.05, dur * 0.45);
+    src.connect(bp); bp.connect(gn); wh.connect(hb); hb.connect(wg);
+    let out = AU.master;
+    if (AU.ctx.createStereoPanner) { const pan = AU.ctx.createStereoPanner(); pan.pan.setValueAtTime(-0.9, t0); pan.pan.linearRampToValueAtTime(0.9, t0 + dur); pan.connect(AU.master); out = pan; }
+    gn.connect(out); wg.connect(out);
+    src.start(t0); wh.start(t0); src.stop(t0 + dur + 0.1); wh.stop(t0 + dur + 0.1);
+  }
+  function chime(delay = 0, vol = 0.32) { // airport public-address "ding-dong"
+    if (!actx()) return; const t0 = at() + delay;
+    [[659.25, 0], [523.25, 0.42]].forEach(([f, dt]) => [1, 2.01, 3].forEach((h, i) => {
+      const o = AU.ctx.createOscillator(), gn = AU.ctx.createGain(); o.type = 'sine'; o.frequency.value = f * h;
+      env(gn, t0 + dt, vol * [1, 0.25, 0.08][i], 0.01, 0.05, 1.6); o.connect(gn); gn.connect(AU.master); o.start(t0 + dt); o.stop(t0 + dt + 1.8);
+    }));
+  }
+  function pa(name, delay = 0) { chime(delay); play(name, 1, delay + 0.95); }
+  function bed(key, on, build) { // looping beds with fade in / out
+    if (!actx()) return; const t = at();
+    if (on && !AU.nodes[key]) { const n = build(); n.out.gain.setValueAtTime(0, t); n.out.gain.linearRampToValueAtTime(n.level, t + 1.4); AU.nodes[key] = n; }
+    else if (!on && AU.nodes[key]) { const n = AU.nodes[key]; n.out.gain.cancelScheduledValues(t); n.out.gain.setValueAtTime(n.out.gain.value, t); n.out.gain.linearRampToValueAtTime(0, t + 1.2); n.srcs.forEach(x => { try { x.stop(t + 1.3); } catch (e) {} }); AU.nodes[key] = null; }
+  }
+  const ambience = on => bed('amb', on, () => { // terminal room tone + crowd murmur
+    const out = AU.ctx.createGain(); out.connect(AU.master);
+    const n = noise('brown'), lp = AU.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 650; n.connect(lp); lp.connect(out);
+    const m = noise('white'), bp = AU.ctx.createBiquadFilter(), mg = AU.ctx.createGain(), lfo = AU.ctx.createOscillator(), lg = AU.ctx.createGain();
+    bp.type = 'bandpass'; bp.frequency.value = 520; bp.Q.value = 1.1; mg.gain.value = 0.07; lfo.frequency.value = 1.9; lg.gain.value = 0.045; lfo.connect(lg); lg.connect(mg.gain);
+    m.connect(bp); bp.connect(mg); mg.connect(out);
+    n.start(); m.start(); lfo.start();
+    const srcs = [n, m, lfo]; const d = play('drone', 0.5); if (d) { d.loop = true; srcs.push(d); }
+    return { out, level: 0.45, srcs };
+  });
+  const cabin = on => bed('cab', on, () => { // cabin engine hum
+    const out = AU.ctx.createGain(); out.connect(AU.master);
+    const n = noise('brown'), lp = AU.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 190; n.connect(lp); lp.connect(out);
+    const o = AU.ctx.createOscillator(), og = AU.ctx.createGain(); o.type = 'sine'; o.frequency.value = 92; og.gain.value = 0.05; o.connect(og); og.connect(out);
+    n.start(); o.start(); return { out, level: 0.6, srcs: [n, o] };
+  });
+  function touchdown() {
+    if (!actx()) return; const t0 = at();
+    const o = AU.ctx.createOscillator(), og = AU.ctx.createGain(); o.frequency.setValueAtTime(80, t0); o.frequency.exponentialRampToValueAtTime(38, t0 + 0.35); env(og, t0, 0.8, 0.005, 0.02, 0.4); o.connect(og); og.connect(AU.master); o.start(t0); o.stop(t0 + 0.5);
+    [0, 0.17].forEach(dt => { const n = noise('white'), bp = AU.ctx.createBiquadFilter(), gn = AU.ctx.createGain(); bp.type = 'bandpass'; bp.frequency.value = 1900; bp.Q.value = 3; env(gn, t0 + dt, 0.35, 0.01, 0.06, 0.18); n.connect(bp); bp.connect(gn); gn.connect(AU.master); n.start(t0 + dt); n.stop(t0 + dt + 0.35); });
+    const r = noise('brown'), lp = AU.ctx.createBiquadFilter(), rg = AU.ctx.createGain(); lp.type = 'lowpass'; lp.frequency.value = 300; env(rg, t0, 0.9, 0.05, 0.3, 1.4); r.connect(lp); lp.connect(rg); rg.connect(AU.master); r.start(t0); r.stop(t0 + 1.9);
+  }
+  function blip(f = 1046, vol = 0.12) { if (!actx()) return; const t0 = at(), o = AU.ctx.createOscillator(), gn = AU.ctx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(f, t0); o.frequency.exponentialRampToValueAtTime(f * 1.5, t0 + 0.06); env(gn, t0, vol, 0.005, 0.02, 0.16); o.connect(gn); gn.connect(AU.master); o.start(t0); o.stop(t0 + 0.25); }
+  function lowBeep() { if (!actx()) return; [[392, 0], [294, 0.16]].forEach(([f, dt]) => { const t0 = at() + dt, o = AU.ctx.createOscillator(), gn = AU.ctx.createGain(); o.type = 'triangle'; o.frequency.value = f; env(gn, t0, 0.22, 0.01, 0.07, 0.12); o.connect(gn); gn.connect(AU.master); o.start(t0); o.stop(t0 + 0.3); }); }
+  const vib = p => { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} };
+  const sfxGood = () => { if (!play('ding', 0.8)) blip(1320, 0.14); vib(15); };
+  const sfxBad = () => { lowBeep(); vib([30, 40, 30]); };
+  const ICON_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  const ICON_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>';
+  function setMute(m) {
+    AU.muted = m; try { localStorage.setItem('v40_muted', m ? '1' : '0'); } catch (e) {}
+    if (AU.master && AU.ctx) AU.master.gain.setTargetAtTime(m ? 0 : 0.9, AU.ctx.currentTime, 0.05);
+    $('#mute').innerHTML = m ? ICON_OFF : ICON_ON; $('#mute').setAttribute('aria-label', m ? 'Activar sonido' : 'Silenciar');
+  }
+  $('#mute').addEventListener('click', () => { audioUnlock(); setMute(!AU.muted); track('V40_Mute', { muted: AU.muted }); });
+  setMute(AU.muted);
+
+  // ---------- duel (challenge link encoded in #hash: letters, digits, _ and - only) ----------
+  const S0C = { m: -0.05, c: 0.02, a: 0.10, b: 0.20 }, S0R = { '-0.05': 'm', '0.02': 'c', '0.1': 'a', '0.2': 'b' }, S0V = { m: '-0.05', c: '0.02', a: '0.10', b: '0.20' };
+  const cleanName = x => (x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
+  function parseDuel() {
+    const h = (location.hash || '').slice(1); if (!/^d_/.test(h)) return null;
+    const p = h.split('_'); if (p.length < 9) return null;
+    const d = { name: cleanName(p[1]) || 'Amigo', age: +p[2], income: +p[3] * 1e5, s0k: p[4], s0: S0C[p[4]], nif: +p[5] * 1e5, fiAge: +p[6] || null, nwM: +p[7], key: p[8] };
+    const ok = d.age >= 18 && d.age <= 50 && d.income >= 1.4e6 && d.income <= 15e6 && d.s0 !== undefined && d.nif >= 1e6 && d.nif <= 4e7 && ['land', 'circle', 'crash'].includes(d.key) && isFinite(d.nwM);
+    return ok ? d : null;
+  }
+  const DUEL = parseDuel();
+  const duelLine = d => d.key === 'land' ? `llegó a trabajo opcional a los ${d.fiAge}` : d.key === 'circle' ? `quedó dando vueltas con ${fmtL(d.nwM * 1e6)} a los 65` : `se estrelló debiendo ${fmtL(-d.nwM * 1e6)}`;
+  const baseUrl = () => /(^|\.)camiloecortes\.com$/.test(location.hostname) ? location.origin + location.pathname : CFG.shareUrl;
+
+  // ---------- departure board ----------
+  function flapRow(el, code, dest, status, statusCls, delay) {
+    const mk = (txt, d0) => [...txt].map((c, i) =>
+      `<span class="ch" style="animation-delay:${reduce ? 0 : d0 + i * 45}ms">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+    el.innerHTML = `<span>${code}</span><span>${mk(dest, delay)}</span><span class="${statusCls}">${mk(status, delay + 380)}</span>`;
+  }
+  function initBoard() {
+    flapRow($('#row1'), 'SAS', 'SUELDO A SUELDO', 'EN CÍRCULOS', 'st-mute', 100);
+    flapRow($('#row2'), 'D404', 'DEUDAS', 'ESTRELLADO', 'st-red', 400);
+    flapRow($('#row3'), 'V40', 'TRABAJO OPCIONAL', 'ABORDANDO', 'st-amber', 700);
+    setTimeout(() => { const s = $('#row3 span:last-child'); if (s && !reduce) s.classList.add('blink'); }, 2400);
+  }
+  initBoard();
+
+  // ---------- intro: terminal arrival → hall → waiting lounge ----------
+  const intro = $('#intro'), iv1 = $('#iv1'), iv2 = $('#iv2');
+  let introDone = false, gatePA = false;
+  function caption(ey, big) { const c = $('#intro-cap'); c.classList.remove('show'); $('#cap-ey').textContent = ey; $('#cap-big').textContent = big; void c.offsetWidth; c.classList.add('show'); }
+  async function runIntro() {
+    track('V40_IntroStart');
+    $('#intro-start').hidden = true; $('#intro-cap').hidden = false;
+    ambience(true);
+    iv1.classList.remove('pre'); iv1.currentTime = 0; playV(iv1); iv1.classList.add('on');
+    jet(0.3, 4.6, 0.9);
+    caption('Aeropuerto internacional', 'VUELO 40');
+    await wait(reduce ? 1200 : 3400); if (introDone) return;
+    iv2.currentTime = 0; playV(iv2); iv2.classList.add('on'); iv1.classList.remove('on');
+    pa('pa_bienvenida', 0.2);
+    caption('Terminal de salidas', 'Bienvenido, pasajero.');
+    await wait(reduce ? 1200 : 3900); if (introDone) return;
+    endIntro();
+  }
+  function endIntro() {
+    if (introDone) return; introDone = true;
+    intro.classList.add('out');
+    setTimeout(() => { intro.hidden = true; try { iv1.pause(); iv2.pause(); } catch (e) {} }, 850);
+    ambience(true);
+    showGate();
+  }
+  function showGate() {
+    show('s-gate'); initBoard();
+    if (!gatePA) { gatePA = true; pa('pa_checkin', 0.9); }
+  }
+  $('#intro-enter').addEventListener('click', async () => { const u = audioUnlock(); try { localStorage.setItem('v40_seen', '1'); } catch (e) {} if (DUEL) { track('V40_DuelAccept'); await u; endIntro(); } else { await u; runIntro(); } });
+  $('#intro-skip').addEventListener('click', async () => { const u = audioUnlock(); track('V40_IntroSkip'); await u; endIntro(); });
+  try { if (localStorage.getItem('v40_seen') === '1' && !DUEL) $('#intro-enter-label').textContent = 'Volver al aeropuerto'; } catch (e) {}
+
+  // ---------- check-in ----------
+  const inp = { name: '', age: 28, income: 2600000, s0: 0.02, nif: 2600000 };
+  let nifTouched = false;
+  function readInputs() {
+    inp.name = $('#f-name').value.trim();
+    inp.age = +$('#f-age').value;
+    inp.income = +$('#f-income').value;
+    const r = document.querySelector('input[name="f-s"]:checked');
+    inp.s0 = r ? +r.value : 0.02;
+    if (!nifTouched) $('#f-nif').value = String(Math.min(40000000, Math.max(1000000, inp.income)));
+    inp.nif = +$('#f-nif').value;
+  }
+  let fuelAnim = 0, fuelShown = 0;
+  function updateCheckin() {
+    readInputs();
+    $('#o-age').textContent = inp.age + ' años';
+    $('#o-income').textContent = fmtFull(inp.income);
+    $('#o-nif').textContent = fmtFull(inp.nif);
+    $('#nif-hint').innerHTML = `¿Con cuánto al mes vivirías tranquilo sin trabajar? Ese es tu Número de Independencia Financiera. Para tenerlo sin trabajar necesitas unos <b>${fmtL(inp.nif * 12 * CFG.fiMult)}</b> invertidos.`;
+    const years = CFG.retireAge - inp.age;
+    const target = inp.income * 12 * years;
+    $('#fuel-note').textContent = `Es lo que pasará por tus manos en ${years} años de trabajo, hasta los 65. Ahora veamos cuánto llega contigo.`;
+    cancelAnimationFrame(fuelAnim);
+    const from = fuelShown, t0 = performance.now(), dur = reduce ? 1 : 420;
+    const tick = now => {
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      fuelShown = from + (target - from) * e;
+      $('#fuel-total').textContent = fmtFull(fuelShown);
+      if (k < 1) fuelAnim = requestAnimationFrame(tick);
+    };
+    fuelAnim = requestAnimationFrame(tick);
+  }
+  ['f-age', 'f-income'].forEach(id => $('#' + id).addEventListener('input', updateCheckin));
+  $('#f-nif').addEventListener('input', () => { nifTouched = true; updateCheckin(); });
+  document.querySelectorAll('input[name="f-s"]').forEach(r => r.addEventListener('change', updateCheckin));
+  $('#checkin-form').addEventListener('submit', e => e.preventDefault());
+
+  $('#go-checkin').addEventListener('click', () => { audioUnlock(); blip(880, 0.1); show('s-checkin'); fuelShown = 0; updateCheckin(); track('V40_Checkin'); });
+  $('#go-fly').addEventListener('click', () => { readInputs(); startFlight(); });
+
+  // ---------- simulation model (pesos de hoy) ----------
+  function newState(p) {
+    const Y = p.income * 12;
+    return {
+      startAge: p.age, age: p.age, years: CFG.retireAge - p.age,
+      Y, side: 0, primaSave: false, E: Y * (1 - p.s0), A: 0, D: 0,
+      r: CFG.rCash, g: CFG.gBase, emergency: false, recovery: 0, defaulted: false,
+      goal: p.nif * 12 * CFG.fiMult, fiAge: null, path: [{ age: p.age, nw: 0 }],
+      pill: { genera: 0, crece: 0, protege: 0 }, avail: { genera: 0, crece: 0, protege: 0 }, maxD: 0
+    };
+  }
+  const nwOf = st => st.A - st.D;
+  const monthlySave = st => (st.Y + st.side + (st.primaSave ? st.Y / 24 : 0) - st.E) / 12;
+
+  function step(st) {
+    st.Y *= (1 + st.g);
+    st.E *= (1 + CFG.gBase);              // lifestyle follows the base salary trend
+    if (st.side > 0) st.side *= (1 + st.g);
+    let S = st.Y + st.side + (st.primaSave ? st.Y / 24 : 0) - st.E;
+    if (st.D > 0) st.D *= (1 + CFG.rDebt);
+    if (S >= 0) { const pay = Math.min(S, st.D); st.D -= pay; S -= pay; }
+    else { st.D += -S; S = 0; }
+    let ret = st.r;
+    if (st.recovery > 0) { ret += 0.155; st.recovery--; }
+    st.A = st.A * (1 + ret) + S;
+    if (st.A < 0) { st.D += -st.A; st.A = 0; }
+    const cap = 3 * st.Y;                 // credit gets cut: reported to the bureaus
+    if (st.D > cap) { st.D = cap; st.defaulted = true; }
+    st.maxD = Math.max(st.maxD, st.D);
+    st.age++;
+    const nw = nwOf(st);
+    if (st.fiAge === null && nw >= st.goal) st.fiAge = st.age;
+    st.path.push({ age: st.age, nw });
+  }
+
+  function shock(costFn) {
+    return st => {
+      const cost = costFn(st);
+      if (st.emergency && st.A >= cost) { st.A -= cost; return { fb: 'Tu fondo de emergencias absorbió el golpe. Seguiste volando sin deudas.', eff: 'Paracaídas usado: −' + fmtL(cost) + ' de tus ahorros' }; }
+      if (st.emergency) { const part = st.A; st.A = 0; st.D += cost - part; return { fb: 'Tu fondo ayudó, pero no alcanzó. El resto se fue a crédito.', eff: 'Deuda nueva: ' + fmtL(cost - part) }; }
+      st.D += cost;
+      return { fb: 'Sin fondo de emergencias, la urgencia se fue a la tarjeta. Ahora pagas intereses.', eff: 'Deuda nueva: ' + fmtL(cost) + ' al ~28% EA' };
+    };
+  }
+
+  const PANIC = {
+    pillar: 'crece', kicker: 'Mercado',
+    q: () => 'Pánico en el mercado: tus inversiones caen 25% en semanas.',
+    a: { t: 'Vendo todo antes de que caiga más.', apply: st => { st.A *= 0.75; st.r = CFG.rCash; },
+         fb: 'Vender en pánico convierte una caída temporal en una pérdida real.', eff: 'Pérdida asegurada y tu plata vuelve a la cuenta de ahorros' },
+    b: { t: 'Me quedo. Mi plan es de largo plazo.', apply: st => { st.A *= 0.75; st.recovery = 2; },
+         fb: 'Históricamente los mercados diversificados se han recuperado, aunque nadie lo garantiza. La paciencia también es estrategia.', eff: 'Caída temporal; el plan sigue en pie' }
+  };
+  const INFL = {
+    shock: true, kicker: 'Inflación',
+    q: () => 'Año de inflación alta: 12%. Tu plata quieta en la cuenta compra cada vez menos.',
+    apply: st => { st.A *= 0.93; return { fb: 'El dinero quieto también pierde. La inflación es un impuesto silencioso.', eff: 'Tus ahorros pierden ~7% de poder de compra' }; }
+  };
+
+  const EVENTS = [
+    { pillar: 'genera', kicker: 'Tiempo libre',
+      q: () => 'Tienes 2 horas libres al día. ¿Qué haces con ellas?',
+      a: { t: 'Series y descanso. Me lo gané.', fb: 'Descansar está bien. Pero tu ingreso se queda quieto mientras el costo de vida sube.', eff: 'Ingreso: igual que siempre' },
+      b: { t: 'Aprendo una habilidad que paga: IA, ventas o marketing digital.', apply: st => { st.g = CFG.gBase + CFG.gSkill; st.side = CFG.sideShare * st.Y; },
+           fb: 'Las habilidades son el motor: abren un segundo ingreso, y ese extra lo inviertes.', eff: '+15% de ingreso extra al año, invertido' } },
+    { pillar: 'protege', kicker: 'Crédito',
+      q: (st, p) => `Te aprueban una tarjeta de crédito con cupo de ${fmtL(roundM(3 * p.income))}.`,
+      a: { t: 'La uso para darme gustos y pago el mínimo.', apply: (st, p) => { st.D += roundM(3 * p.income); st.E *= 1.03; },
+           fb: 'Pagando el mínimo, una deuda cercana al 28% EA puede duplicarse en unos 3 años.', eff: 'Deuda nueva al ~28% EA' },
+      b: { t: 'Solo compro lo que puedo pagar completo cada mes.', fb: 'Usada así, la tarjeta es una herramienta y no una trampa.', eff: 'Cero intereses' } },
+    { pillar: 'crece', kicker: 'Ahorro',
+      q: (st, p) => `Por fin te sobraron ${fmtFull(Math.max(200000, Math.round(0.12 * p.income / 1e5) * 1e5))} este mes. ¿Dónde los pones?`,
+      a: { t: 'En la cuenta de ahorros. Ahí están seguros.', fb: 'Con inflación alrededor del 5%, la cuenta de ahorros pierde poder de compra cada año.', eff: 'Tu plata rinde menos que la inflación' },
+      b: { t: 'En un fondo diversificado, a largo plazo.', apply: st => { st.r = CFG.rInv; },
+           fb: 'Invertir tiene riesgo, pero diversificado y a largo plazo históricamente le ha ganado a la inflación.', eff: 'Tu plata empieza a trabajar (5% real ilustrativo)' } },
+    { pillar: 'protege', kicker: 'Imprevistos',
+      q: () => '¿Y si mañana pasa algo?',
+      a: { t: 'No tengo colchón. Ya veré.', fb: 'Sin colchón, cualquier urgencia termina en la tarjeta de crédito.', eff: 'Vuelas sin paracaídas' },
+      b: { t: 'Armo un fondo de emergencias de 6 meses de gastos.', apply: st => { st.emergency = true; },
+           fb: 'El fondo de emergencias es el paracaídas del avión.', eff: 'Paracaídas activado' } },
+    { shock: true, kicker: 'Turbulencia',
+      q: st => `Te quedas sin empleo 4 meses. Necesitas ${fmtL(st.E / 3)} para sostenerte.`,
+      apply: shock(st => st.E / 3) },
+    { pillar: 'genera', kicker: 'Aumento',
+      q: () => '¡Te suben el sueldo 20%!',
+      a: { t: 'Por fin: carro nuevo y apartamento más grande.', apply: st => { st.E += 0.24 * st.Y; st.Y *= 1.2; },
+           fb: 'Si tus gastos suben igual que tu sueldo, nunca te sobra más. Y la cuota del carro suma.', eff: 'Gastos: +24% · Ahorro: igual o menos' },
+      b: { t: 'Subo mi nivel de vida con la mitad e invierto la otra mitad.', apply: st => { st.E += 0.10 * st.Y; st.Y *= 1.2; },
+           fb: 'Cada aumento es combustible extra si no se lo come el estilo de vida.', eff: 'Ahorro: +10% del sueldo cada año' } },
+    { pillar: 'protege', kicker: 'Oportunidad',
+      q: () => 'Un conocido te ofrece duplicar tu plata en 3 meses. "Garantizado".',
+      a: { t: '¡De una! Meto mis ahorros.', apply: st => { st.A *= 0.4; },
+           fb: 'Nadie serio garantiza rendimientos. Alto, rápido y garantizado es la alarma roja de una estafa.', eff: 'Perdiste el 60% de tus ahorros' },
+      b: { t: 'Si es garantizado y tan rápido, huele a estafa. Paso.', fb: 'Protegerte también es saber decir que no.', eff: 'Ahorros intactos' } },
+    { dynamic: st => (st.r === CFG.rInv && st.A > 0) ? PANIC : INFL },
+    { pillar: 'crece', kicker: 'Prima',
+      q: () => 'Llega la prima de diciembre.',
+      a: { t: 'Viaje, ropa y regalos. Todos los años.', fb: 'Disfrutar está bien. Sin plan, la prima se va en una semana.', eff: 'Prima: gastada' },
+      b: { t: 'Desde ahora, cada diciembre: mitad la disfruto, mitad a mi fondo.', apply: st => { st.primaSave = true; },
+           fb: 'Media prima al año, invertida durante décadas, suma muchísimo.', eff: '+ media prima invertida cada año' } },
+    { shock: true, kicker: 'Turbulencia',
+      q: st => `Una urgencia de salud en tu familia. Necesitas ${fmtL(st.Y / 4)}.`,
+      apply: shock(st => st.Y / 4) }
+  ];
+
+  function schedule(years) {
+    const N = EVENTS.length, out = []; let prev = 0;
+    for (let i = 0; i < N; i++) { let y = Math.round((i + 1) * years / (N + 1)); if (y <= prev) y = prev + 1; out.push(Math.min(y, years)); prev = y; }
+    return out;
+  }
+  const resolveEv = (k, st) => EVENTS[k].dynamic ? EVENTS[k].dynamic(st) : EVENTS[k];
+
+  function applyChoice(st, ev, side, p) {
+    if (ev.shock) { const r = ev.apply(st); st.maxD = Math.max(st.maxD, st.D); return { ...r, good: null }; }
+    const o = ev[side];
+    if (o.apply) o.apply(st, p);
+    st.maxD = Math.max(st.maxD, st.D);
+    st.avail[ev.pillar]++;
+    if (side === 'b') st.pill[ev.pillar]++;
+    return { fb: o.fb, eff: o.eff, good: side === 'b' };
+  }
+
+  function simulate(p, pick) {
+    const st = newState(p), sched = schedule(st.years); let k = 0;
+    for (let t = 1; t <= st.years; t++) {
+      step(st);
+      while (k < sched.length && sched[k] === t) { const ev = resolveEv(k, st); applyChoice(st, ev, ev.shock ? null : pick(k, ev), p); st.path[st.path.length - 1].nw = nwOf(st); k++; }
+    }
+    return st;
+  }
+
+  // ---------- sky canvas ----------
+  const sky = $('#sky'), cvs = $('#sky-canvas'), ctx = cvs.getContext('2d');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const COL = {};
+  function readCols() { ['--panel', '--panel-2', '--line', '--ink', '--mute', '--violet', '--teal', '--amber', '--red', '--night'].forEach(n => COL[n] = css(n)); }
+  readCols();
+  let W = 0, H = 0, DPR = 1;
+  const stars = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random() * 0.7, r: Math.random() * 1.3 + 0.3, a: Math.random() * 0.6 + 0.2 }));
+  function sizeCanvas(c, box) {
+    DPR = Math.min(2, window.devicePixelRatio || 1);
+    const r = box.getBoundingClientRect();
+    c.width = Math.max(1, Math.round(r.width * DPR)); c.height = Math.max(1, Math.round(r.height * DPR));
+    return { w: r.width, h: r.height };
+  }
+  let ST = null, head = null, shake = 0;
+  const geo = () => ({ padL: 16, padR: 34, top: H * 0.16, zero: H * 0.70, bottom: H * 0.93 });
+  function xOf(age) { const g = geo(); return g.padL + (age - ST.startAge) / ST.years * (W - g.padL - g.padR); }
+  function yOf(nw) {
+    const g = geo(), nif = ST.goal;
+    if (nw >= 0) { const r = Math.min(1.25, nw / nif); return g.zero - Math.sqrt(r) * (g.zero - g.top); }
+    const d = Math.min(1, -nw / Math.max(1, ST.Y)); return g.zero + d * (g.bottom - g.zero);
+  }
+  function drawSky(time) {
+    if (!ST || !W) return;
+    const g = geo();
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    const sx = shake > 0 ? (Math.random() - 0.5) * shake : 0, sy = shake > 0 ? (Math.random() - 0.5) * shake : 0;
+    ctx.translate(sx, sy);
+    ctx.fillStyle = COL['--panel']; ctx.fillRect(-10, -10, W + 20, H + 20);
+    // stars
+    const drift = (time || 0) / 60000;
+    stars.forEach(s => { ctx.globalAlpha = s.a; ctx.fillStyle = COL['--ink']; const x = ((s.x - drift) % 1 + 1) % 1 * W; ctx.fillRect(x, s.y * H, s.r, s.r); });
+    ctx.globalAlpha = 1;
+    // debt zone
+    const dz = ctx.createLinearGradient(0, g.zero, 0, H);
+    dz.addColorStop(0, 'rgba(255,85,119,0)'); dz.addColorStop(1, 'rgba(255,85,119,.22)');
+    ctx.fillStyle = dz; ctx.fillRect(0, g.zero, W, H - g.zero);
+    ctx.font = '600 9px ' + css('--f-mono'); ctx.letterSpacing = '1.5px';
+    ctx.fillStyle = COL['--red']; ctx.globalAlpha = .8; ctx.fillText('ZONA DE DEUDA', 10, H - 10); ctx.globalAlpha = 1;
+    // zero line
+    ctx.strokeStyle = COL['--line']; ctx.lineWidth = 1; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(0, g.zero); ctx.lineTo(W, g.zero); ctx.stroke();
+    ctx.fillStyle = COL['--mute']; ctx.fillText('$0', W - 26, g.zero - 6);
+    // FI line
+    ctx.strokeStyle = COL['--teal']; ctx.setLineDash([5, 6]); ctx.globalAlpha = .75;
+    ctx.beginPath(); ctx.moveTo(0, g.top); ctx.lineTo(W, g.top); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    ctx.fillStyle = COL['--teal']; ctx.fillText('TRABAJO OPCIONAL · NIF ' + fmtM(inp.nif).toUpperCase() + '/MES', 10, g.top - 7);
+    // age ticks
+    ctx.fillStyle = COL['--mute'];
+    for (let a = Math.ceil(ST.startAge / 10) * 10; a <= CFG.retireAge; a += 10) { const x = xOf(a); if (x > 20 && x < W - 20) ctx.fillText(String(a), x - 6, g.zero + 14); }
+    ctx.letterSpacing = '0px';
+    // trail
+    const pts = ST.path.map(p => [xOf(p.age), yOf(p.nw)]);
+    if (head) pts[pts.length - 1] = head;
+    if (pts.length > 1) {
+      const tg = ctx.createLinearGradient(0, 0, W, 0);
+      tg.addColorStop(0, COL['--violet']); tg.addColorStop(1, COL['--teal']);
+      ctx.strokeStyle = tg; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.shadowColor = COL['--violet']; ctx.shadowBlur = 12;
+      ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+    // plane
+    const [px, py] = pts[pts.length - 1];
+    let ang = 0;
+    if (pts.length > 1) { const [qx, qy] = pts[pts.length - 2]; ang = Math.atan2(py - qy, Math.max(1, px - qx)); ang = Math.max(-0.9, Math.min(0.9, ang)); }
+    const nwNow = head ? null : nwOf(ST);
+    const inDebt = (nwNow !== null ? nwNow : ST.path[ST.path.length - 1].nw) < 0;
+    ctx.save(); ctx.translate(px, py); ctx.rotate(ang);
+    ctx.shadowColor = inDebt ? COL['--red'] : COL['--teal']; ctx.shadowBlur = 16;
+    ctx.fillStyle = inDebt ? COL['--red'] : COL['--ink'];
+    ctx.beginPath();
+    ctx.moveTo(16, 0); ctx.lineTo(4, -2.2); ctx.lineTo(-4, -12); ctx.lineTo(-8, -12); ctx.lineTo(-4, -2.2); ctx.lineTo(-12, -2.2);
+    ctx.lineTo(-15, -7); ctx.lineTo(-17.5, -7); ctx.lineTo(-15.5, 0); ctx.lineTo(-17.5, 7); ctx.lineTo(-15, 7); ctx.lineTo(-12, 2.2);
+    ctx.lineTo(-4, 2.2); ctx.lineTo(-8, 12); ctx.lineTo(-4, 12); ctx.lineTo(4, 2.2); ctx.closePath(); ctx.fill();
+    ctx.restore();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+  let rafLoop = 0;
+  function loop(t) { drawSky(t); if (shake > 0) shake = Math.max(0, shake - 0.6); rafLoop = requestAnimationFrame(loop); }
+  const ro = new ResizeObserver(() => { const s = sizeCanvas(cvs, sky); W = s.w; H = s.h; });
+  ro.observe(sky);
+
+  // ---------- HUD ----------
+  let prevHud = null;
+  const fmtD = n => (n > 0 ? '▲ +' : '▼ ') + fmtM(n);
+  function flash(key, delta, goodWhenUp, min) {
+    if (Math.abs(delta) < min) return;
+    const cell = $('#c-' + key), d = $('#d-' + key), good = goodWhenUp ? delta > 0 : delta < 0;
+    cell.classList.remove('f-good', 'f-bad'); void cell.offsetWidth; cell.classList.add(good ? 'f-good' : 'f-bad');
+    d.textContent = fmtD(delta); d.className = 'd show ' + (good ? 'pos' : 'neg');
+    clearTimeout(d._t); d._t = setTimeout(() => { d.className = 'd'; }, 2200);
+  }
+  function hud(withFlash) {
+    const now = { nw: nwOf(ST), debt: ST.D, fuel: monthlySave(ST) };
+    if (withFlash && prevHud) {
+      flash('nw', now.nw - prevHud.nw, true, 1e5);
+      flash('debt', now.debt - prevHud.debt, false, 1e5);
+      flash('fuel', now.fuel - prevHud.fuel, true, 1e4);
+    }
+    prevHud = now;
+    const nw = nwOf(ST);
+    $('#h-age').textContent = ST.age;
+    const hn = $('#h-nw'); hn.textContent = fmtM(nw); hn.className = nw < 0 ? 'neg' : '';
+    const hd = $('#h-debt'); hd.textContent = fmtM(ST.D); hd.className = ST.D > 0 ? 'neg' : '';
+    const ms = monthlySave(ST); const hf = $('#h-fuel'); hf.textContent = fmtM(ms); hf.className = ms < 0 ? 'neg' : (ms > 0 ? 'pos' : '');
+    $('#h-nif').textContent = fmtM(ST.goal);
+    for (const k of ['genera', 'crece', 'protege']) $('#p-' + k + ' i').textContent = ST.pill[k];
+  }
+
+  // ---------- animation helpers ----------
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  function glide(from, to, ms) {
+    return new Promise(res => {
+      const t0 = performance.now();
+      const f = now => {
+        const k = Math.min(1, (now - t0) / ms);
+        head = [from[0] + (to[0] - from[0]) * k, from[1] + (to[1] - from[1]) * k];
+        if (k < 1) requestAnimationFrame(f); else { head = null; res(); }
+      };
+      requestAnimationFrame(f);
+    });
+  }
+
+  // ---------- decision card ----------
+  const card = $('#card'), flightEl = $('#s-flight');
+  const PL = { genera: 'Genera', crece: 'Haz crecer', protege: 'Protege' };
+  function askCard(ev) {
+    return new Promise(resolve => {
+      document.querySelectorAll('.inst .d').forEach(d => { d.className = 'd'; });
+      play('whoosh', 0.45);
+      const order = Math.random() < 0.5 ? ['a', 'b'] : ['b', 'a'];
+      card.className = 'card'; card.style.transform = '';
+      card.innerHTML = `
+        <div class="kick"><span>${PL[ev.pillar]} · ${ev.kicker}</span><span>${ST.age} años</span></div>
+        <div class="q">${ev.q(ST, inp)}</div>
+        <div class="opts">
+          <button class="opt" type="button" data-side="${order[0]}"><span class="ar">←</span><span>${ev[order[0]].t}</span></button>
+          <button class="opt" type="button" data-side="${order[1]}"><span class="ar">→</span><span>${ev[order[1]].t}</span></button>
+        </div>
+        <div class="swipe-hint">Toca una opción o desliza la tarjeta</div>`;
+      card.hidden = false; flightEl.classList.add('deciding');
+      let done = false;
+      const pick = side => { if (done) return; done = true; cleanup(); resolve(side); };
+      card.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => pick(b.dataset.side)));
+      // swipe
+      let x0 = null, dx = 0;
+      const down = e => { if (e.target.closest('.opt')) return; x0 = e.clientX; dx = 0; card.setPointerCapture(e.pointerId); };
+      const move = e => { if (x0 === null) return; dx = e.clientX - x0; card.style.transform = `translateX(${dx}px) rotate(${dx / 24}deg)`; };
+      const up = () => { if (x0 === null) return; x0 = null; if (dx < -70) pick(order[0]); else if (dx > 70) pick(order[1]); else card.style.transform = ''; };
+      card.addEventListener('pointerdown', down); card.addEventListener('pointermove', move);
+      card.addEventListener('pointerup', up); card.addEventListener('pointercancel', up);
+      function cleanup() { card.removeEventListener('pointerdown', down); card.removeEventListener('pointermove', move); card.removeEventListener('pointerup', up); card.removeEventListener('pointercancel', up); }
+      setTimeout(() => { const f = card.querySelector('.opt'); if (f) f.focus({ preventScroll: true }); }, 50);
+    });
+  }
+  function showFeedback(ev, res, before) {
+    return new Promise(resolve => {
+      card.style.transform = '';
+      const isShock = !!ev.shock;
+      card.className = 'card' + (isShock ? ' shock' : '');
+      const delta = nwOf(ST) - before;
+      const deltaTxt = Math.abs(delta) >= 1e5 ? `<div class="eff">Patrimonio: ${delta > 0 ? '+' : ''}${fmtM(delta)}</div>` : '';
+      const verdict = isShock ? '<span class="verdict v-shock">Turbulencia</span>' : (res.good ? '<span class="verdict v-good">Buen movimiento</span>' : '<span class="verdict v-bad">Ojo con esto</span>');
+      card.innerHTML = `
+        <div class="kick"><span>${isShock ? ev.kicker : PL[ev.pillar] + ' · ' + ev.kicker}</span><span>${ST.age} años</span></div>
+        ${isShock ? `<div class="q">${ev.q(ST, inp)}</div>` : ''}
+        ${verdict}
+        <p class="fb">${res.fb}</p>
+        <div class="eff">${res.eff || ''}</div>
+        ${deltaTxt}
+        <button class="btn" type="button" id="cont">Seguir volando</button>`;
+      card.hidden = false; flightEl.classList.add('deciding');
+      const b = card.querySelector('#cont');
+      b.addEventListener('click', () => { card.hidden = true; flightEl.classList.remove('deciding'); resolve(); }, { once: true });
+      setTimeout(() => b.focus({ preventScroll: true }), 50);
+    });
+  }
+
+  // ---------- flight ----------
+  let flying = false;
+  async function startFlight() {
+    if (flying) return; flying = true;
+    ST = newState(inp); head = null; prevHud = null; CH = [];
+    ambience(false); jet(0, 3.4, 0.75); cabin(true);
+    show('s-flight'); card.hidden = true; flightEl.classList.remove('deciding');
+    const s = sizeCanvas(cvs, sky); W = s.w; H = s.h;
+    cancelAnimationFrame(rafLoop); rafLoop = requestAnimationFrame(loop);
+    hud();
+    track('V40_GameStart', { age: inp.age, income: inp.income, s0: inp.s0 });
+    const sched = schedule(ST.years); let k = 0;
+    await wait(reduce ? 50 : 500);
+    for (let t = 1; t <= ST.years; t++) {
+      const prev = ST.path[ST.path.length - 1];
+      const from = [xOf(prev.age), yOf(prev.nw)];
+      step(ST);
+      const last = ST.path[ST.path.length - 1];
+      await glide(from, [xOf(last.age), yOf(last.nw)], CFG.yearMs);
+      hud();
+      while (k < sched.length && sched[k] === t) {
+        const ev = resolveEv(k, ST);
+        const before = nwOf(ST);
+        let side = null;
+        if (ev.shock) { shake = 9; vib([60, 40, 90]); play('alarm', 0.7); }
+        else side = await askCard(ev);
+        hud();
+        const res = applyChoice(ST, ev, side, inp);
+        if (!ev.shock) { CH.push({ k, ev, side, age: ST.age }); res.good ? sfxGood() : sfxBad(); }
+        ST.path[ST.path.length - 1].nw = nwOf(ST);
+        hud(true);
+        await showFeedback(ev, res, before);
+        k++;
+      }
+    }
+    cabin(false); touchdown(); vib([20, 30, 60]);
+    await wait(reduce ? 50 : 900);
+    cancelAnimationFrame(rafLoop);
+    flying = false;
+    land();
+  }
+
+  // ---------- landing ----------
+  let RES = null, CH = [];
+  const endText = st => st.fiAge ? `trabajo opcional a los <b>${st.fiAge}</b>` : (nwOf(st) < 0 ? `<b>${fmtL(nwOf(st))}</b> en deuda a los 65` : `<b>${fmtL(nwOf(st))}</b> a los 65, sin llegar a trabajo opcional`);
+
+  // letter from your 65-year-old self, built from the decisions taken
+  const MEM = {
+    0: { bad: a => `¿Te acuerdas de esas 2 horas diarias a los ${a}? Ojalá las hubiéramos usado para aprender algo que pagara.`, good: a => `Las 2 horas diarias que invertiste en aprender a los ${a} lo cambiaron todo: ese ingreso extra todavía nos paga los viajes.` },
+    1: { bad: a => `La tarjeta que sacamos a los ${a}… pagando el mínimo, se volvió una bola de nieve.`, good: () => 'Gracias por nunca pagar solo el mínimo de la tarjeta.' },
+    2: { bad: a => `Desde los ${a} dejamos la plata quieta en la cuenta de ahorros. La inflación se la fue comiendo, año tras año.`, good: a => `Esos primeros ahorros que invertiste a los ${a} crecieron más de lo que imaginamos.` },
+    3: { bad: () => 'Nunca armamos el fondo de emergencias. Cada imprevisto terminó en la tarjeta.', good: () => 'El fondo de emergencias nos salvó más de una vez.' },
+    5: { bad: a => `Cuando nos subieron el sueldo a los ${a}, se fue todo en carro y apartamento.`, good: () => 'Cuando nos subieron el sueldo, invertiste la mitad. Esa decisión vale millones hoy.' },
+    6: { bad: a => `Lo del "negocio garantizado" a los ${a}… perdimos más de la mitad de lo ahorrado.`, good: () => 'Le dijiste que no a la "plata garantizada". Ese no nos protegió.' },
+    7: { bad: a => `Vendimos todo en el pánico del mercado a los ${a} y nos perdimos la recuperación.`, good: () => 'En el pánico del mercado te quedaste quieto. Fue lo más difícil y lo más rentable.' },
+    8: { bad: () => 'Cada prima de diciembre se nos iba en una semana.', good: () => 'Media prima cada diciembre, durante décadas. Quién lo diría.' }
+  };
+  const ORDER_BAD = [1, 0, 2, 5, 6, 3, 7, 8], ORDER_GOOD = [0, 2, 5, 1, 3, 6, 7, 8];
+  function buildLetter() {
+    const first = (inp.name || '').split(' ')[0], hi = first ? first + ', t' : 'T';
+    const byK = Object.fromEntries(CH.map(c => [c.k, c]));
+    const pick = (order, side) => order.filter(k => byK[k] && byK[k].side === side).slice(0, 2).map(k => MEM[k][side === 'b' ? 'good' : 'bad'](byK[k].age));
+    const key = RES.o.key;
+    if (key === 'land') return [`${hi}e escribo desde los 65. Hoy trabajar es opcional, y quiero darte las gracias.`, ...pick(ORDER_GOOD, 'b'), 'Sigue así. Y enséñale a alguien más a volar.'];
+    const bad = pick(ORDER_BAD, 'a');
+    return [key === 'crash' ? `${hi}e escribo desde los 65. No es fácil decírtelo: todavía estamos pagando deudas.` : `${hi}e escribo desde los 65. Todavía trabajo todos los días. Me toca.`,
+      ...(bad.length ? bad : ['Hicimos casi todo bien, pero sin el sistema completo no alcanzó.']),
+      key === 'crash' ? 'Tú todavía estás a tiempo. Aprende el sistema ahora.' : 'No es tarde: todavía puedes cambiar el plan de vuelo.'];
+  }
+  let letterRun = 0;
+  async function playLetter(lines) {
+    const run = ++letterRun, body = $('#lt-body'); body.innerHTML = '';
+    for (const l of lines) {
+      const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(ty);
+      await wait(reduce ? 0 : 950); if (run !== letterRun) return; ty.remove();
+      const b = document.createElement('div'); b.className = 'bub'; b.textContent = l; body.appendChild(b); blip(988, 0.1);
+      await wait(reduce ? 0 : 420); if (run !== letterRun) return;
+    }
+  }
+
+  // badges
+  const BADGES = [[0, 'Motor encendido'], [1, 'Libre de tarjeta'], [2, 'Plata que trabaja'], [3, 'Paracaídas listo'], [5, 'Aumento inteligente'], [6, 'Piloto anti-estafa'], [7, 'Inversionista paciente'], [8, 'Prima con propósito']];
+  function badgesOf(st) {
+    const byK = Object.fromEntries(CH.map(c => [c.k, c.side]));
+    const out = BADGES.filter(([k]) => byK[k] === 'b').map(x => x[1]);
+    if (st.maxD === 0) out.push('Cero deudas');
+    if (st.fiAge && st.fiAge <= 60) out.push('Llegada temprana');
+    return out;
+  }
+
+  // rewind: change one decision and re-fly the same life
+  const DEC_LABEL = { 0: 'Tiempo libre', 1: 'Tarjeta de crédito', 2: 'Dónde ahorrar', 3: 'Fondo de emergencias', 5: 'Aumento de sueldo', 6: 'Negocio "garantizado"', 7: 'Pánico en el mercado', 8: 'Prima de diciembre' };
+  function renderRewind() {
+    $('#decs').innerHTML = CH.map(c => `<button type="button" class="dec ${c.side === 'b' ? 'good' : 'bad'}" data-k="${c.k}" aria-pressed="false"><span class="age">${c.age} años</span><span>${DEC_LABEL[c.k]}</span><span class="mk">${c.side === 'b' ? '✓ BIEN' : '✗ OJO'}</span></button>`).join('');
+    $('#rw-out').hidden = true;
+    document.querySelectorAll('#decs .dec').forEach(btn => btn.addEventListener('click', () => rewind(+btn.dataset.k, btn)));
+  }
+  function rewind(k, btn) {
+    document.querySelectorAll('#decs .dec').forEach(x => x.setAttribute('aria-pressed', String(x === btn)));
+    const map = Object.fromEntries(CH.map(c => [c.k, c.side])), c = CH.find(x => x.k === k);
+    map[k] = c.side === 'b' ? 'a' : 'b';
+    const alt = simulate(inp, kk => map[kk] || (kk === 7 ? 'b' : 'a'));
+    const diff = nwOf(alt) - RES.nw;
+    $('#rw-out').innerHTML = `Si a los ${c.age} hubieras elegido «${c.ev[map[k]].t}»: ${endText(alt)}.<br>Tu vuelo real: ${endText(RES.st)}. Diferencia a los 65: <b>${diff > 0 ? '+' : ''}${fmtL(diff)}</b>.`;
+    $('#rw-out').hidden = false;
+    diff > 0 ? sfxGood() : sfxBad();
+    track('V40_Rewind', { k });
+  }
+
+  // event pass: countdown + calendar
+  const EV_T = Date.UTC(2026, 10, 14, 14, 0, 0), EV_END = Date.UTC(2026, 10, 15, 18, 0, 0);
+  const pad2 = n => String(n).padStart(2, '0');
+  let cdTimer = 0;
+  function tickCountdown() {
+    const ms = EV_T - Date.now();
+    if (ms <= 0) { $('#cd').hidden = true; const lv = $('#cd-live'); lv.hidden = false; lv.textContent = Date.now() < EV_END ? 'EN VIVO AHORA' : 'EVENTO FINALIZADO'; return; }
+    const s = Math.floor(ms / 1000);
+    $('#cd-d').textContent = Math.floor(s / 86400); $('#cd-h').textContent = pad2(Math.floor(s % 86400 / 3600)); $('#cd-m').textContent = pad2(Math.floor(s % 3600 / 60)); $('#cd-s').textContent = pad2(s % 60);
+  }
+  $('#cta-cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('The Future Is NOW · Lanzamiento online (día 1)') +
+    '&dates=20261114T140000Z/20261114T170000Z&details=' + encodeURIComponent('Evento online gratis, en vivo desde Dubái. Día 2: 15 de noviembre a la misma hora. Registro: ' + 'https://futureisnowevent.com/camilo-cortes?lang=es') + '&location=Online';
+  let evPA = false;
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !evPA && !$('#s-land').hidden) { evPA = true; pa('pa_evento'); } }), { threshold: 0.55 }).observe($('#evpass'));
+
+  // duel result
+  const rankOf = (key, fi, nwM) => key === 'land' ? 2e6 - fi : key === 'circle' ? 1e6 + nwM : nwM;
+  const resLines = (key, fi, nwM) => key === 'land' ? [`${fi} años`, 'trabajo opcional'] : key === 'circle' ? ['En círculos', fmtL(nwM * 1e6) + ' a los 65'] : ['Estrellado', fmtL(nwM * 1e6) + ' a los 65'];
+  function showDuel() {
+    if (!DUEL) return;
+    const meNW = Math.round(RES.nw / 1e6), me = rankOf(RES.o.key, RES.st.fiAge, meNW), op = rankOf(DUEL.key, DUEL.fiAge, DUEL.nwM);
+    const [m1, m2] = resLines(RES.o.key, RES.st.fiAge, meNW), [o1, o2] = resLines(DUEL.key, DUEL.fiAge, DUEL.nwM);
+    $('#vs-me').textContent = m1; $('#vs-me-sub').textContent = m2; $('#vs-op-name').textContent = DUEL.name; $('#vs-op').textContent = o1; $('#vs-op-sub').textContent = o2;
+    const both = RES.o.key === 'land' && DUEL.key === 'land';
+    $('#vs-verdict').textContent = me > op ? `¡Le ganaste a ${DUEL.name}!` : me < op ? `${DUEL.name} te ganó${both ? ' por ' + (RES.st.fiAge - DUEL.fiAge) + (RES.st.fiAge - DUEL.fiAge === 1 ? ' año' : ' años') : ''}` : 'Empate';
+    $('#duel-res').hidden = false; $('#go-duel').textContent = 'Devolver el reto';
+    track('V40_DuelResult', { win: me > op });
+  }
+  function outcome(st) {
+    const nw = nwOf(st), E = st.E;
+    if (st.fiAge !== null) return { key: 'land', status: 'ATERRIZÓ', title: 'Aterrizaje en trabajo opcional',
+      sub: `Desde los ${st.fiAge} tu patrimonio podría darte tu NIF de ${fmtL(inp.nif)} al mes. Trabajar se volvería una opción.`, eta: st.fiAge + ' AÑOS' };
+    if (nw < 0) return { key: 'crash', status: 'ESTRELLADO', title: 'Camicase financiero',
+      sub: `Llegas a los 65 debiendo ${fmtL(-nw)}.${st.defaulted ? ' Reportado en centrales de riesgo.' : ''} La deuda se comió el combustible.`, eta: 'NO LLEGÓ' };
+    const monthly = nw / CFG.fiMult / 12, cov = Math.max(0, Math.round(monthly / inp.nif * 100));
+    return { key: 'circle', status: 'DEMORADO', title: 'Vuelo en círculos',
+      sub: `Llegas a los 65 con ${fmtL(nw)}: te darían unos ${fmtL(monthly)} al mes, el ${cov}% de tu NIF. Trabajar seguiría siendo obligatorio.`, eta: 'SIN HORA' };
+  }
+  function land() {
+    const st = ST, o = outcome(st), nw = nwOf(st);
+    const life = inp.income * 12 * st.years;
+    RES = { o, nw, life, nif: inp.nif, goal: st.goal, st };
+    $('#r-name').textContent = (inp.name || 'Tú').toUpperCase();
+    const rs = $('#r-status'); rs.textContent = o.status; rs.className = 'status s-' + o.key;
+    $('#r-title').textContent = o.title;
+    $('#r-sub').textContent = o.sub;
+    $('#r-life').textContent = fmtL(life);
+    $('#r-nw').textContent = fmtL(nw);
+    $('#r-nif').textContent = fmtM(RES.nif) + ' al mes';
+    $('#r-goal').textContent = 'Meta: ' + fmtL(RES.goal) + ' invertidos';
+    $('#r-eta').textContent = o.eta;
+    const names = { genera: 'Genera', crece: 'Haz crecer', protege: 'Protege' };
+    let worst = null, wr = 2;
+    $('#r-pillars').innerHTML = ['genera', 'crece', 'protege'].map(k => {
+      const n = st.avail[k], g = st.pill[k], ratio = n ? g / n : 1;
+      if (ratio < wr) { wr = ratio; worst = k; }
+      return `<div>${names[k]}<span>${Array.from({ length: n }, (_, i) => `<i class="${i < g ? 'on' : ''}"></i>`).join('')}</span></div>`;
+    }).join('');
+    const total = st.pill.genera + st.pill.crece + st.pill.protege, avail = st.avail.genera + st.avail.crece + st.avail.protege;
+    $('#r-blind').innerHTML = wr < 1 ? `Tu punto ciego: <b>${names[worst].toUpperCase()}</b>. Acertaste ${total} de ${avail} decisiones.` : `Acertaste ${total} de ${avail} decisiones. Piloto con sistema.`;
+    $('#sys-out').hidden = true; $('#go-system').hidden = false;
+    const waText = `Hola Camilo, jugué VUELO 40. Mi NIF es ${fmtL(inp.nif)} al mes y mi resultado fue: ${o.title} (${o.status.toLowerCase()}). Quiero aprender el sistema para mejorar mi vuelo.`;
+    $('#cta-wa').href = `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(waText)}`;
+    const bs = badgesOf(st);
+    $('#r-badges-lbl').textContent = `Insignias · ${bs.length} de 10`;
+    $('#r-badges').innerHTML = bs.length ? bs.map(b => `<span class="badge">${b}</span>`).join('') : '<span style="font-size:13px;color:var(--pass-mute)">Ninguna esta vez. Vuelve a volar y gánalas.</span>';
+    const tok = ['d', cleanName((inp.name || '').split(' ')[0]) || 'Amigo', inp.age, Math.round(inp.income / 1e5), S0R[String(inp.s0)] || 'c', Math.round(inp.nif / 1e5), st.fiAge || 0, Math.round(nw / 1e6), o.key].join('_');
+    const meTxt = o.key === 'land' ? `llegué a trabajo opcional a los ${st.fiAge}` : o.key === 'circle' ? 'quedé dando vueltas sin llegar a trabajo opcional' : 'me estrellé en deudas';
+    $('#go-duel').href = 'https://wa.me/?text=' + encodeURIComponent(`Te reto a VUELO 40. Con mi misma vida, ${meTxt}. ¿Tú llegas antes? ${baseUrl()}#${tok}`);
+    $('#go-duel').textContent = 'Retar a un amigo'; $('#duel-res').hidden = true;
+    $('#ev-from').textContent = (cleanName(inp.name).slice(0, 3) || 'TÚ').toUpperCase();
+    $('#lt-name').textContent = (inp.name ? inp.name.split(' ')[0] + ', a los 65' : 'Tú, a los 65');
+    show('s-land');
+    showDuel(); renderRewind(); playLetter(buildLetter());
+    clearInterval(cdTimer); tickCountdown(); cdTimer = setInterval(tickCountdown, 1000);
+    pa('pa_aterrizaje', 0.4);
+    track('V40_GameComplete', { outcome: o.key, fiAge: st.fiAge || 0, score: total, badges: bs.length });
+  }
+
+  // compare with system
+  const cmp = $('#cmp-canvas');
+  function drawCompare(series, prog) {
+    const a = series[1].st, b = series[2].st;
+    const box = cmp.parentElement, s = sizeCanvas(cmp, box), w = s.w, h = s.h, c = cmp.getContext('2d');
+    c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, w, h);
+    const all = series.flatMap(x => x.st.path.map(p => p.nw));
+    let max = Math.max(1, ...all), min = Math.min(0, ...all);
+    const pad = { l: 52, r: 12, t: 14, b: 22 };
+    const X = age => pad.l + (age - a.startAge) / a.years * (w - pad.l - pad.r);
+    const Y = v => pad.t + (max - v) / (max - min) * (h - pad.t - pad.b);
+    c.font = '500 10px ' + css('--f-mono'); c.fillStyle = COL['--mute']; c.strokeStyle = COL['--line']; c.lineWidth = 1;
+    [min, 0, max / 2, max].filter((v, i, arr) => arr.indexOf(v) === i).forEach(v => {
+      const y = Y(v); c.beginPath(); c.moveTo(pad.l, y); c.lineTo(w - pad.r, y); c.stroke();
+      c.fillText(fmtM(v), 2, y + 3);
+    });
+    [a.startAge, Math.round((a.startAge + 65) / 2), 65].forEach(age => c.fillText(String(age), X(age) - 7, h - 6));
+    const line = (st, col, k) => {
+      const n = Math.max(2, Math.ceil(st.path.length * k));
+      c.strokeStyle = col; c.lineWidth = 3; c.lineJoin = 'round'; c.beginPath();
+      st.path.slice(0, n).forEach((p, i) => i ? c.lineTo(X(p.age), Y(p.nw)) : c.moveTo(X(p.age), Y(p.nw))); c.stroke();
+    };
+    series.forEach(x => line(x.st, x.col, prog));
+    if (prog >= 1 && b.fiAge) {
+      const p = b.path.find(q => q.age === b.fiAge);
+      if (p) { c.fillStyle = COL['--teal']; c.beginPath(); c.arc(X(p.age), Y(p.nw), 5, 0, Math.PI * 2); c.fill();
+        c.font = '700 10px ' + css('--f-mono'); const lbl = 'OPCIONAL A LOS ' + b.fiAge; const tw = c.measureText(lbl).width;
+        c.fillText(lbl, Math.min(w - pad.r - tw, Math.max(pad.l, X(p.age) - tw / 2)), Math.max(12, Y(p.nw) - 10)); }
+    }
+  }
+  $('#go-system').addEventListener('click', () => {
+    const sys = simulate(inp, () => 'b'), none = simulate(inp, () => 'a');
+    $('#go-system').hidden = true; $('#sys-out').hidden = false;
+    const a = RES.st;
+    const perfect = a.pill.genera + a.pill.crece + a.pill.protege === a.avail.genera + a.avail.crece + a.avail.protege;
+    const end = endText;
+    let txt;
+    if (perfect) txt = `Volaste con sistema: ${end(a)}. La misma vida en piloto automático terminaba con ${end(none)}. Diferencia: <b>${fmtL(nwOf(a) - nwOf(none))}</b>.`;
+    else txt = `Tu vuelo: ${end(a)}. Con sistema: ${end(sys)}. Diferencia a los 65: <b>${fmtL(nwOf(sys) - RES.nw)}</b>.`;
+    $('#sys-text').innerHTML = `${txt} Mismo sueldo, mismas turbulencias. Otro sistema.`;
+    const series = [{ st: none, col: COL['--red'] }, { st: a, col: COL['--violet'] }, { st: sys, col: COL['--teal'] }];
+    const t0 = performance.now(), dur = reduce ? 1 : 1400;
+    const f = now => { const k = Math.min(1, (now - t0) / dur); drawCompare(series, k); if (k < 1) requestAnimationFrame(f); };
+    requestAnimationFrame(f);
+    RES.sys = sys;
+    track('V40_SystemReplay', { sysFiAge: sys.fiAge || 0 });
+  });
+
+  $('#cta-register').addEventListener('click', () => { track('V40_ClickRegister'); try { window.fbq && window.fbq('track', 'Lead'); } catch (e) {} });
+  $('#cta-wa').addEventListener('click', () => { track('V40_ClickWhatsApp'); try { window.fbq && window.fbq('track', 'Contact'); } catch (e) {} });
+  $('#go-again').addEventListener('click', () => { letterRun++; clearInterval(cdTimer); ambience(true); show('s-checkin'); updateCheckin(); track('V40_Replay'); });
+  $('#go-duel').addEventListener('click', () => track('V40_DuelShare'));
+  $('#cta-cal').addEventListener('click', () => track('V40_Calendar'));
+
+  // ---------- share image (1080x1920 boarding pass) ----------
+  function wrapText(c, text, x, y, maxW, lh) {
+    const words = text.split(' '); let line = '', yy = y;
+    for (const w of words) { const t = line ? line + ' ' + w : w; if (c.measureText(t).width > maxW && line) { c.fillText(line, x, yy); line = w; yy += lh; } else line = t; }
+    if (line) c.fillText(line, x, yy); return yy;
+  }
+  async function makeShare() {
+    try { await document.fonts.ready; } catch (e) {}
+    const W2 = 1080, H2 = 1920, c = document.createElement('canvas'); c.width = W2; c.height = H2;
+    const g = c.getContext('2d'), o = RES.o;
+    const F = { d: css('--f-display'), b: css('--f-body'), m: css('--f-mono') };
+    g.fillStyle = COL['--night']; g.fillRect(0, 0, W2, H2);
+    const rg = g.createRadialGradient(900, 120, 10, 900, 120, 900); rg.addColorStop(0, 'rgba(143,99,255,.45)'); rg.addColorStop(1, 'rgba(143,99,255,0)');
+    g.fillStyle = rg; g.fillRect(0, 0, W2, H2);
+    const rg2 = g.createRadialGradient(80, 1850, 10, 80, 1850, 800); rg2.addColorStop(0, 'rgba(47,230,198,.22)'); rg2.addColorStop(1, 'rgba(47,230,198,0)');
+    g.fillStyle = rg2; g.fillRect(0, 0, W2, H2);
+    g.fillStyle = COL['--ink']; g.font = `700 34px ${F.m}`; g.fillText('VUELO 40', 90, 150);
+    g.fillStyle = COL['--mute']; g.font = `500 28px ${F.m}`; g.fillText('¿A DÓNDE LLEGA TU AVIÓN?', 90, 200);
+    // pass
+    const px = 70, py = 280, pw = W2 - 140, ph = 1300, rad = 40;
+    g.fillStyle = css('--pass-bg'); g.beginPath(); g.roundRect(px, py, pw, ph, rad); g.fill();
+    const hg = g.createLinearGradient(px, 0, px + pw, 0); hg.addColorStop(0, COL['--violet']); hg.addColorStop(1, COL['--teal']);
+    g.save(); g.beginPath(); g.roundRect(px, py, pw, 110, [rad, rad, 0, 0]); g.clip(); g.fillStyle = hg; g.fillRect(px, py, pw, 110); g.restore();
+    g.fillStyle = COL['--night']; g.font = `700 30px ${F.m}`; g.fillText('PASE DE ABORDAR', px + 50, py + 68);
+    const t2 = 'VUELO 40'; g.fillText(t2, px + pw - 50 - g.measureText(t2).width, py + 68);
+    const ink = css('--pass-ink'), pm = css('--pass-mute');
+    g.fillStyle = ink; g.font = `800 120px ${F.d}`; g.fillText('SAS', px + 50, py + 290);
+    const tc = 'TOP'; g.fillText(tc, px + pw - 50 - g.measureText(tc).width, py + 290);
+    g.fillStyle = pm; g.font = `500 26px ${F.m}`; g.fillText('SUELDO A SUELDO', px + 50, py + 335);
+    const tcity = 'TRABAJO OPCIONAL'; g.fillText(tcity, px + pw - 50 - g.measureText(tcity).width, py + 335);
+    g.fillText('PASAJERO', px + 50, py + 420);
+    g.fillStyle = ink; g.font = `700 44px ${F.m}`; g.fillText((inp.name || 'Tú').toUpperCase(), px + 50, py + 475);
+    const sc = { land: COL['--teal'], circle: COL['--amber'], crash: COL['--red'] }[o.key];
+    g.font = `700 34px ${F.m}`; const sw = g.measureText(o.status).width + 44;
+    g.fillStyle = sc; g.beginPath(); g.roundRect(px + 50, py + 520, sw, 64, 10); g.fill();
+    g.fillStyle = ink; g.fillText(o.status, px + 72, py + 564);
+    g.font = `800 62px ${F.d}`; const yEnd = wrapText(g, o.title, px + 50, py + 690, pw - 100, 74);
+    g.font = `500 34px ${F.b}`; g.fillStyle = ink; wrapText(g, o.sub, px + 50, yEnd + 70, pw - 100, 46);
+    // key values
+    const kvY = py + 1010;
+    const kv = [['PASÓ POR TUS MANOS', fmtL(RES.life)], ['A LOS 65 TIENES', fmtL(RES.nw)], ['TU NIF', fmtM(RES.nif) + ' al mes'], ['HORA DE LLEGADA', o.eta]];
+    kv.forEach(([k, v], i) => {
+      const x = px + 50 + (i % 2) * (pw - 100) / 2, y = kvY + Math.floor(i / 2) * 120;
+      g.fillStyle = pm; g.font = `500 24px ${F.m}`; g.fillText(k, x, y);
+      g.fillStyle = ink; g.font = `700 40px ${F.m}`; g.fillText(v, x, y + 50);
+    });
+    // perforation + notches
+    g.strokeStyle = css('--pass-line'); g.setLineDash([16, 14]); g.lineWidth = 4;
+    g.beginPath(); g.moveTo(px + 30, py + 960); g.lineTo(px + pw - 30, py + 960); g.stroke(); g.setLineDash([]);
+    g.fillStyle = COL['--night']; [px, px + pw].forEach(x => { g.beginPath(); g.arc(x, py + 960, 28, 0, Math.PI * 2); g.fill(); });
+    // barcode
+    let bx = px + 50; const by = py + ph - 90; g.fillStyle = ink;
+    const seed = (RES.nw + RES.life) % 997;
+    for (let i = 0; bx < px + pw - 50; i++) { const w = 2 + ((i * 7 + seed) % 5) * 2; if (i % 2 === 0) g.fillRect(bx, by, w, 56); bx += w; }
+    // badges
+    const bs = badgesOf(RES.st).slice(0, 3); let bx2 = 90;
+    g.font = `700 24px ${F.m}`;
+    bs.forEach(b => { const tw = g.measureText(b.toUpperCase()).width + 64; if (bx2 + tw > W2 - 90) return; g.fillStyle = 'rgba(255,255,255,.08)'; g.strokeStyle = 'rgba(255,255,255,.25)'; g.lineWidth = 2; g.beginPath(); g.roundRect(bx2, 1612, tw, 56, 28); g.fill(); g.stroke();
+      g.fillStyle = COL['--teal']; g.beginPath(); g.arc(bx2 + 26, 1640, 7, 0, Math.PI * 2); g.fill(); g.fillStyle = COL['--ink']; g.fillText(b.toUpperCase(), bx2 + 44, 1649); bx2 += tw + 12; });
+    // footer
+    g.fillStyle = COL['--ink']; g.font = `800 52px ${F.d}`;
+    const fEnd = wrapText(g, 'Juega gratis y descubre el tuyo', 90, 1745, W2 - 180, 62);
+    g.fillStyle = COL['--teal']; g.font = `700 32px ${F.m}`; g.fillText(CFG.shareUrl.replace('https://', ''), 90, fEnd + 66);
+    return c.toDataURL('image/png');
+  }
+  $('#go-share').addEventListener('click', async () => {
+    const url = await makeShare();
+    $('#share-img').src = url;
+    const msg = `Hice VUELO 40 y mi resultado fue: ${RES.o.title} (${RES.o.status.toLowerCase()}). ¿A dónde llega tu avión? ${CFG.shareUrl}`;
+    $('#share-wa').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+    $('#share').hidden = false;
+    track('V40_Share');
+  });
+  $('#share-wa').addEventListener('click', () => track('V40_ShareWhatsApp'));
+  $('#share-close').addEventListener('click', () => { $('#share').hidden = true; });
+
+  if (DUEL) {
+    $('#duel-tag').hidden = false;
+    $('#intro-title').textContent = `${DUEL.name} te retó a VUELO 40`;
+    $('#intro-sub').textContent = `${DUEL.name} ${duelLine(DUEL)}. Juegas con su misma vida; solo cambian tus decisiones. ¿Llegas antes?`;
+    $('#intro-enter-label').textContent = 'Aceptar el reto';
+    const bn = $('#duel-banner'); bn.hidden = false; bn.innerHTML = `<b>${DUEL.name}</b> te reta: ${duelLine(DUEL)}. Juegas con su misma vida (edad, ingreso, ahorro y NIF). Solo cambian tus decisiones.`;
+    $('#f-age').value = DUEL.age; $('#f-income').value = DUEL.income; $('#f-nif').value = DUEL.nif; nifTouched = true;
+    const r = document.querySelector(`input[name="f-s"][value="${S0V[DUEL.s0k]}"]`); if (r) r.checked = true;
+    ['#fld-age', '#fld-income', '#fld-s', '#fld-nif'].forEach(id => $(id).classList.add('locked'));
+    ['#f-age', '#f-income', '#f-nif'].forEach(id => { $(id).disabled = true; }); document.querySelectorAll('input[name="f-s"]').forEach(x => { x.disabled = true; });
+    const dl = $('#duel-lock'); dl.hidden = false; dl.textContent = `Duelo con ${DUEL.name}: misma vida, tus decisiones.`;
+    track('V40_DuelOpen');
+  }
+  audioSetup();
+  track('V40_View');
+})();
+</script>
+
+</body>
+</html>
