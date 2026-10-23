@@ -534,8 +534,8 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     <div class="flight-side">
     <div class="pillars" aria-label="Pilares">
       <div class="pill" id="p-genera">Genera<i>0</i></div>
-      <div class="pill" id="p-crece">Haz crecer<i>0</i></div>
       <div class="pill" id="p-protege">Protege<i>0</i></div>
+      <div class="pill" id="p-crece">Haz crecer<i>0</i></div>
     </div>
     <p class="side-wait">En vuelo · tu próxima decisión aparece aquí</p>
     <div class="card" id="card" hidden></div>
@@ -627,7 +627,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
         </div>
         <div>
           <div class="pass-title">The Future Is NOW</div>
-          <p class="pass-sub">Lanzamiento mundial, online y gratis. Aprende el sistema completo: Genera, Haz crecer y Protege.</p>
+          <p class="pass-sub">Lanzamiento mundial, online y gratis. Aprende el sistema completo: Genera, Protege y Haz crecer.</p>
         </div>
         <div class="kv">
           <div><small>Fecha</small><b>14–15 NOV</b></div>
@@ -1183,7 +1183,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     const hd = $('#h-debt'); hd.textContent = fmtM(ST.D); hd.className = ST.D > 0 ? 'neg' : '';
     const ms = monthlySave(ST); const hf = $('#h-fuel'); hf.textContent = fmtM(ms); hf.className = ms < 0 ? 'neg' : (ms > 0 ? 'pos' : '');
     $('#h-nif').textContent = fmtM(ST.goal);
-    for (const k of ['genera', 'crece', 'protege']) $('#p-' + k + ' i').textContent = ST.pill[k];
+    for (const k of ['genera', 'protege', 'crece']) $('#p-' + k + ' i').textContent = ST.pill[k];
   }
 
   // ---------- animation helpers ----------
@@ -1202,7 +1202,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   // ---------- decision card ----------
   const card = $('#card'), flightEl = $('#s-flight');
-  const PL = { genera: 'Genera', crece: 'Haz crecer', protege: 'Protege' };
+  const PL = { genera: 'Genera', protege: 'Protege', crece: 'Haz crecer' };
   function askCard(ev) {
     return new Promise(resolve => {
       document.querySelectorAll('.inst .d').forEach(d => { d.className = 'd'; });
@@ -1426,9 +1426,9 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     $('#r-nif').textContent = fmtM(RES.nif) + ' al mes';
     $('#r-goal').textContent = 'Meta: ' + fmtL(RES.goal) + ' invertidos';
     $('#r-eta').textContent = o.eta;
-    const names = { genera: 'Genera', crece: 'Haz crecer', protege: 'Protege' };
+    const names = { genera: 'Genera', protege: 'Protege', crece: 'Haz crecer' };
     let worst = null, wr = 2;
-    $('#r-pillars').innerHTML = ['genera', 'crece', 'protege'].map(k => {
+    $('#r-pillars').innerHTML = ['genera', 'protege', 'crece'].map(k => {
       const n = st.avail[k], g = st.pill[k], ratio = n ? g / n : 1;
       if (ratio < wr) { wr = ratio; worst = k; }
       return `<div>${names[k]}<span>${Array.from({ length: n }, (_, i) => `<i class="${i < g ? 'on' : ''}"></i>`).join('')}</span></div>`;
@@ -1596,7 +1596,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   function withCfg(patch, fn) { const old = {}; for (const k in patch) { old[k] = CFG[k]; CFG[k] = patch[k]; } try { return fn(); } finally { Object.assign(CFG, old); } }
   const pct = x => Math.round(x * 100) + '%';
   const endPlain = st => st.fiAge ? `trabajo opcional a los ${st.fiAge}` : (nwOf(st) < 0 ? `${fmtL(-nwOf(st))} en deuda a los 65` : `${fmtL(nwOf(st))} a los 65, sin llegar a trabajo opcional`);
-  const PNAME = { genera: 'Genera', crece: 'Haz crecer', protege: 'Protege' };
+  const PNAME = { genera: 'Genera', protege: 'Protege', crece: 'Haz crecer' };
   const S0_LABEL = { '-0.05': 'Me falta plata', '0.02': 'Casi nada (<5%)', '0.1': 'Algo (~10%)', '0.2': 'Bastante (20% o más)' };
 
   // 500 lives with the same decisions; invested money gets a random real return each year (normal, σ 12%)
@@ -1625,7 +1625,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       { label: 'Si empiezas 5 años después', st: simulate({ ...p, age: p.age + 5 }, mine) }
     ];
     let worst = null, wr = 2;
-    ['genera', 'crece', 'protege'].forEach(k => { const n = st.avail[k], ratio = n ? st.pill[k] / n : 1; if (ratio < wr) { wr = ratio; worst = k; } });
+    ['genera', 'protege', 'crece'].forEach(k => { const n = st.avail[k], ratio = n ? st.pill[k] / n : 1; if (ratio < wr) { wr = ratio; worst = k; } });
     return { none, sys, impacts, sens, worst: wr < 1 ? worst : null, invested: map[2] === 'b', panicSold: map[7] === 'a',
       mcMe: monteCarlo(p, mine, 40), mcSys: monteCarlo(p, () => 'b', 41),
       save0: p.income * p.s0, need: { now: need(st.years), in5: need(st.years - 5), in10: need(st.years - 10) } };
@@ -1633,15 +1633,23 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   const RC = { ink: '#14111F', mute: '#6B6585', line: '#E4E1EE', soft: '#F5F3FA', violet: '#7446F0', teal: '#0E9F86', amber: '#C98A0B', red: '#D93A5B', white: '#FFFFFF' };
   const PW = 1240, PH = 1754, PM = 96, PS = 1.5, CW = PW - 2 * PM;
-  const REC = {
-    0: ['Genera', 'Dedica de 5 a 10 horas a la semana a una habilidad que pague (IA, ventas, marketing digital) y convierte ese ingreso extra en inversión, no en gasto.'],
-    1: ['Protege', 'Usa la tarjeta solo para lo que puedes pagar completo cada mes. Si hoy tienes saldo, ataca primero la deuda más cara y deja de pagar solo el mínimo.'],
-    2: ['Haz crecer', 'La plata que no vas a necesitar en 3 a 5 años no debería quedarse quieta en la cuenta de ahorros: aprende a invertir de forma diversificada y a largo plazo.'],
-    3: ['Protege', 'Arma un fondo de emergencias de 3 a 6 meses de gastos en un lugar seguro y disponible antes de asumir más riesgos.'],
-    5: ['Genera', 'Con cada aumento, separa al menos la mitad para inversión antes de subir tu nivel de vida.'],
-    6: ['Protege', 'Desconfía de cualquier rentabilidad alta, rápida y "garantizada". Verifica siempre que la entidad esté vigilada por la Superintendencia Financiera.'],
-    7: ['Haz crecer', 'Define tu plan de inversión antes de la próxima caída del mercado: vender en pánico convierte una baja temporal en una pérdida real.'],
-    8: ['Haz crecer', 'Automatiza que una parte de cada prima vaya directo a tu inversión el mismo día que llega.']
+  // NOW order: Genera → Protege → Haz crecer
+  const PORDER = ['genera', 'protege', 'crece'], PKEYS = { genera: [0, 5], protege: [1, 3, 6], crece: [2, 7, 8] };
+  const PCOL = { genera: '#1F8FD6', protege: RC.violet, crece: RC.teal };
+  const DIAG = {
+    0: ['Usaste tus horas libres solo para descansar y tu ingreso se quedó quieto.', 'Invertiste tu tiempo libre en aprender habilidades que pagan.'],
+    5: ['Tu aumento de sueldo se fue en carro y apartamento.', 'Invertiste la mitad de tu aumento.'],
+    1: ['Pagaste el mínimo de la tarjeta y la deuda creció como bola de nieve.', 'Usaste la tarjeta sin pagar intereses.'],
+    3: ['Volaste sin fondo de emergencias: cada imprevisto terminó en deuda.', 'Armaste tu fondo de emergencias.'],
+    6: ['Caíste en un negocio "garantizado" y perdiste buena parte de tus ahorros.', 'Le dijiste que no a la plata "garantizada".'],
+    2: ['Dejaste tu plata quieta en la cuenta de ahorros, perdiendo contra la inflación.', 'Pusiste tu plata a trabajar desde temprano.'],
+    7: ['Vendiste en pánico cuando el mercado cayó y te perdiste la recuperación.', 'Mantuviste tu plan cuando el mercado cayó.'],
+    8: ['Cada prima de diciembre se te fue en una semana.', 'Invertiste media prima cada diciembre.']
+  };
+  const NOWHELP = {
+    genera: 'Aprendes habilidades con demanda real, como inteligencia artificial, ventas y marketing digital, que pueden ayudarte a aumentar tus ingresos. Más combustible para tu vuelo, sin depender solo de un sueldo.',
+    protege: 'Te prepara para los imprevistos y te enseña a proteger lo que construyes: manejar la deuda, armar tu colchón y reconocer las ofertas "garantizadas" antes de que te cuesten tus ahorros.',
+    crece: 'Aprendes a poner tu dinero a trabajar y a construir opciones a largo plazo, eligiendo por dónde comenzar, con un plan que no se rompe en la primera caída del mercado.'
   };
 
   function wrapLines(g, text, maxW) {
@@ -1834,7 +1842,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     pg = rPage(F, 4, T, NAME); g = pg.g;
     y = h2(g, F, 'Análisis de decisiones', 'Qué movió tu resultado', 170);
     const pw3 = (CW - 48) / 3;
-    ['genera', 'crece', 'protege'].forEach((k, i) => {
+    ['genera', 'protege', 'crece'].forEach((k, i) => {
       const n = st.avail[k], hit = st.pill[k], r = n ? hit / n : 1, col = r >= 1 ? RC.teal : r >= 0.5 ? RC.amber : RC.red, x = PM + i * (pw3 + 24);
       g.fillStyle = RC.soft; g.beginPath(); g.roundRect(x, y, pw3, 150, 16); g.fill();
       g.font = `600 14px ${F.m}`; g.fillStyle = RC.mute; spaced(g, PNAME[k].toUpperCase() + (A.worst === k ? ' · PUNTO CIEGO' : ''), x + 24, y + 40, 2);
@@ -1852,6 +1860,9 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       const tot = A.impacts.filter(d => d.impact < 0).reduce((s, d) => s - d.impact, 0);
       para(g, `Las decisiones a mejorar te restan en conjunto cerca de ${fmtL(tot)} a los 65 (sumadas una por una; juntas pueden pesar más por el interés compuesto).`, PM, y, CW, `600 20px ${F.b}`, RC.ink, 29);
     }
+    y = PH - 268;
+    g.font = `700 13px ${F.m}`; g.fillStyle = RC.mute; spaced(g, 'METODOLOGÍA Y SUPUESTOS', PM, y, 2);
+    para(g, `Simulación educativa en pesos de hoy. Inversión diversificada con rentabilidad real ilustrativa de 5% anual; cuenta de ahorros −2% real por inflación; deuda de tarjeta ~22% real. Meta: 28 veces tu NIF anual (retiros de ~3,6% al año). Escenarios: ${MC_N} simulaciones con rentabilidad anual aleatoria (normal, volatilidad 12%) sobre la parte invertida; P10, P50 y P90 son percentiles. Puntaje: 40 puntos por decisiones, 40 por cobertura de tu meta y 20 por llegar antes de los 65. No incluye pensión. NOW es educación financiera: no es asesoría financiera ni promete rentabilidades; las inversiones pueden perder valor.`, PM, y + 26, CW, `400 15px ${F.b}`, RC.mute, 21);
     pages.push(pg);
 
     // 5 · estadística
@@ -1874,32 +1885,45 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     else if (A.panicSold) para(g, 'Al vender en el pánico del mercado, tu plata salió de la inversión: desde ese año dejó de crecer con el mercado y por eso la franja de escenarios se angosta.', PM, y + 4, CW, `400 18px ${F.b}`, RC.mute, 26);
     pages.push(pg);
 
-    // 6 · plan de acción
+    // 6 · plan de acción: each NOW pillar, diagnosed from their own flight, then the step into NOW
     pg = rPage(F, 6, T, NAME); g = pg.g;
-    y = h2(g, F, 'Plan de acción', 'Tus próximos movimientos', 170);
-    const recs = A.impacts.filter(d => d.side === 'a').map(d => REC[d.k]).filter(Boolean);
-    if (A.save0 < A.need.now) recs.push(['Punto de partida', `Automatiza tu ahorro: aparta un porcentaje fijo el día de pago (empieza con el 10%) y súbelo un punto con cada aumento, hasta acercarte a ${fmtFull(A.need.now)} al mes.`]);
-    if (recs.length < 3) recs.push(['Haz crecer', 'Mantén el rumbo: revisa tu plan una vez al año, rebalancea y no toques tus inversiones por ruido de corto plazo.'], ['Genera', 'Sigue aumentando tu capacidad de generar: cada habilidad nueva es combustible para tu vuelo.']);
-    recs.slice(0, 5).forEach(([tag, txt], i) => {
-      g.font = `400 20px ${F.b}`; const ls = wrapLines(g, txt, CW - 150), h = Math.max(110, 70 + ls.length * 29);
+    y = h2(g, F, 'Plan de acción', 'Cómo NOW te lleva a tu meta', 170);
+    y = para(g, 'Tu vuelo mostró dónde estás fuerte y dónde perdiste altura. NOW es un sistema integral de educación financiera que trabaja justo esos tres frentes, en este orden:', PM, y - 4, CW, `400 20px ${F.b}`, RC.mute, 29) + 22;
+    const byK = Object.fromEntries(RES.ch.map(c => [c.k, c])), impK = Object.fromEntries(A.impacts.map(d => [d.k, d.impact]));
+    PORDER.forEach((pk, i) => {
+      const ks = PKEYS[pk].filter(k => byK[k]), bad = ks.filter(k => byK[k].side === 'a'), good = ks.filter(k => byK[k].side === 'b');
+      const worstK = [...bad].sort((x, z) => (impK[x] || 0) - (impK[z] || 0))[0], bestK = [...good].sort((x, z) => (impK[z] || 0) - (impK[x] || 0))[0];
+      const diag = bad.length ? DIAG[worstK][0] : (bestK !== undefined ? DIAG[bestK][1] + ' Vas por buen camino; ahora toca aplicarlo en tu vida real.' : 'Ahora toca aplicarlo en tu vida real.');
+      const lost = bad.reduce((s, k) => s + Math.min(0, impK[k] || 0), 0), won = good.reduce((s, k) => s + Math.max(0, impK[k] || 0), 0);
+      const imp = bad.length && lost < -1e6 ? [`En tu simulación, este pilar te restó ${fmtL(-lost)} a los 65${bad.length > 1 ? ` (${bad.length} decisiones)` : ''}.`, RC.red] : won > 1e6 ? [`En tu simulación, este pilar te sumó ${fmtL(won)} a los 65.`, RC.teal] : null;
+      g.font = `400 19px ${F.b}`; const dl = wrapLines(g, diag, CW - 140);
+      g.font = `400 19px ${F.b}`; const nl = wrapLines(g, NOWHELP[pk], CW - 140);
+      const h = 58 + dl.length * 27 + (imp ? 32 : 0) + 34 + nl.length * 27 + 18;
       g.fillStyle = RC.soft; g.beginPath(); g.roundRect(PM, y, CW, h, 16); g.fill();
-      g.font = `800 40px ${F.d}`; g.fillStyle = RC.violet; g.fillText(String(i + 1), PM + 34, y + 62);
-      g.font = `600 14px ${F.m}`; g.fillStyle = RC.teal; spaced(g, tag.toUpperCase(), PM + 110, y + 38, 2);
-      g.font = `400 20px ${F.b}`; g.fillStyle = RC.ink; ls.forEach((l, j) => g.fillText(l, PM + 110, y + 70 + j * 29));
-      y += h + 16;
+      g.fillStyle = PCOL[pk]; g.fillRect(PM, y + 20, 5, h - 40);
+      g.font = `800 40px ${F.d}`; g.fillStyle = PCOL[pk]; g.fillText(String(i + 1), PM + 36, y + 62);
+      g.font = `700 15px ${F.m}`; g.fillStyle = PCOL[pk]; const tagW = spaced(g, PNAME[pk].toUpperCase(), PM + 110, y + 40, 2.5);
+      g.font = `500 15px ${F.m}`; g.fillStyle = RC.mute; spaced(g, `· TU VUELO: ${st.pill[pk]}/${st.avail[pk]}`, PM + 124 + tagW, y + 40, 2);
+      let yy = y + 68; g.font = `400 19px ${F.b}`; g.fillStyle = RC.ink; dl.forEach(l => { g.fillText(l, PM + 110, yy); yy += 27; });
+      if (imp) { g.font = `700 18px ${F.m}`; g.fillStyle = imp[1]; g.fillText(imp[0], PM + 110, yy + 4); yy += 32; }
+      yy += 10; g.font = `700 14px ${F.m}`; g.fillStyle = RC.violet; spaced(g, 'CÓMO TE AYUDA NOW', PM + 110, yy, 2.5); yy += 28;
+      g.font = `500 19px ${F.b}`; g.fillStyle = RC.ink; nl.forEach(l => { g.fillText(l, PM + 110, yy); yy += 27; });
+      y += h + 12;
     });
-    y += 16;
-    const bh = 330, bg = g.createLinearGradient(PM, y, PM + CW, y + bh); bg.addColorStop(0, '#1C1532'); bg.addColorStop(1, '#0E0C18');
+    y += 4;
+    const gap = nwOf(A.sys) - RES.nw;
+    g.font = `400 20px ${F.b}`;
+    const p4 = `En la simulación, tu misma vida con las decisiones del sistema llegaba a ${endPlain(A.sys)}${gap > 1e6 ? `: ${fmtL(gap)} más que tu vuelo` : ''}. NOW reúne en un solo lugar la educación y las herramientas para aplicar Genera, Protege y Haz crecer en tu vida real. El primer paso es conocerlo en vivo y gratis en The Future Is NOW: 14 y 15 de noviembre, 9:00 a.m. (hora Colombia).`;
+    const l4 = wrapLines(g, p4, CW - 154), bh = 186 + l4.length * 29 + 96;
+    const bg = g.createLinearGradient(PM, y, PM + CW, y + bh); bg.addColorStop(0, '#1C1532'); bg.addColorStop(1, '#0E0C18');
     g.fillStyle = bg; g.beginPath(); g.roundRect(PM, y, CW, bh, 22); g.fill();
-    g.font = `700 15px ${F.m}`; g.fillStyle = '#2FE6C6'; spaced(g, 'TU PRÓXIMO PASO', PM + 44, y + 54, 3);
-    g.font = `800 38px ${F.d}`; g.fillStyle = '#F4F2FB'; g.fillText('The Future Is NOW', PM + 44, y + 108);
-    para(g, 'Lanzamiento mundial online y gratis, en vivo desde Dubái. 14 y 15 de noviembre, 9:00 a.m. (hora Colombia). Aprende el sistema completo: Genera, Haz crecer y Protege.', PM + 44, y + 150, CW - 88, `400 20px ${F.b}`, '#C9C4DD', 29);
-    const bw = (CW - 112) / 2;
-    btnBox(pg, F, PM + 44, y + 236, bw, 64, 'Reservar mi entrada gratis', CFG.eventUrl, '#2FE6C6', '#08070F');
-    btnBox(pg, F, PM + 68 + bw, y + 236, bw, 64, `Hablar con ${OWNER_FIRST} por WhatsApp`, `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(`Hola ${OWNER_FIRST}, descargué el reporte de mi vuelo en VUELO 40 (puntaje ${sc.total}/100). Quiero aprender el sistema.`)}`, '#F4F2FB', '#14111F');
-    y += bh + 34;
-    g.font = `700 14px ${F.m}`; g.fillStyle = RC.mute; spaced(g, 'METODOLOGÍA Y SUPUESTOS', PM, y, 2);
-    para(g, `Simulación educativa en pesos de hoy. Inversión diversificada con rentabilidad real ilustrativa de 5% anual; cuenta de ahorros −2% real por inflación; deuda de tarjeta ~22% real. Meta de patrimonio: 28 veces tu NIF anual (retiros de ~3,6% al año). Escenarios: ${MC_N} simulaciones con rentabilidad anual aleatoria (distribución normal, volatilidad 12%) sobre la parte invertida; P10, P50 y P90 son percentiles. Puntaje de vuelo: 40 puntos por decisiones acertadas, 40 por cobertura de tu meta y 20 por llegar antes de los 65. No incluye pensión. No es asesoría financiera ni promesa de resultados; las inversiones pueden perder valor.`, PM, y + 30, CW, `400 16px ${F.b}`, RC.mute, 23);
+    g.font = `800 40px ${F.d}`; g.fillStyle = '#2FE6C6'; g.fillText('4', PM + 36, y + 66);
+    g.font = `700 15px ${F.m}`; g.fillStyle = '#2FE6C6'; spaced(g, 'TU SIGUIENTE PASO', PM + 110, y + 44, 3);
+    para(g, 'Activa el sistema completo con NOW', PM + 110, y + 98, CW - 154, `800 34px ${F.d}`, '#F4F2FB', 42);
+    g.font = `400 20px ${F.b}`; g.fillStyle = '#C9C4DD'; l4.forEach((l, j) => g.fillText(l, PM + 110, y + 150 + j * 29));
+    const bw = (CW - 154 - 20) / 2, by2 = y + 150 + l4.length * 29 + 18;
+    btnBox(pg, F, PM + 110, by2, bw, 64, 'Reservar mi entrada gratis', CFG.eventUrl, '#2FE6C6', '#08070F');
+    btnBox(pg, F, PM + 130 + bw, by2, bw, 64, `Quiero NOW · hablar con ${OWNER_FIRST}`, `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(`Hola ${OWNER_FIRST}, descargué el reporte de mi vuelo en VUELO 40 (puntaje ${sc.total}/100). Quiero conocer NOW para empezar a aplicar Genera, Protege y Haz crecer.`)}`, '#F4F2FB', '#14111F');
     pages.push(pg);
     return pages;
   }
