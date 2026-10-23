@@ -278,7 +278,6 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 .duel-banner{background:linear-gradient(90deg,rgba(255,194,75,.16),rgba(255,194,75,.05));border:1px solid rgba(255,194,75,.5);border-radius:14px;padding:12px 14px;font-size:15px}
 .duel-banner b{color:var(--amber)}
 .duel-lock{color:var(--amber);font-size:14px}
-.locked{opacity:.5;pointer-events:none}
 /* letter from your 65-year-old self */
 .letter{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
 .letter-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--panel-2)}
@@ -334,6 +333,80 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   .opt{padding:11px 12px;font-size:14px}
   .age-big{font-size:32px}
 }
+/* flight score + report */
+.score-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.score{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+.score b{font-family:var(--f-display);font-size:22px;letter-spacing:0;color:var(--pass-ink);margin-left:6px}
+.duel-note{font-size:12px;color:var(--mute);text-align:center}
+.report{border-color:rgba(47,230,198,.45)}
+.report ul{margin:0;padding-left:18px;color:var(--mute);font-size:14px;display:grid;gap:4px}
+.report-st{font-size:13px;color:var(--mute);text-align:center}
+.btn[disabled]{opacity:.6;cursor:progress}
+.side-wait{display:none}
+/* mobile keeps one column: layout wrappers vanish */
+.gate-grid,.gate-side,.flight-side,.land-a,.land-b{display:contents}
+
+/* desktop: use the width instead of a phone column floating in the middle */
+@media (min-width:900px){
+  #app{max-width:1120px;padding:30px 48px 44px}
+  .topbar{padding-right:60px}
+  .intro-ui{max-width:1120px;padding:56px 64px 64px}
+  .intro-start{max-width:640px}
+  .intro-start h1{font-size:68px}
+  .intro-start p{font-size:19px;max-width:44ch}
+  .intro-start .btn{max-width:400px}
+  .intro-cap .big{font-size:84px}
+  .intro-cap .ey{font-size:14px}
+  .btn{font-size:16px}
+
+  /* gate: hero left, departures board right */
+  .gate-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:26px 72px;align-items:center;margin:auto 0}
+  .gate-side{display:flex;flex-direction:column;gap:16px;grid-column:2;grid-row:1 / span 3}
+  .gate-grid .hero{grid-column:1;grid-row:1}
+  .gate-grid .meta{grid-column:1;grid-row:2}
+  .gate-grid .spacer{display:none}
+  #go-checkin{grid-column:1;grid-row:3;max-width:380px}
+  .hero h1{font-size:56px}
+  .hero p{font-size:19px;max-width:40ch}
+  .meta{font-size:12px}
+  .board{font-size:14px;padding:20px 22px}
+
+  /* check-in: two-column ticket */
+  #s-checkin{max-width:980px;width:100%;margin:0 auto}
+  .ticket{display:grid;grid-template-columns:1fr 1fr;gap:24px 44px;padding:32px}
+  .ticket h2{grid-column:1 / -1;grid-row:1;font-size:28px}
+  #duel-lock{grid-column:1 / -1;grid-row:2}
+  #fld-name{grid-column:1;grid-row:3}
+  #fld-age{grid-column:1;grid-row:4}
+  #fld-income{grid-column:1;grid-row:5}
+  #fld-s{grid-column:1;grid-row:6}
+  #fld-nif{grid-column:2;grid-row:3 / span 2;align-self:start}
+  .ticket .fuel{grid-column:2;grid-row:5 / span 2;align-self:end;border-top:0;padding:22px;background:var(--panel-2);border-radius:14px}
+  .fuel b{font-size:40px}
+  #go-fly{max-width:380px;align-self:flex-end}
+
+  /* flight: sky left, decisions right */
+  #s-flight{display:grid;grid-template-columns:minmax(0,1fr) 400px;grid-template-rows:auto auto minmax(0,1fr);gap:14px 20px;height:calc(100vh - 74px);min-height:600px}
+  .hud-top,.inst{grid-column:1 / -1}
+  .sky{grid-column:1;grid-row:3;min-height:0}
+  .flight-side{display:flex;flex-direction:column;gap:12px;grid-column:2;grid-row:3;min-height:0;overflow:auto}
+  #s-flight .pillars,#s-flight.deciding .pillars{display:flex}
+  .side-wait{display:block;margin:auto 0;text-align:center;color:var(--mute);font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:24px;border:1px dashed var(--line);border-radius:18px}
+  #s-flight.deciding .side-wait{display:none}
+  .age-big{font-size:54px}
+  .inst > div{padding:12px 14px}
+  .inst small{font-size:10px}
+  .inst b{font-size:20px}
+  .pill{font-size:11px;padding:9px 6px}
+  .card{animation:none}
+
+  /* landing: two columns */
+  #s-land{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px 32px;align-items:start}
+  #s-land > .topbar{grid-column:1 / -1}
+  .land-a,.land-b{display:flex;flex-direction:column;gap:18px;min-width:0}
+  .overlay img{max-height:72vh}
+}
+
 @media (prefers-reduced-motion: reduce){
   .ch,.card,.pass,.bub,.rw-out{animation:none}
   .iv.on{animation:none}
@@ -370,9 +443,11 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   <section class="screen" id="s-gate">
     <div class="topbar">
       <div class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>VUELO 40</div>
-      <div class="eyebrow">por Camilo Cortés</div>
+      <div class="eyebrow" id="by-owner">por Camilo Cortés</div>
     </div>
 
+    <div class="gate-grid">
+    <div class="gate-side">
     <div class="board" aria-label="Tablero de salidas">
       <div class="board-head"><span>VUELO</span><span>DESTINO</span><span>ESTADO</span></div>
       <div class="board-row" id="row1"></div>
@@ -380,6 +455,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       <div class="board-row" id="row3"></div>
     </div>
     <div class="duel-banner" id="duel-banner" hidden></div>
+    </div>
 
     <div class="hero" style="display:flex;flex-direction:column;gap:14px">
       <h1>Por tus manos van a pasar más de <span class="grad">mil millones</span> de pesos.</h1>
@@ -391,6 +467,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>
       Abordar
     </button>
+    </div>
   </section>
 
   <!-- 2 · CHECK-IN -->
@@ -402,7 +479,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     <form class="ticket" id="checkin-form" novalidate>
       <h2>Tu tarjeta de embarque</h2>
       <p class="duel-lock" id="duel-lock" hidden></p>
-      <div class="field">
+      <div class="field" id="fld-name">
         <label for="f-name">Nombre para tu pase (opcional)</label>
         <input type="text" id="f-name" maxlength="22" autocomplete="given-name" placeholder="Ej. Juan">
       </div>
@@ -454,12 +531,15 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       <div id="c-nif"><small>Meta</small><b id="h-nif">$0</b><span class="d" id="d-nif"></span></div>
     </div>
     <div class="sky" id="sky"><canvas id="sky-canvas" aria-label="Trayectoria de tu patrimonio" role="img"></canvas></div>
+    <div class="flight-side">
     <div class="pillars" aria-label="Pilares">
       <div class="pill" id="p-genera">Genera<i>0</i></div>
       <div class="pill" id="p-crece">Haz crecer<i>0</i></div>
       <div class="pill" id="p-protege">Protege<i>0</i></div>
     </div>
+    <p class="side-wait">En vuelo · tu próxima decisión aparece aquí</p>
     <div class="card" id="card" hidden></div>
+    </div>
   </section>
 
   <!-- 4 · ATERRIZAJE -->
@@ -469,6 +549,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       <div class="eyebrow">V40 · 65 años</div>
     </div>
 
+    <div class="land-a">
     <div class="letter" id="letter">
       <div class="letter-head"><div class="letter-av">65</div><div><b id="lt-name">Tú, a los 65</b><small>Mensaje del futuro</small></div></div>
       <div class="letter-body" id="lt-body" aria-live="polite"></div>
@@ -484,7 +565,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
           <div class="to"><div class="code">TOP</div><div class="city">Trabajo opcional</div></div>
         </div>
         <div class="pass-name">Pasajero<b id="r-name">TÚ</b></div>
-        <span class="status" id="r-status">ATERRIZÓ</span>
+        <div class="score-row"><span class="status" id="r-status">ATERRIZÓ</span><span class="score">Puntaje de vuelo<b id="r-score">0/100</b></span></div>
         <div>
           <div class="pass-title" id="r-title">Aterrizaje en trabajo opcional</div>
           <p class="pass-sub" id="r-sub"></p>
@@ -511,12 +592,30 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
         <div><div class="who" id="vs-op-name"></div><div class="res" id="vs-op"></div><div class="sub" id="vs-op-sub"></div></div>
       </div>
       <div class="verdict-big" id="vs-verdict"></div>
+      <p class="duel-note">Cada uno jugó con su propia vida. El puntaje es comparable aunque ganen distinto: mide tus aciertos, qué tan cerca llegaste a tu propia meta y cuántos años antes la alcanzaste.</p>
     </div>
 
     <div class="row2">
       <a class="btn" id="go-duel" href="#" target="_blank" rel="noopener">Retar a un amigo</a>
       <button class="btn btn-ghost" id="go-share" type="button">Compartir mi pase</button>
     </div>
+
+    <div class="section report" id="report">
+      <span class="eyebrow">Radiografía financiera · PDF</span>
+      <h3>El reporte completo de tu vuelo</h3>
+      <ul>
+        <li>Resumen ejecutivo y puntaje de vuelo</li>
+        <li>Tu punto de partida y el costo de esperar</li>
+        <li>Impacto de cada decisión, pilar por pilar</li>
+        <li>500 escenarios simulados: tu probabilidad de llegar</li>
+        <li>Plan de acción personalizado</li>
+      </ul>
+      <button class="btn" id="go-report" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></svg><span>Reporte de tu vuelo · Descárgalo aquí</span></button>
+      <p class="report-st" id="report-st" hidden></p>
+    </div>
+    </div>
+
+    <div class="land-b">
 
     <article class="pass evpass" id="evpass">
       <div class="pass-head"><span>Pase de abordar · Evento</span><span>V40 → DXB</span></div>
@@ -570,6 +669,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     <button class="btn btn-ghost" id="go-again" type="button">Volar otra vez</button>
 
     <p class="legal">Simulación educativa con supuestos simplificados, en pesos de hoy: inversión diversificada con rentabilidad real ilustrativa de 5% anual, cuenta de ahorros −2% real por inflación, deuda de tarjeta ~22% real. Tu NIF (Número de Independencia Financiera) es el ingreso mensual con el que vivirías sin trabajar; el patrimonio necesario se estima como 28 veces ese ingreso anual (retiros de ~3,6% al año, más conservador que la regla del 4%). No incluye pensión. No es asesoría financiera ni promesa de resultados; las inversiones pueden perder valor.</p>
+    </div>
   </section>
 </div>
 
@@ -596,8 +696,13 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     yearMs: reduce ? 40 : 230,
     eventUrl: 'https://futureisnowevent.com/camilo-cortes?lang=es',
     waNumber: '573005367545',
-    shareUrl: 'https://camiloecortes.com/vuelo40'
+    shareUrl: 'https://camiloecortes.com/vuelo40',
+    owner: 'Camilo Cortés'
   };
+  const OWNER_FIRST = CFG.owner.split(' ')[0];
+  document.querySelector('#by-owner').textContent = 'por ' + CFG.owner;
+  document.querySelector('#cta-wa').textContent = `Contarle mi resultado a ${OWNER_FIRST} por WhatsApp`;
+  document.querySelector('#cta-register').href = CFG.eventUrl;
 
   // ---------- tracking hook (Meta Pixel when deployed) ----------
   function track(name, data) {
@@ -725,17 +830,32 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   setMute(AU.muted);
 
   // ---------- duel (challenge link encoded in #hash: letters, digits, _ and - only) ----------
-  const S0C = { m: -0.05, c: 0.02, a: 0.10, b: 0.20 }, S0R = { '-0.05': 'm', '0.02': 'c', '0.1': 'a', '0.2': 'b' }, S0V = { m: '-0.05', c: '0.02', a: '0.10', b: '0.20' };
+  // Each player flies their own life; they compare a flight score that is fair across incomes:
+  // 40 pts decisions right + 40 pts how close they got to their own goal + 20 pts how early they got there.
   const cleanName = x => (x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
   function parseDuel() {
-    const h = (location.hash || '').slice(1); if (!/^d_/.test(h)) return null;
-    const p = h.split('_'); if (p.length < 9) return null;
-    const d = { name: cleanName(p[1]) || 'Amigo', age: +p[2], income: +p[3] * 1e5, s0k: p[4], s0: S0C[p[4]], nif: +p[5] * 1e5, fiAge: +p[6] || null, nwM: +p[7], key: p[8] };
-    const ok = d.age >= 18 && d.age <= 50 && d.income >= 1.4e6 && d.income <= 15e6 && d.s0 !== undefined && d.nif >= 1e6 && d.nif <= 4e7 && ['land', 'circle', 'crash'].includes(d.key) && isFinite(d.nwM);
-    return ok ? d : null;
+    const h = (location.hash || '').slice(1), p = h.split('_'), keys = ['land', 'circle', 'crash'];
+    if (p[0] === 'r' && p.length >= 6) {           // r_NAME_KEY_FIAGE_COV%_SCORE
+      const d = { name: cleanName(p[1]) || 'Amigo', key: p[2], fiAge: +p[3] || null, cov: +p[4], score: +p[5] };
+      return keys.includes(d.key) && d.cov >= 0 && d.cov <= 100 && d.score >= 0 && d.score <= 100 && (d.key !== 'land' || (d.fiAge >= 18 && d.fiAge <= 65)) ? d : null;
+    }
+    if (p[0] === 'd' && p.length >= 9) {           // legacy links: same-life duel, no score
+      const d = { name: cleanName(p[1]) || 'Amigo', key: p[8], fiAge: +p[6] || null, nwM: +p[7], score: null };
+      return keys.includes(d.key) && isFinite(d.nwM) ? d : null;
+    }
+    return null;
   }
   const DUEL = parseDuel();
-  const duelLine = d => d.key === 'land' ? `llegó a trabajo opcional a los ${d.fiAge}` : d.key === 'circle' ? `quedó dando vueltas con ${fmtL(d.nwM * 1e6)} a los 65` : `se estrelló debiendo ${fmtL(-d.nwM * 1e6)}`;
+  const duelLine = d => d.key === 'land' ? `llegó a trabajo opcional a los ${d.fiAge}`
+    : d.score === null ? (d.key === 'circle' ? `quedó dando vueltas con ${fmtL(d.nwM * 1e6)} a los 65` : `se estrelló debiendo ${fmtL(-d.nwM * 1e6)}`)
+    : d.key === 'circle' ? `llegó a los 65 con el ${d.cov}% de su meta` : 'se estrelló en deudas';
+  function scoreOf(st) {
+    const hits = st.pill.genera + st.pill.crece + st.pill.protege, avail = st.avail.genera + st.avail.crece + st.avail.protege;
+    const cov = Math.max(0, Math.min(1, nwOf(st) / st.goal));
+    const early = st.fiAge ? (CFG.retireAge - st.fiAge) / st.years : 0;
+    const pts = { dec: Math.round(40 * (avail ? hits / avail : 0)), cov: Math.round(40 * cov), early: Math.round(20 * early) };
+    return { ...pts, total: pts.dec + pts.cov + pts.early, hits, avail, covPct: Math.round(100 * Math.max(0, nwOf(st) / st.goal)) };
+  }
   const baseUrl = () => /(^|\.)camiloecortes\.com$/.test(location.hostname) ? location.origin + location.pathname : CFG.shareUrl;
 
   // ---------- departure board ----------
@@ -783,7 +903,6 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   }
   $('#intro-enter').addEventListener('click', async () => { const u = audioUnlock(); try { localStorage.setItem('v40_seen', '1'); } catch (e) {} if (DUEL) { track('V40_DuelAccept'); await u; endIntro(); } else { await u; runIntro(); } });
   $('#intro-skip').addEventListener('click', async () => { const u = audioUnlock(); track('V40_IntroSkip'); await u; endIntro(); });
-  try { if (localStorage.getItem('v40_seen') === '1' && !DUEL) $('#intro-enter-label').textContent = 'Volver al aeropuerto'; } catch (e) {}
 
   // ---------- check-in ----------
   const inp = { name: '', age: 28, income: 2600000, s0: 0.02, nif: 2600000 };
@@ -839,7 +958,8 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   const nwOf = st => st.A - st.D;
   const monthlySave = st => (st.Y + st.side + (st.primaSave ? st.Y / 24 : 0) - st.E) / 12;
 
-  function step(st) {
+  // eps: extra return for invested money in a given year (Monte Carlo); 0 in the game itself
+  function step(st, eps) {
     st.Y *= (1 + st.g);
     st.E *= (1 + CFG.gBase);              // lifestyle follows the base salary trend
     if (st.side > 0) st.side *= (1 + st.g);
@@ -847,7 +967,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     if (st.D > 0) st.D *= (1 + CFG.rDebt);
     if (S >= 0) { const pay = Math.min(S, st.D); st.D -= pay; S -= pay; }
     else { st.D += -S; S = 0; }
-    let ret = st.r;
+    let ret = st.r + (eps && st.r === CFG.rInv ? eps : 0);
     if (st.recovery > 0) { ret += 0.155; st.recovery--; }
     st.A = st.A * (1 + ret) + S;
     if (st.A < 0) { st.D += -st.A; st.A = 0; }
@@ -947,10 +1067,10 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     return { fb: o.fb, eff: o.eff, good: side === 'b' };
   }
 
-  function simulate(p, pick) {
+  function simulate(p, pick, noise) {
     const st = newState(p), sched = schedule(st.years); let k = 0;
     for (let t = 1; t <= st.years; t++) {
-      step(st);
+      step(st, noise ? noise() : 0);
       while (k < sched.length && sched[k] === t) { const ev = resolveEv(k, st); applyChoice(st, ev, ev.shock ? null : pick(k, ev), p); st.path[st.path.length - 1].nw = nwOf(st); k++; }
     }
     return st;
@@ -1139,7 +1259,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   let flying = false;
   async function startFlight() {
     if (flying) return; flying = true;
-    ST = newState(inp); head = null; prevHud = null; CH = [];
+    ST = newState(inp); head = null; prevHud = null; CH = []; SH = [];
     ambience(false); jet(0, 3.4, 0.75); cabin(true);
     show('s-flight'); card.hidden = true; flightEl.classList.remove('deciding');
     const s = sizeCanvas(cvs, sky); W = s.w; H = s.h;
@@ -1159,10 +1279,12 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
         const ev = resolveEv(k, ST);
         const before = nwOf(ST);
         let side = null;
-        if (ev.shock) { shake = 9; vib([60, 40, 90]); play('alarm', 0.7); }
+        let shockQ = '';
+        if (ev.shock) { shake = 9; vib([60, 40, 90]); play('alarm', 0.7); shockQ = ev.q(ST, inp); }
         else side = await askCard(ev);
         hud();
         const res = applyChoice(ST, ev, side, inp);
+        if (ev.shock) SH.push({ age: ST.age, kicker: ev.kicker, q: shockQ, fb: res.fb, eff: res.eff });
         if (!ev.shock) { CH.push({ k, ev, side, age: ST.age }); res.good ? sfxGood() : sfxBad(); }
         ST.path[ST.path.length - 1].nw = nwOf(ST);
         hud(true);
@@ -1178,7 +1300,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   }
 
   // ---------- landing ----------
-  let RES = null, CH = [];
+  let RES = null, CH = [], SH = [];
   const endText = st => st.fiAge ? `trabajo opcional a los <b>${st.fiAge}</b>` : (nwOf(st) < 0 ? `<b>${fmtL(nwOf(st))}</b> en deuda a los 65` : `<b>${fmtL(nwOf(st))}</b> a los 65, sin llegar a trabajo opcional`);
 
   // letter from your 65-year-old self, built from the decisions taken
@@ -1255,20 +1377,28 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     $('#cd-d').textContent = Math.floor(s / 86400); $('#cd-h').textContent = pad2(Math.floor(s % 86400 / 3600)); $('#cd-m').textContent = pad2(Math.floor(s % 3600 / 60)); $('#cd-s').textContent = pad2(s % 60);
   }
   $('#cta-cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('The Future Is NOW · Lanzamiento online (día 1)') +
-    '&dates=20261114T140000Z/20261114T170000Z&details=' + encodeURIComponent('Evento online gratis, en vivo desde Dubái. Día 2: 15 de noviembre a la misma hora. Registro: ' + 'https://futureisnowevent.com/camilo-cortes?lang=es') + '&location=Online';
+    '&dates=20261114T140000Z/20261114T170000Z&details=' + encodeURIComponent('Evento online gratis, en vivo desde Dubái. Día 2: 15 de noviembre a la misma hora. Registro: ' + CFG.eventUrl) + '&location=Online';
   let evPA = false;
   if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !evPA && !$('#s-land').hidden) { evPA = true; pa('pa_evento'); } }), { threshold: 0.55 }).observe($('#evpass'));
 
   // duel result
-  const rankOf = (key, fi, nwM) => key === 'land' ? 2e6 - fi : key === 'circle' ? 1e6 + nwM : nwM;
-  const resLines = (key, fi, nwM) => key === 'land' ? [`${fi} años`, 'trabajo opcional'] : key === 'circle' ? ['En círculos', fmtL(nwM * 1e6) + ' a los 65'] : ['Estrellado', fmtL(nwM * 1e6) + ' a los 65'];
+  const rankOf = (key, fi, nwM) => key === 'land' ? 2e6 - fi : key === 'circle' ? 1e6 + nwM : nwM;   // legacy links only
+  const resSub = (key, fi, cov) => key === 'land' ? `trabajo opcional a los ${fi}` : key === 'circle' ? `${cov}% de su meta a los 65` : 'estrellado en deudas';
   function showDuel() {
     if (!DUEL) return;
-    const meNW = Math.round(RES.nw / 1e6), me = rankOf(RES.o.key, RES.st.fiAge, meNW), op = rankOf(DUEL.key, DUEL.fiAge, DUEL.nwM);
-    const [m1, m2] = resLines(RES.o.key, RES.st.fiAge, meNW), [o1, o2] = resLines(DUEL.key, DUEL.fiAge, DUEL.nwM);
-    $('#vs-me').textContent = m1; $('#vs-me-sub').textContent = m2; $('#vs-op-name').textContent = DUEL.name; $('#vs-op').textContent = o1; $('#vs-op-sub').textContent = o2;
-    const both = RES.o.key === 'land' && DUEL.key === 'land';
-    $('#vs-verdict').textContent = me > op ? `¡Le ganaste a ${DUEL.name}!` : me < op ? `${DUEL.name} te ganó${both ? ' por ' + (RES.st.fiAge - DUEL.fiAge) + (RES.st.fiAge - DUEL.fiAge === 1 ? ' año' : ' años') : ''}` : 'Empate';
+    let me, op;
+    if (DUEL.score !== null) {
+      me = RES.score.total; op = DUEL.score;
+      $('#vs-me').textContent = me + ' pts'; $('#vs-me-sub').textContent = resSub(RES.o.key, RES.st.fiAge, RES.score.covPct).replace('su meta', 'tu meta');
+      $('#vs-op').textContent = op + ' pts'; $('#vs-op-sub').textContent = resSub(DUEL.key, DUEL.fiAge, DUEL.cov);
+    } else {
+      const meNW = Math.round(RES.nw / 1e6);
+      me = rankOf(RES.o.key, RES.st.fiAge, meNW); op = rankOf(DUEL.key, DUEL.fiAge, DUEL.nwM);
+      $('#vs-me').textContent = RES.score.total + ' pts'; $('#vs-me-sub').textContent = resSub(RES.o.key, RES.st.fiAge, RES.score.covPct).replace('su meta', 'tu meta');
+      $('#vs-op').textContent = DUEL.key === 'land' ? DUEL.fiAge + ' años' : DUEL.key === 'circle' ? 'En círculos' : 'Estrellado'; $('#vs-op-sub').textContent = duelLine(DUEL);
+    }
+    $('#vs-op-name').textContent = DUEL.name;
+    $('#vs-verdict').textContent = me > op ? `¡Le ganaste a ${DUEL.name}!` : me < op ? `${DUEL.name} te ganó${DUEL.score !== null ? ' por ' + (op - me) + (op - me === 1 ? ' punto' : ' puntos') : ''}` : 'Empate';
     $('#duel-res').hidden = false; $('#go-duel').textContent = 'Devolver el reto';
     track('V40_DuelResult', { win: me > op });
   }
@@ -1285,7 +1415,8 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   function land() {
     const st = ST, o = outcome(st), nw = nwOf(st);
     const life = inp.income * 12 * st.years;
-    RES = { o, nw, life, nif: inp.nif, goal: st.goal, st };
+    RES = { o, nw, life, nif: inp.nif, goal: st.goal, st, score: scoreOf(st), ch: CH.slice(), sh: SH.slice(), inp: { ...inp } };
+    $('#r-score').textContent = RES.score.total + '/100';
     $('#r-name').textContent = (inp.name || 'Tú').toUpperCase();
     const rs = $('#r-status'); rs.textContent = o.status; rs.className = 'status s-' + o.key;
     $('#r-title').textContent = o.title;
@@ -1305,14 +1436,15 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     const total = st.pill.genera + st.pill.crece + st.pill.protege, avail = st.avail.genera + st.avail.crece + st.avail.protege;
     $('#r-blind').innerHTML = wr < 1 ? `Tu punto ciego: <b>${names[worst].toUpperCase()}</b>. Acertaste ${total} de ${avail} decisiones.` : `Acertaste ${total} de ${avail} decisiones. Piloto con sistema.`;
     $('#sys-out').hidden = true; $('#go-system').hidden = false;
-    const waText = `Hola Camilo, jugué VUELO 40. Mi NIF es ${fmtL(inp.nif)} al mes y mi resultado fue: ${o.title} (${o.status.toLowerCase()}). Quiero aprender el sistema para mejorar mi vuelo.`;
+    $('#report-st').hidden = true;
+    const waText = `Hola ${OWNER_FIRST}, jugué VUELO 40. Mi NIF es ${fmtL(inp.nif)} al mes y mi resultado fue: ${o.title} (${o.status.toLowerCase()}). Quiero aprender el sistema para mejorar mi vuelo.`;
     $('#cta-wa').href = `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(waText)}`;
     const bs = badgesOf(st);
     $('#r-badges-lbl').textContent = `Insignias · ${bs.length} de 10`;
     $('#r-badges').innerHTML = bs.length ? bs.map(b => `<span class="badge">${b}</span>`).join('') : '<span style="font-size:13px;color:var(--pass-mute)">Ninguna esta vez. Vuelve a volar y gánalas.</span>';
-    const tok = ['d', cleanName((inp.name || '').split(' ')[0]) || 'Amigo', inp.age, Math.round(inp.income / 1e5), S0R[String(inp.s0)] || 'c', Math.round(inp.nif / 1e5), st.fiAge || 0, Math.round(nw / 1e6), o.key].join('_');
-    const meTxt = o.key === 'land' ? `llegué a trabajo opcional a los ${st.fiAge}` : o.key === 'circle' ? 'quedé dando vueltas sin llegar a trabajo opcional' : 'me estrellé en deudas';
-    $('#go-duel').href = 'https://wa.me/?text=' + encodeURIComponent(`Te reto a VUELO 40. Con mi misma vida, ${meTxt}. ¿Tú llegas antes? ${baseUrl()}#${tok}`);
+    const tok = ['r', cleanName((inp.name || '').split(' ')[0]) || 'Amigo', o.key, st.fiAge || 0, Math.min(100, RES.score.covPct), RES.score.total].join('_');
+    const meTxt = o.key === 'land' ? `llegué a trabajo opcional a los ${st.fiAge}` : o.key === 'circle' ? `llegué a los 65 con el ${RES.score.covPct}% de mi meta` : 'me estrellé en deudas';
+    $('#go-duel').href = 'https://wa.me/?text=' + encodeURIComponent(`Te reto a VUELO 40 ✈️ Saqué ${RES.score.total}/100 en mi vuelo (${meTxt}). Juega con tu propia vida y comparamos: ${baseUrl()}#${tok}`);
     $('#go-duel').textContent = 'Retar a un amigo'; $('#duel-res').hidden = true;
     $('#ev-from').textContent = (cleanName(inp.name).slice(0, 3) || 'TÚ').toUpperCase();
     $('#lt-name').textContent = (inp.name ? inp.name.split(' ')[0] + ', a los 65' : 'Tú, a los 65');
@@ -1453,17 +1585,366 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   $('#share-wa').addEventListener('click', () => track('V40_ShareWhatsApp'));
   $('#share-close').addEventListener('click', () => { $('#share').hidden = true; });
 
+  // ---------- PDF report: consultant-style "radiografía", drawn on canvas pages and bundled with jsPDF ----------
+  const loadJsPDF = () => window.jspdf ? Promise.resolve(window.jspdf) : new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.onload = () => res(window.jspdf); s.onerror = rej; document.head.appendChild(s);
+  });
+  function mulberry32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const gauss = rnd => { let u = 0; while (!u) u = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * rnd()); };
+  const quant = (arr, f) => { const s = [...arr].sort((a, b) => a - b); return s[Math.min(s.length - 1, Math.floor(f * s.length))]; };
+  function withCfg(patch, fn) { const old = {}; for (const k in patch) { old[k] = CFG[k]; CFG[k] = patch[k]; } try { return fn(); } finally { Object.assign(CFG, old); } }
+  const pct = x => Math.round(x * 100) + '%';
+  const endPlain = st => st.fiAge ? `trabajo opcional a los ${st.fiAge}` : (nwOf(st) < 0 ? `${fmtL(-nwOf(st))} en deuda a los 65` : `${fmtL(nwOf(st))} a los 65, sin llegar a trabajo opcional`);
+  const PNAME = { genera: 'Genera', crece: 'Haz crecer', protege: 'Protege' };
+  const S0_LABEL = { '-0.05': 'Me falta plata', '0.02': 'Casi nada (<5%)', '0.1': 'Algo (~10%)', '0.2': 'Bastante (20% o más)' };
+
+  // 500 lives with the same decisions; invested money gets a random real return each year (normal, σ 12%)
+  const MC_N = 500, MC_SIG = 0.12;
+  function monteCarlo(p, pick, seed) {
+    const rnd = mulberry32(seed), runs = [];
+    for (let i = 0; i < MC_N; i++) runs.push(simulate(p, pick, () => gauss(rnd) * MC_SIG));
+    const band = runs[0].path.map((pt, j) => { const v = runs.map(r => r.path[j].nw); return { age: pt.age, p10: quant(v, .1), p50: quant(v, .5), p90: quant(v, .9) }; });
+    const end = runs.map(nwOf), land = runs.filter(r => r.fiAge !== null);
+    return { pLand: land.length / MC_N, p10: quant(end, .1), p50: quant(end, .5), p90: quant(end, .9), fiMed: land.length ? quant(land.map(r => r.fiAge), .5) : null, band };
+  }
+  function analyze() {
+    const p = RES.inp, st = RES.st, map = Object.fromEntries(RES.ch.map(c => [c.k, c.side]));
+    const mine = kk => map[kk] || (kk === 7 ? 'b' : 'a');
+    const none = simulate(p, () => 'a'), sys = simulate(p, () => 'b');
+    const impacts = RES.ch.map(c => {
+      const m2 = { ...map, [c.k]: c.side === 'b' ? 'a' : 'b' };
+      return { ...c, impact: RES.nw - nwOf(simulate(p, kk => m2[kk] || (kk === 7 ? 'b' : 'a'))) };
+    }).sort((a, b) => Math.abs(b.impact) - Math.abs(a.impact));
+    const r = CFG.rInv, need = yrs => yrs > 0 ? st.goal * r / (Math.pow(1 + r, yrs) - 1) / 12 : null;
+    const sens = [
+      { label: 'Tu vuelo (inversión al 5% real)', st },
+      { label: 'Si la inversión rinde 3% real', st: withCfg({ rInv: 0.03 }, () => simulate(p, mine)) },
+      { label: 'Si la inversión rinde 7% real', st: withCfg({ rInv: 0.07 }, () => simulate(p, mine)) },
+      { label: 'Si ahorras 5 puntos más de tu ingreso', st: simulate({ ...p, s0: p.s0 + 0.05 }, mine) },
+      { label: 'Si empiezas 5 años después', st: simulate({ ...p, age: p.age + 5 }, mine) }
+    ];
+    let worst = null, wr = 2;
+    ['genera', 'crece', 'protege'].forEach(k => { const n = st.avail[k], ratio = n ? st.pill[k] / n : 1; if (ratio < wr) { wr = ratio; worst = k; } });
+    return { none, sys, impacts, sens, worst: wr < 1 ? worst : null, invested: map[2] === 'b', panicSold: map[7] === 'a',
+      mcMe: monteCarlo(p, mine, 40), mcSys: monteCarlo(p, () => 'b', 41),
+      save0: p.income * p.s0, need: { now: need(st.years), in5: need(st.years - 5), in10: need(st.years - 10) } };
+  }
+
+  const RC = { ink: '#14111F', mute: '#6B6585', line: '#E4E1EE', soft: '#F5F3FA', violet: '#7446F0', teal: '#0E9F86', amber: '#C98A0B', red: '#D93A5B', white: '#FFFFFF' };
+  const PW = 1240, PH = 1754, PM = 96, PS = 1.5, CW = PW - 2 * PM;
+  const REC = {
+    0: ['Genera', 'Dedica de 5 a 10 horas a la semana a una habilidad que pague (IA, ventas, marketing digital) y convierte ese ingreso extra en inversión, no en gasto.'],
+    1: ['Protege', 'Usa la tarjeta solo para lo que puedes pagar completo cada mes. Si hoy tienes saldo, ataca primero la deuda más cara y deja de pagar solo el mínimo.'],
+    2: ['Haz crecer', 'La plata que no vas a necesitar en 3 a 5 años no debería quedarse quieta en la cuenta de ahorros: aprende a invertir de forma diversificada y a largo plazo.'],
+    3: ['Protege', 'Arma un fondo de emergencias de 3 a 6 meses de gastos en un lugar seguro y disponible antes de asumir más riesgos.'],
+    5: ['Genera', 'Con cada aumento, separa al menos la mitad para inversión antes de subir tu nivel de vida.'],
+    6: ['Protege', 'Desconfía de cualquier rentabilidad alta, rápida y "garantizada". Verifica siempre que la entidad esté vigilada por la Superintendencia Financiera.'],
+    7: ['Haz crecer', 'Define tu plan de inversión antes de la próxima caída del mercado: vender en pánico convierte una baja temporal en una pérdida real.'],
+    8: ['Haz crecer', 'Automatiza que una parte de cada prima vaya directo a tu inversión el mismo día que llega.']
+  };
+
+  function wrapLines(g, text, maxW) {
+    const out = []; let line = '';
+    for (const w of String(text).split(' ')) { const t = line ? line + ' ' + w : w; if (g.measureText(t).width > maxW && line) { out.push(line); line = w; } else line = t; }
+    if (line) out.push(line); return out;
+  }
+  function para(g, text, x, y, w, font, color, lh) { g.font = font; g.fillStyle = color; const ls = wrapLines(g, text, w); ls.forEach((l, i) => g.fillText(l, x, y + i * lh)); return y + ls.length * lh; }
+  function fitFont(g, text, weight, size, fam, maxW) { let s = size; do { g.font = `${weight} ${s}px ${fam}`; s -= 2; } while (g.measureText(text).width > maxW && s > 14); }
+  function spaced(g, text, x, y, sp) { g.letterSpacing = sp + 'px'; g.fillText(text, x, y); const w = g.measureText(text).width; g.letterSpacing = '0px'; return w; }
+
+  function rPage(F, n, total, name) {
+    const c = document.createElement('canvas'); c.width = PW * PS; c.height = PH * PS;
+    const g = c.getContext('2d'); g.scale(PS, PS); g.textBaseline = 'alphabetic';
+    g.fillStyle = RC.white; g.fillRect(0, 0, PW, PH);
+    const gr = g.createLinearGradient(0, 0, PW, 0); gr.addColorStop(0, RC.violet); gr.addColorStop(1, RC.teal);
+    g.fillStyle = gr; g.fillRect(0, 0, PW, 12);
+    g.font = `700 16px ${F.m}`; g.fillStyle = RC.ink; const w1 = spaced(g, 'VUELO 40', PM, 70, 3);
+    g.font = `500 16px ${F.m}`; g.fillStyle = RC.mute; spaced(g, '· REPORTE DE VUELO FINANCIERO', PM + w1 + 14, 70, 2);
+    const nm = ('PASAJERO: ' + name).toUpperCase(); g.letterSpacing = '2px'; const nw = g.measureText(nm).width; g.fillText(nm, PW - PM - nw, 70); g.letterSpacing = '0px';
+    g.fillStyle = RC.line; g.fillRect(PM, 92, CW, 2); g.fillRect(PM, PH - 100, CW, 2);
+    g.font = `400 15px ${F.b}`; g.fillStyle = RC.mute;
+    g.fillText('Simulación educativa con supuestos simplificados, en pesos de hoy. No es asesoría financiera ni promesa de resultados.', PM, PH - 66);
+    const pg = `Página ${n} de ${total}`; g.font = `600 15px ${F.m}`; g.fillText(pg, PW - PM - g.measureText(pg).width, PH - 66);
+    g.font = `500 15px ${F.m}`; g.fillText(CFG.shareUrl.replace('https://', '') + ' · ' + CFG.owner, PM, PH - 40);
+    return { c, g, links: [] };
+  }
+  function h2(g, F, eyebrow, title, y) {
+    g.font = `700 16px ${F.m}`; g.fillStyle = RC.teal; spaced(g, eyebrow.toUpperCase(), PM, y, 3);
+    return para(g, title, PM, y + 56, CW, `800 42px ${F.d}`, RC.ink, 52) + 12;
+  }
+  function h3(g, F, t, y) { g.font = `700 25px ${F.d}`; g.fillStyle = RC.ink; g.fillText(t, PM, y); return y + 40; }
+  function tile(g, F, x, y, w, h, label, value, note, color) {
+    g.fillStyle = RC.soft; g.beginPath(); g.roundRect(x, y, w, h, 16); g.fill();
+    g.fillStyle = color || RC.violet; g.fillRect(x, y + 20, 5, h - 40);
+    g.font = `600 14px ${F.m}`; g.fillStyle = RC.mute; spaced(g, label.toUpperCase(), x + 26, y + 40, 2);
+    fitFont(g, value, 800, 38, F.d, w - 46); g.fillStyle = RC.ink; g.fillText(value, x + 26, y + 92);
+    if (note) para(g, note, x + 26, y + 126, w - 46, `400 16px ${F.b}`, RC.mute, 21);
+  }
+  function hbar(g, F, x, y, w, label, val, max, color, valTxt) {
+    g.font = `500 19px ${F.b}`; g.fillStyle = RC.ink; g.fillText(label, x, y);
+    g.font = `700 19px ${F.m}`; g.fillText(valTxt, x + w - g.measureText(valTxt).width, y);
+    g.fillStyle = RC.soft; g.beginPath(); g.roundRect(x, y + 14, w, 20, 10); g.fill();
+    const k = Math.max(0, Math.min(1, val / max));
+    if (k > 0) { g.fillStyle = color; g.beginPath(); g.roundRect(x, y + 14, Math.max(20, w * k), 20, 10); g.fill(); }
+    return y + 70;
+  }
+  function bullets(g, F, items, y, color) {
+    items.forEach(t => { g.fillStyle = color || RC.teal; g.fillRect(PM, y - 13, 10, 10); y = para(g, t, PM + 28, y, CW - 28, `400 20px ${F.b}`, RC.ink, 29) + 12; });
+    return y;
+  }
+  // cols: [{t, w, right}], rows: [[cell...]] where cell is a string or {t, c, b}
+  function table(g, F, x, y, cols, rows) {
+    g.font = `600 13px ${F.m}`; g.fillStyle = RC.mute;
+    let cx = x; cols.forEach(col => { g.letterSpacing = '1.5px'; const t = col.t.toUpperCase(); g.fillText(t, col.right ? cx + col.w - 12 - g.measureText(t).width : cx + 12, y); g.letterSpacing = '0px'; cx += col.w; });
+    y += 14; g.fillStyle = RC.ink; g.fillRect(x, y, CW, 2); y += 2;
+    rows.forEach((row, ri) => {
+      const cells = row.map((cell, i) => { const o = typeof cell === 'string' ? { t: cell } : cell; g.font = `${o.b ? 700 : 400} 18px ${o.b ? F.m : F.b}`; return { ...o, font: g.font, lines: wrapLines(g, o.t, cols[i].w - 24) }; });
+      const rh = Math.max(...cells.map(c => c.lines.length)) * 24 + 22;
+      if (ri % 2 === 0) { g.fillStyle = RC.soft; g.fillRect(x, y, CW, rh); }
+      let cx2 = x;
+      cells.forEach((c, i) => { g.font = c.font; g.fillStyle = c.c || RC.ink; c.lines.forEach((l, j) => g.fillText(l, cols[i].right ? cx2 + cols[i].w - 12 - g.measureText(l).width : cx2 + 12, y + 30 + j * 24)); cx2 += cols[i].w; });
+      y += rh;
+    });
+    g.fillStyle = RC.line; g.fillRect(x, y, CW, 2);
+    return y + 20;
+  }
+  function chart(g, F, x, y, w, h, series, goal, band) {
+    const all = series.flatMap(s => s.pts.map(p => p.nw)).concat(band ? band.flatMap(b => [b.p10, b.p90]) : []).concat([goal]);
+    const max = Math.max(...all) * 1.06, min = Math.min(0, ...all) * 1.06;
+    const a0 = series[0].pts[0].age, a1 = series[0].pts[series[0].pts.length - 1].age, pl = 112;
+    const X = age => x + pl + (age - a0) / (a1 - a0) * (w - pl - 10), Y = v => y + (max - v) / (max - min) * (h - 34);
+    g.font = `500 14px ${F.m}`;
+    for (let i = 0; i <= 4; i++) { const v = min + (max - min) * i / 4, yy = Y(v); g.fillStyle = RC.line; g.fillRect(x + pl, yy, w - pl - 10, 1); g.fillStyle = RC.mute; g.fillText(fmtM(v), x, yy + 5); }
+    if (min < 0) { g.fillStyle = RC.mute; g.fillRect(x + pl, Y(0), w - pl - 10, 2); }
+    for (let a = Math.ceil(a0 / 10) * 10; a <= a1; a += 10) { g.fillStyle = RC.mute; g.fillText(String(a), X(a) - 9, y + h - 6); }
+    g.fillStyle = RC.mute; g.fillText(String(a1), X(a1) - 18, y + h - 6);
+    if (band) {
+      g.fillStyle = 'rgba(116,70,240,.16)'; g.beginPath();
+      band.forEach((b, i) => i ? g.lineTo(X(b.age), Y(b.p90)) : g.moveTo(X(b.age), Y(b.p90)));
+      [...band].reverse().forEach(b => g.lineTo(X(b.age), Y(b.p10))); g.closePath(); g.fill();
+    }
+    g.strokeStyle = RC.teal; g.lineWidth = 2; g.setLineDash([10, 8]); g.beginPath(); g.moveTo(x + pl, Y(goal)); g.lineTo(x + w - 10, Y(goal)); g.stroke(); g.setLineDash([]);
+    g.font = `700 14px ${F.m}`; g.fillStyle = RC.teal; g.fillText('META · ' + fmtM(goal), x + pl + 8, Y(goal) - 8);
+    series.forEach(s => {
+      g.strokeStyle = s.color; g.lineWidth = s.width || 4; g.lineJoin = 'round'; g.setLineDash(s.dash || []);
+      g.beginPath(); s.pts.forEach((p, i) => i ? g.lineTo(X(p.age), Y(p.nw)) : g.moveTo(X(p.age), Y(p.nw))); g.stroke(); g.setLineDash([]);
+    });
+    return y + h + 16;
+  }
+  function legend(g, F, items, y) {
+    let x = PM; g.font = `500 16px ${F.m}`;
+    items.forEach(([t, col, dash]) => { g.strokeStyle = col; g.lineWidth = 4; g.setLineDash(dash || []); g.beginPath(); g.moveTo(x, y - 6); g.lineTo(x + 30, y - 6); g.stroke(); g.setLineDash([]); g.fillStyle = RC.ink; g.fillText(t, x + 40, y); x += 40 + g.measureText(t).width + 36; });
+    return y + 36;
+  }
+  function btnBox(pg, F, x, y, w, h, label, url, fill, ink) {
+    const g = pg.g; g.fillStyle = fill; g.beginPath(); g.roundRect(x, y, w, h, h / 2); g.fill();
+    fitFont(g, label, 700, 20, F.d, w - 40); g.fillStyle = ink; g.fillText(label, x + (w - g.measureText(label).width) / 2, y + h / 2 + 7);
+    pg.links.push({ x, y, w, h, url });
+  }
+
+  function buildPages(A, F) {
+    const p = RES.inp, st = RES.st, sc = RES.score, o = RES.o, nw = RES.nw, T = 6;
+    const name = (p.name || 'Tú').split(' ')[0], NAME = name.toUpperCase();
+    const keyCol = { land: RC.teal, circle: RC.amber, crash: RC.red }[o.key];
+    const pages = [];
+
+    // 1 · resumen ejecutivo
+    let pg = rPage(F, 1, T, NAME), g = pg.g, y = 170;
+    g.font = `700 16px ${F.m}`; g.fillStyle = RC.teal; spaced(g, 'RADIOGRAFÍA FINANCIERA', PM, y, 3);
+    y = para(g, `Reporte de vuelo de ${name}`, PM, y + 76, CW, `800 60px ${F.d}`, RC.ink, 70);
+    const fecha = new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+    y = para(g, `Generado el ${fecha} · Preparado por ${CFG.owner} con VUELO 40`, PM, y + 4, CW, `400 20px ${F.b}`, RC.mute, 28) + 26;
+    g.font = `400 21px ${F.b}`; const subL = wrapLines(g, o.sub, CW - 80), boxH = 150 + subL.length * 30;
+    g.fillStyle = RC.soft; g.beginPath(); g.roundRect(PM, y, CW, boxH, 20); g.fill(); g.fillStyle = keyCol; g.fillRect(PM, y + 22, 7, boxH - 44);
+    g.font = `700 16px ${F.m}`; const sw = g.measureText(o.status).width + 36; g.fillStyle = keyCol; g.beginPath(); g.roundRect(PM + 40, y + 30, sw, 38, 8); g.fill();
+    g.fillStyle = RC.ink; spaced(g, o.status, PM + 58, y + 55, 2);
+    g.font = `800 34px ${F.d}`; g.fillText(o.title, PM + 40, y + 112);
+    g.font = `400 21px ${F.b}`; subL.forEach((l, i) => g.fillText(l, PM + 40, y + 150 + i * 30));
+    y += boxH + 28;
+    const tw = (CW - 48) / 3, th = 176;
+    const tiles = [
+      ['Puntaje de vuelo', `${sc.total}/100`, `${sc.dec} decisiones · ${sc.cov} meta · ${sc.early} llegada`, RC.violet],
+      ['Trabajo opcional', st.fiAge ? `${st.fiAge} años` : 'No llegó', st.fiAge ? `${CFG.retireAge - st.fiAge} años antes de los 65` : 'antes de los 65 con tus decisiones', keyCol],
+      ['Patrimonio a los 65', fmtL(nw), 'en pesos de hoy', nw < 0 ? RC.red : RC.teal],
+      ['Cobertura de tu meta', `${sc.covPct}%`, `meta: ${fmtL(st.goal)} invertidos`, sc.covPct >= 100 ? RC.teal : RC.amber],
+      ['Decisiones acertadas', `${sc.hits} de ${sc.avail}`, A.worst ? `punto ciego: ${PNAME[A.worst]}` : 'sin punto ciego', A.worst ? RC.amber : RC.teal],
+      ['Probabilidad de llegar', pct(A.mcMe.pLand), `en ${MC_N} escenarios · con sistema: ${pct(A.mcSys.pLand)}`, RC.violet]
+    ];
+    tiles.forEach((t, i) => tile(g, F, PM + (i % 3) * (tw + 24), y + Math.floor(i / 3) * (th + 20), tw, th, ...t));
+    y += 2 * th + 20 + 56;
+    y = h3(g, F, 'Hallazgos clave', y);
+    const worstD = A.impacts.filter(d => d.impact < 0)[0], bestD = A.impacts.filter(d => d.impact > 0)[0];
+    const finds = [`Por tus manos pasarán ${fmtL(RES.life)} hasta los 65. Llegas con ${fmtL(nw)}: el ${sc.covPct}% de lo que necesitas para vivir de tu NIF de ${fmtL(p.nif)} al mes.`];
+    if (worstD) finds.push(`Tu decisión más costosa: «${DEC_LABEL[worstD.k]}» a los ${worstD.age}. Elegir distinto habría sumado ${fmtL(-worstD.impact)} a tu patrimonio a los 65.`);
+    if (bestD) finds.push(`Tu mejor decisión: «${DEC_LABEL[bestD.k]}» a los ${bestD.age}. Por sí sola aporta ${fmtL(bestD.impact)} a tu patrimonio a los 65.`);
+    finds.push(`Con las mismas turbulencias y todas las decisiones del sistema, la misma vida terminaba en ${endPlain(A.sys)}.`);
+    finds.push(`En ${MC_N} escenarios con rentabilidades que suben y bajan, llegas a trabajo opcional antes de los 65 en el ${pct(A.mcMe.pLand)} de los casos.`);
+    bullets(g, F, finds, y + 6);
+    pages.push(pg);
+
+    // 2 · punto de partida
+    pg = rPage(F, 2, T, NAME); g = pg.g;
+    y = h2(g, F, 'Punto de partida', 'Así empieza tu vuelo', 170);
+    y = table(g, F, PM, y + 10, [{ t: 'Concepto', w: 640 }, { t: 'Tu dato', w: CW - 640, right: true }], [
+      ['Edad hoy', { t: p.age + ' años', b: 1 }],
+      ['Años de vida laboral hasta los 65', { t: String(st.years), b: 1 }],
+      ['Ingreso neto mensual', { t: fmtFull(p.income), b: 1 }],
+      ['Lo que te queda a fin de mes', { t: S0_LABEL[String(p.s0)] || pct(p.s0), b: 1 }],
+      ['Ahorro mensual estimado', { t: fmtFull(A.save0), b: 1, c: A.save0 < 0 ? RC.red : RC.ink }],
+      ['Tu NIF: con cuánto vivirías sin trabajar', { t: fmtFull(p.nif) + ' / mes', b: 1 }],
+      ['Meta de patrimonio (28 veces tu NIF anual)', { t: fmtL(st.goal), b: 1 }],
+      ['Ingreso total de tu vida laboral', { t: fmtL(RES.life), b: 1 }]
+    ]);
+    y = h3(g, F, '¿Cuánto necesitas invertir al mes?', y + 30);
+    y = para(g, `Para tener ${fmtL(st.goal)} a los 65, invirtiendo con una rentabilidad real ilustrativa del 5% anual, necesitarías apartar cada mes desde hoy:`, PM, y, CW, `400 20px ${F.b}`, RC.mute, 29) + 24;
+    const ref20 = p.income * 0.2, mx = Math.max(A.need.now || 0, ref20, A.save0) * 1.05;
+    y = hbar(g, F, PM, y, CW, 'Lo que ahorras hoy', Math.max(0, A.save0), mx, A.save0 < 0 ? RC.red : RC.amber, A.save0 < 0 ? fmtFull(A.save0) + ' (te falta)' : fmtFull(A.save0));
+    y = hbar(g, F, PM, y, CW, 'Referencia sana: 20% de tu ingreso', ref20, mx, RC.violet, fmtFull(ref20));
+    y = hbar(g, F, PM, y, CW, 'Necesario para llegar a tu meta a los 65', A.need.now, mx, RC.teal, fmtFull(A.need.now));
+    const needRate = A.need.now / p.income;
+    y = para(g, needRate > 0.6
+      ? `Tu meta exige invertir el ${pct(needRate)} de tu ingreso actual. Con este ingreso no alcanza solo con ahorrar: la palanca principal es aumentar lo que generas (pilar Genera) y que cada aumento se invierta.`
+      : `Tu meta exige invertir el ${pct(needRate)} de tu ingreso actual. ${A.save0 >= A.need.now ? 'Hoy ya ahorras lo suficiente: la clave es que esa plata trabaje y no se quede quieta.' : `Hoy apartas ${fmtFull(Math.max(0, A.save0))}: la brecha es de ${fmtFull(A.need.now - Math.max(0, A.save0))} al mes.`}`,
+      PM, y + 4, CW, `400 20px ${F.b}`, RC.ink, 29) + 30;
+    y = h3(g, F, 'El costo de esperar', y);
+    const waits = [['Si empiezas hoy', A.need.now], ['Si empiezas en 5 años', A.need.in5], ['Si empiezas en 10 años', A.need.in10]].filter(w => w[1]);
+    const mw = Math.max(...waits.map(w => w[1])) * 1.05;
+    waits.forEach(([t, v], i) => { y = hbar(g, F, PM, y, CW, t, v, mw, [RC.teal, RC.amber, RC.red][i], fmtFull(v) + ' / mes'); });
+    if (A.need.in5) para(g, `Esperar 5 años hace que el esfuerzo mensual suba un ${pct(A.need.in5 / A.need.now - 1)}. El interés compuesto premia a quien empieza antes.`, PM, y + 4, CW, `400 20px ${F.b}`, RC.ink, 29);
+    pages.push(pg);
+
+    // 3 · trayectoria
+    pg = rPage(F, 3, T, NAME); g = pg.g;
+    y = h2(g, F, 'Trayectoria', 'Tu patrimonio, año a año', 170);
+    y = para(g, 'Tres vuelos de la misma vida: mismo sueldo, misma edad y mismas turbulencias. Solo cambian las decisiones: sin sistema, las tuyas y con sistema.', PM, y, CW, `400 20px ${F.b}`, RC.mute, 29) + 20;
+    y = chart(g, F, PM, y, CW, 520, [{ pts: A.none.path, color: RC.red }, { pts: st.path, color: RC.violet, width: 5 }, { pts: A.sys.path, color: RC.teal }], st.goal);
+    y = legend(g, F, [['Sin sistema', RC.red], ['Tu vuelo', RC.violet], ['Con sistema', RC.teal], ['Meta', RC.teal, [10, 8]]], y + 10);
+    const ages = []; for (let a = Math.ceil((p.age + 1) / 10) * 10; a < CFG.retireAge; a += 10) ages.push(a); ages.push(CFG.retireAge);
+    const at = (s, a) => (s.path.find(q => q.age === a) || s.path[s.path.length - 1]).nw;
+    y = table(g, F, PM, y + 10, [{ t: 'Edad', w: 160 }, { t: 'Sin sistema', w: 296, right: true }, { t: 'Tu vuelo', w: 296, right: true }, { t: 'Con sistema', w: CW - 752, right: true }],
+      ages.map(a => [{ t: a + ' años', b: 1 }, fmtL(at(A.none, a)), { t: fmtL(at(st, a)), b: 1, c: RC.violet }, fmtL(at(A.sys, a))]));
+    if (RES.sh.length) {
+      y = h3(g, F, 'Turbulencias que enfrentaste', y + 24);
+      bullets(g, F, RES.sh.map(s => `A los ${s.age}: ${s.q} ${s.fb}`), y + 4, RC.red);
+    }
+    pages.push(pg);
+
+    // 4 · decisiones
+    pg = rPage(F, 4, T, NAME); g = pg.g;
+    y = h2(g, F, 'Análisis de decisiones', 'Qué movió tu resultado', 170);
+    const pw3 = (CW - 48) / 3;
+    ['genera', 'crece', 'protege'].forEach((k, i) => {
+      const n = st.avail[k], hit = st.pill[k], r = n ? hit / n : 1, col = r >= 1 ? RC.teal : r >= 0.5 ? RC.amber : RC.red, x = PM + i * (pw3 + 24);
+      g.fillStyle = RC.soft; g.beginPath(); g.roundRect(x, y, pw3, 150, 16); g.fill();
+      g.font = `600 14px ${F.m}`; g.fillStyle = RC.mute; spaced(g, PNAME[k].toUpperCase() + (A.worst === k ? ' · PUNTO CIEGO' : ''), x + 24, y + 40, 2);
+      g.font = `800 40px ${F.d}`; g.fillStyle = RC.ink; g.fillText(`${hit}/${n}`, x + 24, y + 92);
+      g.fillStyle = RC.white; g.beginPath(); g.roundRect(x + 24, y + 112, pw3 - 48, 14, 7); g.fill();
+      if (r > 0) { g.fillStyle = col; g.beginPath(); g.roundRect(x + 24, y + 112, Math.max(14, (pw3 - 48) * r), 14, 7); g.fill(); }
+    });
+    y += 190;
+    y = h3(g, F, 'Impacto de cada decisión en tu patrimonio a los 65', y);
+    y = table(g, F, PM, y, [{ t: 'Edad', w: 96 }, { t: 'Decisión', w: 230 }, { t: 'Lo que elegiste', w: 372 }, { t: 'Evaluación', w: 150 }, { t: 'Impacto', w: CW - 848, right: true }],
+      A.impacts.map(d => [d.age + ' años', { t: DEC_LABEL[d.k], b: 1 }, d.ev[d.side].t, d.side === 'b' ? { t: '✓ Acierto', c: RC.teal, b: 1 } : { t: '✗ A mejorar', c: RC.red, b: 1 },
+        { t: Math.abs(d.impact) < 1e6 ? '≈ $0' : (d.impact > 0 ? '+' : '') + fmtL(d.impact), b: 1, c: d.impact > 0 ? RC.teal : d.impact < 0 ? RC.red : RC.mute }]));
+    y = para(g, 'Cómo leer el impacto: es cuánto cambia tu patrimonio a los 65 por esa sola decisión, comparado con haber elegido la otra opción y dejando todo lo demás igual (análisis de sensibilidad). Positivo: esa decisión te sumó. Negativo: te restó.', PM, y + 6, CW, `400 18px ${F.b}`, RC.mute, 26) + 22;
+    if (worstD) {
+      const tot = A.impacts.filter(d => d.impact < 0).reduce((s, d) => s - d.impact, 0);
+      para(g, `Las decisiones a mejorar te restan en conjunto cerca de ${fmtL(tot)} a los 65 (sumadas una por una; juntas pueden pesar más por el interés compuesto).`, PM, y, CW, `600 20px ${F.b}`, RC.ink, 29);
+    }
+    pages.push(pg);
+
+    // 5 · estadística
+    pg = rPage(F, 5, T, NAME); g = pg.g;
+    y = h2(g, F, 'Análisis estadístico', `${MC_N} vidas posibles con tus decisiones`, 170);
+    y = para(g, `En la vida real la rentabilidad no es la misma cada año. Simulamos ${MC_N} veces tu misma vida y tus mismas decisiones, pero con una rentabilidad que sube y baja cada año (volatilidad del 12%). La franja muestra el rango probable: entre el escenario pesimista (P10) y el optimista (P90).`, PM, y, CW, `400 20px ${F.b}`, RC.mute, 29) + 20;
+    y = chart(g, F, PM, y, CW, 440, [{ pts: A.mcMe.band.map(b => ({ age: b.age, nw: b.p50 })), color: RC.violet, width: 5 }, { pts: A.mcSys.band.map(b => ({ age: b.age, nw: b.p50 })), color: RC.teal, dash: [14, 8] }], st.goal, A.mcMe.band);
+    y = legend(g, F, [['Tu vuelo (mediana)', RC.violet], ['Con sistema (mediana)', RC.teal, [14, 8]], ['Meta', RC.teal, [10, 8]]], y + 10);
+    const t2 = (CW - 24) / 2;
+    tile(g, F, PM, y, t2, 150, 'Probabilidad de llegar · tú', pct(A.mcMe.pLand), A.mcMe.fiMed ? `edad típica de llegada: ${A.mcMe.fiMed}` : 'trabajo opcional antes de los 65', RC.violet);
+    tile(g, F, PM + t2 + 24, y, t2, 150, 'Probabilidad · con sistema', pct(A.mcSys.pLand), A.mcSys.fiMed ? `edad típica de llegada: ${A.mcSys.fiMed}` : 'trabajo opcional antes de los 65', RC.teal);
+    y += 170;
+    const t3 = (CW - 48) / 3;
+    [['Pesimista · P10', A.mcMe.p10, RC.red], ['Probable · P50', A.mcMe.p50, RC.violet], ['Optimista · P90', A.mcMe.p90, RC.teal]].forEach(([l, v, c], i) => tile(g, F, PM + i * (t3 + 24), y, t3, 150, l, fmtL(v), 'patrimonio a los 65', c));
+    y += 196;
+    y = h3(g, F, 'Sensibilidad: ¿qué pasa si…?', y);
+    y = table(g, F, PM, y, [{ t: 'Escenario', w: 420 }, { t: 'Trabajo opcional', w: 190 }, { t: 'A los 65', w: 210, right: true }, { t: 'Vs. tu vuelo', w: CW - 820, right: true }],
+      A.sens.map((s, i) => { const d = nwOf(s.st) - RES.nw; return [{ t: s.label, b: i === 0 }, s.st.fiAge ? `a los ${s.st.fiAge}` : 'no llega', { t: fmtL(nwOf(s.st)), b: 1 }, i === 0 ? '—' : { t: (d > 0 ? '+' : '') + fmtL(d), b: 1, c: d > 0 ? RC.teal : d < 0 ? RC.red : RC.mute }]; }));
+    if (!A.invested) para(g, 'Como tu plata no quedó invertida, la rentabilidad del mercado casi no cambia tu resultado. Lo que sí la mueve es la inflación: tu dinero quieto pierde poder de compra cada año.', PM, y + 4, CW, `400 18px ${F.b}`, RC.mute, 26);
+    else if (A.panicSold) para(g, 'Al vender en el pánico del mercado, tu plata salió de la inversión: desde ese año dejó de crecer con el mercado y por eso la franja de escenarios se angosta.', PM, y + 4, CW, `400 18px ${F.b}`, RC.mute, 26);
+    pages.push(pg);
+
+    // 6 · plan de acción
+    pg = rPage(F, 6, T, NAME); g = pg.g;
+    y = h2(g, F, 'Plan de acción', 'Tus próximos movimientos', 170);
+    const recs = A.impacts.filter(d => d.side === 'a').map(d => REC[d.k]).filter(Boolean);
+    if (A.save0 < A.need.now) recs.push(['Punto de partida', `Automatiza tu ahorro: aparta un porcentaje fijo el día de pago (empieza con el 10%) y súbelo un punto con cada aumento, hasta acercarte a ${fmtFull(A.need.now)} al mes.`]);
+    if (recs.length < 3) recs.push(['Haz crecer', 'Mantén el rumbo: revisa tu plan una vez al año, rebalancea y no toques tus inversiones por ruido de corto plazo.'], ['Genera', 'Sigue aumentando tu capacidad de generar: cada habilidad nueva es combustible para tu vuelo.']);
+    recs.slice(0, 5).forEach(([tag, txt], i) => {
+      g.font = `400 20px ${F.b}`; const ls = wrapLines(g, txt, CW - 150), h = Math.max(110, 70 + ls.length * 29);
+      g.fillStyle = RC.soft; g.beginPath(); g.roundRect(PM, y, CW, h, 16); g.fill();
+      g.font = `800 40px ${F.d}`; g.fillStyle = RC.violet; g.fillText(String(i + 1), PM + 34, y + 62);
+      g.font = `600 14px ${F.m}`; g.fillStyle = RC.teal; spaced(g, tag.toUpperCase(), PM + 110, y + 38, 2);
+      g.font = `400 20px ${F.b}`; g.fillStyle = RC.ink; ls.forEach((l, j) => g.fillText(l, PM + 110, y + 70 + j * 29));
+      y += h + 16;
+    });
+    y += 16;
+    const bh = 330, bg = g.createLinearGradient(PM, y, PM + CW, y + bh); bg.addColorStop(0, '#1C1532'); bg.addColorStop(1, '#0E0C18');
+    g.fillStyle = bg; g.beginPath(); g.roundRect(PM, y, CW, bh, 22); g.fill();
+    g.font = `700 15px ${F.m}`; g.fillStyle = '#2FE6C6'; spaced(g, 'TU PRÓXIMO PASO', PM + 44, y + 54, 3);
+    g.font = `800 38px ${F.d}`; g.fillStyle = '#F4F2FB'; g.fillText('The Future Is NOW', PM + 44, y + 108);
+    para(g, 'Lanzamiento mundial online y gratis, en vivo desde Dubái. 14 y 15 de noviembre, 9:00 a.m. (hora Colombia). Aprende el sistema completo: Genera, Haz crecer y Protege.', PM + 44, y + 150, CW - 88, `400 20px ${F.b}`, '#C9C4DD', 29);
+    const bw = (CW - 112) / 2;
+    btnBox(pg, F, PM + 44, y + 236, bw, 64, 'Reservar mi entrada gratis', CFG.eventUrl, '#2FE6C6', '#08070F');
+    btnBox(pg, F, PM + 68 + bw, y + 236, bw, 64, `Hablar con ${OWNER_FIRST} por WhatsApp`, `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(`Hola ${OWNER_FIRST}, descargué el reporte de mi vuelo en VUELO 40 (puntaje ${sc.total}/100). Quiero aprender el sistema.`)}`, '#F4F2FB', '#14111F');
+    y += bh + 34;
+    g.font = `700 14px ${F.m}`; g.fillStyle = RC.mute; spaced(g, 'METODOLOGÍA Y SUPUESTOS', PM, y, 2);
+    para(g, `Simulación educativa en pesos de hoy. Inversión diversificada con rentabilidad real ilustrativa de 5% anual; cuenta de ahorros −2% real por inflación; deuda de tarjeta ~22% real. Meta de patrimonio: 28 veces tu NIF anual (retiros de ~3,6% al año). Escenarios: ${MC_N} simulaciones con rentabilidad anual aleatoria (distribución normal, volatilidad 12%) sobre la parte invertida; P10, P50 y P90 son percentiles. Puntaje de vuelo: 40 puntos por decisiones acertadas, 40 por cobertura de tu meta y 20 por llegar antes de los 65. No incluye pensión. No es asesoría financiera ni promesa de resultados; las inversiones pueden perder valor.`, PM, y + 30, CW, `400 16px ${F.b}`, RC.mute, 23);
+    pages.push(pg);
+    return pages;
+  }
+
+  async function makeReport() {
+    const [{ jsPDF }] = await Promise.all([loadJsPDF(), document.fonts ? Promise.all(['800 40px Unbounded', '700 20px Unbounded', '400 20px Onest', '500 20px Onest', '600 20px Onest', '700 20px Onest', '500 16px "JetBrains Mono"', '700 16px "JetBrains Mono"'].map(f => document.fonts.load(f))).catch(() => {}) : null]);
+    const F = { d: css('--f-display'), b: css('--f-body'), m: css('--f-mono') };
+    const pages = buildPages(analyze(), F), K = 210 / PW;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
+    pages.forEach((pg, i) => {
+      if (i) doc.addPage();
+      doc.addImage(pg.c.toDataURL('image/jpeg', 0.86), 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+      pg.links.forEach(l => doc.link(l.x * K, l.y * K, l.w * K, l.h * K, { url: l.url }));
+    });
+    doc.setProperties({ title: 'Reporte de vuelo · VUELO 40', subject: 'Radiografía financiera', author: CFG.owner });
+    return doc;
+  }
+  $('#go-report').addEventListener('click', async () => {
+    const b = $('#go-report'), msg = $('#report-st');
+    if (b.disabled || !RES) return;
+    b.disabled = true; msg.hidden = false; msg.textContent = 'Preparando tu reporte…';
+    const inApp = /Instagram|FBAN|FBAV|FB_IAB|Line\//i.test(navigator.userAgent);
+    try {
+      await wait(40);
+      const doc = await makeReport();
+      const fname = `Reporte-Vuelo40-${cleanName((RES.inp.name || '').split(' ')[0]) || 'pasajero'}.pdf`;
+      const file = new File([doc.output('blob')], fname, { type: 'application/pdf' });
+      if (inApp && navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], title: 'Reporte de tu vuelo' }); } catch (e) {} }
+      else doc.save(fname);
+      msg.textContent = inApp ? 'Si no se descargó, abre esta página en Chrome o Safari (menú ··· → Abrir en el navegador) y vuelve a tocar el botón.' : 'Listo. Revisa tus descargas.';
+      track('V40_Report', { outcome: RES.o.key, score: RES.score.total });
+    } catch (e) {
+      msg.textContent = 'No pudimos generar el reporte. Revisa tu conexión e inténtalo otra vez.';
+    }
+    b.disabled = false;
+  });
+
   if (DUEL) {
     $('#duel-tag').hidden = false;
     $('#intro-title').textContent = `${DUEL.name} te retó a VUELO 40`;
-    $('#intro-sub').textContent = `${DUEL.name} ${duelLine(DUEL)}. Juegas con su misma vida; solo cambian tus decisiones. ¿Llegas antes?`;
+    const pts = DUEL.score !== null ? ` y sacó ${DUEL.score}/100 puntos` : '';
+    $('#intro-sub').textContent = `${DUEL.name} ${duelLine(DUEL)}${pts}. Juega con tu propia vida y compara. ¿Lo superas?`;
     $('#intro-enter-label').textContent = 'Aceptar el reto';
-    const bn = $('#duel-banner'); bn.hidden = false; bn.innerHTML = `<b>${DUEL.name}</b> te reta: ${duelLine(DUEL)}. Juegas con su misma vida (edad, ingreso, ahorro y NIF). Solo cambian tus decisiones.`;
-    $('#f-age').value = DUEL.age; $('#f-income').value = DUEL.income; $('#f-nif').value = DUEL.nif; nifTouched = true;
-    const r = document.querySelector(`input[name="f-s"][value="${S0V[DUEL.s0k]}"]`); if (r) r.checked = true;
-    ['#fld-age', '#fld-income', '#fld-s', '#fld-nif'].forEach(id => $(id).classList.add('locked'));
-    ['#f-age', '#f-income', '#f-nif'].forEach(id => { $(id).disabled = true; }); document.querySelectorAll('input[name="f-s"]').forEach(x => { x.disabled = true; });
-    const dl = $('#duel-lock'); dl.hidden = false; dl.textContent = `Duelo con ${DUEL.name}: misma vida, tus decisiones.`;
+    const bn = $('#duel-banner'); bn.hidden = false; bn.innerHTML = `<b>${DUEL.name}</b> te reta: ${duelLine(DUEL)}${pts}. Pon tus propios datos, toma tus decisiones y compara puntajes.`;
+    const dl = $('#duel-lock'); dl.hidden = false; dl.textContent = `Duelo con ${DUEL.name}: pon tus datos reales. Al final comparamos puntajes de vuelo.`;
     track('V40_DuelOpen');
   }
   audioSetup();
