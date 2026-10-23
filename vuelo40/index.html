@@ -26,14 +26,26 @@
   gtag('js',new Date());gtag('config','G-KLQXEPBHXZ');
 </script>
 
-<!-- ===== Meta Pixel (mismo ID del sitio principal) ===== -->
+<!-- ===== Anfitriones: cada uno tiene su ruta /vuelo40/<slug> con su nombre, WhatsApp, link al evento y pixel ===== -->
+<script>
+  window.V40_HOSTS = {
+    camilo: { owner: 'Camilo Cortés', waNumber: '573005367545', eventUrl: 'https://futureisnowevent.com/camilo-cortes?lang=es', pixel: '3559974890833540', path: '/vuelo40' },
+    laura: { owner: 'Laura Cortés', waNumber: '', eventUrl: '', pixel: '936449302360462', path: '/vuelo40/laura' }
+  };
+  (function () {
+    var m = location.pathname.match(/^\/vuelo40\/([a-z0-9-]+)\/?$/), h = m && window.V40_HOSTS[m[1]];
+    window.V40_HOST = h && h.waNumber && h.eventUrl ? h : window.V40_HOSTS.camilo;   // incomplete hosts fall back to the main game
+  })();
+</script>
+
+<!-- ===== Meta Pixel (el del anfitrión) ===== -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','3559974890833540');fbq('track','PageView');
+fbq('init',window.V40_HOST.pixel);fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=3559974890833540&ev=PageView&noscript=1"/></noscript>
@@ -694,10 +706,10 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     gBase: 0.005, gSkill: 0.015, sideShare: 0.15,
     fiMult: 28,
     yearMs: reduce ? 40 : 230,
-    eventUrl: 'https://futureisnowevent.com/camilo-cortes?lang=es',
-    waNumber: '573005367545',
-    shareUrl: 'https://camiloecortes.com/vuelo40',
-    owner: 'Camilo Cortés'
+    eventUrl: window.V40_HOST.eventUrl,
+    waNumber: window.V40_HOST.waNumber,
+    shareUrl: 'https://camiloecortes.com' + window.V40_HOST.path,
+    owner: window.V40_HOST.owner
   };
   const OWNER_FIRST = CFG.owner.split(' ')[0];
   document.querySelector('#by-owner').textContent = 'por ' + CFG.owner;

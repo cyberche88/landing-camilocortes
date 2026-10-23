@@ -20,6 +20,12 @@
   to     = "/.netlify/functions/trm"
   status = 200
 
+# VUELO 40 por anfitrión: /vuelo40/laura sirve el mismo juego con los datos de Laura
+[[redirects]]
+  from   = "/vuelo40/:host"
+  to     = "/vuelo40/index.html"
+  status = 200
+
 [functions]
   node_bundler = "esbuild"
 
