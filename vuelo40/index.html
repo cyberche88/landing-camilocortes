@@ -19,23 +19,21 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://camiloecortes.com/vuelo40/assets/og.jpg">
 
-<!-- ===== Google Analytics 4 (mismo ID del sitio principal) ===== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KLQXEPBHXZ"></script>
-<script>
-  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());gtag('config','G-KLQXEPBHXZ');
-</script>
-
-<!-- ===== Anfitriones: cada uno tiene su ruta /vuelo40/<slug> con su nombre, WhatsApp, link al evento y pixel ===== -->
+<!-- ===== Anfitriones: el dominio decide nombre, WhatsApp, link al evento, pixel y GA4.
+     El mismo archivo corre en camiloecortes.com/vuelo40 y lauramcortes.com/vuelo40 (scripts/sync-vuelo40-laura.py) ===== -->
 <script>
   window.V40_HOSTS = {
-    camilo: { owner: 'Camilo Cortés', waNumber: '573005367545', eventUrl: 'https://futureisnowevent.com/camilo-cortes?lang=es', pixel: '3559974890833540', path: '/vuelo40' },
-    laura: { owner: 'Laura Cortés', waNumber: '', eventUrl: '', pixel: '936449302360462', path: '/vuelo40/laura' }
+    'camiloecortes.com': { owner: 'Camilo Cortés', waNumber: '573005367545', eventUrl: 'https://futureisnowevent.com/camilo-cortes?lang=es', pixel: '3559974890833540', ga: 'G-KLQXEPBHXZ', url: 'https://camiloecortes.com/vuelo40' },
+    'lauramcortes.com': { owner: 'Laura Cortés', waNumber: '573154112264', eventUrl: 'https://futureisnowevent.com/laura-cortes-y-santiago-carden?lang=es', pixel: '936449302360462', ga: 'G-RFW1JBY2TS', url: 'https://lauramcortes.com/vuelo40' }
   };
-  (function () {
-    var m = location.pathname.match(/^\/vuelo40\/([a-z0-9-]+)\/?$/), h = m && window.V40_HOSTS[m[1]];
-    window.V40_HOST = h && h.waNumber && h.eventUrl ? h : window.V40_HOSTS.camilo;   // incomplete hosts fall back to the main game
-  })();
+  window.V40_HOST = window.V40_HOSTS[location.hostname.replace(/^www\./, '')] || window.V40_HOSTS['camiloecortes.com'];
+</script>
+
+<!-- ===== Google Analytics 4 (el del anfitrión) ===== -->
+<script>
+  (function () { var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.V40_HOST.ga; document.head.appendChild(s); })();
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config',window.V40_HOST.ga);
 </script>
 
 <!-- ===== Meta Pixel (el del anfitrión) ===== -->
@@ -708,7 +706,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     yearMs: reduce ? 40 : 230,
     eventUrl: window.V40_HOST.eventUrl,
     waNumber: window.V40_HOST.waNumber,
-    shareUrl: 'https://camiloecortes.com' + window.V40_HOST.path,
+    shareUrl: window.V40_HOST.url,
     owner: window.V40_HOST.owner
   };
   const OWNER_FIRST = CFG.owner.split(' ')[0];
@@ -868,7 +866,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     const pts = { dec: Math.round(40 * (avail ? hits / avail : 0)), cov: Math.round(40 * cov), early: Math.round(20 * early) };
     return { ...pts, total: pts.dec + pts.cov + pts.early, hits, avail, covPct: Math.round(100 * Math.max(0, nwOf(st) / st.goal)) };
   }
-  const baseUrl = () => /(^|\.)camiloecortes\.com$/.test(location.hostname) ? location.origin + location.pathname : CFG.shareUrl;
+  const baseUrl = () => window.V40_HOSTS[location.hostname.replace(/^www\./, '')] ? location.origin + location.pathname : CFG.shareUrl;
 
   // ---------- departure board ----------
   function flapRow(el, code, dest, status, statusCls, delay) {
