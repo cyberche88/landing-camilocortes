@@ -754,7 +754,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   function track(name, data) {
     data = { ...(data || {}), loc: LOC.code };
     try { if (window.fbq) window.fbq('trackCustom', name, data || {}); } catch (e) {}
-    try { (window.dataLayer = window.dataLayer || []).push({ event: name, ...(data || {}) }); } catch (e) {}
+    try { if (window.gtag) window.gtag('event', name, data); } catch (e) {}
   }
 
   // ---------- formatting ----------
