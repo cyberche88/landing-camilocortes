@@ -698,15 +698,51 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   const $ = s => document.querySelector(s);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ---------- country version: /vuelo40/mx → México (pesos MXN, aguinaldo, vocabulario y hora del centro de México) ----------
+  const MX = /^\/vuelo40\/mx\/?$/.test(location.pathname);
+  const LOC = MX ? {
+    code: 'mx', nf: 'es-MX', millionFrom: 1e6, rDebt: 0.35, bonus: 1 / 48,
+    income: { min: 5000, max: 100000, step: 500, val: 17500 }, nif: { min: 5000, max: 200000, step: 500 },
+    roundU: n => Math.max(1, Math.round(n / 1000)) * 1000, minSave: 1000, saveStep: 500,
+    hero: 'más de <span class="grad">7 millones</span> de pesos',
+    ref: 'Referencia: el salario promedio de los trabajadores afiliados al IMSS ronda los $20,200 al mes antes de impuestos (STPS, julio 2026); neto, unos $17,700.',
+    // ordered: specific phrases first, generic words last
+    rep: [['Llega la prima de diciembre.', 'Llega el aguinaldo de diciembre.'], ['Sin plan, la prima se va en una semana.', 'Sin plan, el aguinaldo se va en una semana.'],
+      ['Media prima al año, invertida durante décadas', 'Medio aguinaldo al año, invertido durante décadas'], ['+ media prima invertida cada año', '+ medio aguinaldo invertido cada año'],
+      ['Prima: gastada', 'Aguinaldo: gastado'], ['Media prima cada diciembre', 'Medio aguinaldo cada diciembre'], ['Invertiste media prima cada diciembre', 'Invertiste medio aguinaldo cada diciembre'],
+      ['Cada prima de diciembre', 'Cada aguinaldo'], ['cada prima', 'cada aguinaldo'], ['Prima de diciembre', 'Aguinaldo'], ['PRIMA DE DICIEMBRE', 'AGUINALDO'], ['Prima con propósito', 'Aguinaldo con propósito'], ['PRIMA CON PROPÓSITO', 'AGUINALDO CON PROPÓSITO'], ['Prima', 'Aguinaldo'],
+      ['una deuda cercana al 28% EA puede duplicarse en unos 3 años', 'con tasas de tarjeta cercanas al 40% anual, la deuda puede duplicarse en unos 2 años'], ['28% EA', '40% anual'],
+      ['inflación alrededor del 5%', 'inflación alrededor del 4%'], ['deuda de tarjeta ~22% real', 'deuda de tarjeta ~35% real'],
+      ['centrales de riesgo', 'el Buró de Crédito'], ['vigilada por la Superintendencia Financiera', 'autorizada por la CNBV (puedes consultarlo en la CONDUSEF)'],
+      ['la cuota del carro', 'la mensualidad del carro'], ['9:00 A.M. COL', '8:00 A.M. CDMX'], ['9:00 a.m. (hora Colombia)', '8:00 a.m. (hora del centro de México)'], ['(hora Colombia)', '(hora del centro de México)'],
+      ['tu plata quieta', 'tu dinero quieto'], ['Tu plata quieta', 'Tu dinero quieto'], ['la plata quieta', 'el dinero quieto'], ['"plata garantizada"', '"dinero garantizado"'], ['La plata que', 'El dinero que'],
+      ['tu plata', 'tu dinero'], ['Tu plata', 'Tu dinero'], ['la plata', 'el dinero'], ['Plata', 'Dinero'], ['PLATA', 'DINERO'], ['plata', 'dinero']]
+  } : { code: 'co', nf: 'es-CO', millionFrom: 1e5, rDebt: 0.22, bonus: 1 / 24, roundU: n => Math.max(1, Math.round(n / 1e6)) * 1e6, minSave: 200000, saveStep: 1e5, rep: [] };
+  const T = s => { if (!LOC.rep.length || typeof s !== 'string') return s; for (const [a, b] of LOC.rep) if (s.includes(a)) s = s.split(a).join(b); return s; };
+  if (MX) {
+    // every text that reaches the screen goes through T: canvas text (sky, share card, PDF) and the DOM
+    const CP = CanvasRenderingContext2D.prototype, ft = CP.fillText, mt = CP.measureText;
+    CP.fillText = function (t, ...a) { return ft.call(this, T(String(t)), ...a); };
+    CP.measureText = function (t) { return mt.call(this, T(String(t))); };
+    const fix = root => { const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { const v = T(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; } };
+    fix(document.body);
+    new MutationObserver(ms => ms.forEach(m => { if (m.type === 'characterData') { const v = T(m.target.nodeValue); if (v !== m.target.nodeValue) m.target.nodeValue = v; } else m.addedNodes.forEach(n => n.nodeType === 3 ? (n.nodeValue = T(n.nodeValue)) : n.nodeType === 1 && fix(n)); }))
+      .observe(document.body, { subtree: true, childList: true, characterData: true });
+    document.querySelector('.hero h1').innerHTML = 'Por tus manos van a pasar ' + LOC.hero + '.';
+    document.querySelector('#fld-income .hint').textContent = LOC.ref;
+    const setR = (id, r, v) => { const e = document.getElementById(id); e.min = r.min; e.max = r.max; e.step = r.step; e.value = v; };
+    setR('f-income', LOC.income, LOC.income.val); setR('f-nif', LOC.nif, LOC.income.val);
+  }
+
   const CFG = {
     retireAge: 65,
-    rCash: -0.02, rInv: 0.05, rDebt: 0.22,
+    rCash: -0.02, rInv: 0.05, rDebt: LOC.rDebt,
     gBase: 0.005, gSkill: 0.015, sideShare: 0.15,
     fiMult: 28,
     yearMs: reduce ? 40 : 230,
     eventUrl: window.V40_HOST.eventUrl,
     waNumber: window.V40_HOST.waNumber,
-    shareUrl: window.V40_HOST.url,
+    shareUrl: window.V40_HOST.url + (MX ? '/mx' : ''),
     owner: window.V40_HOST.owner
   };
   const OWNER_FIRST = CFG.owner.split(' ')[0];
@@ -716,23 +752,24 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   // ---------- tracking hook (Meta Pixel when deployed) ----------
   function track(name, data) {
+    data = { ...(data || {}), loc: LOC.code };
     try { if (window.fbq) window.fbq('trackCustom', name, data || {}); } catch (e) {}
     try { (window.dataLayer = window.dataLayer || []).push({ event: name, ...(data || {}) }); } catch (e) {}
   }
 
   // ---------- formatting ----------
-  const nf = new Intl.NumberFormat('es-CO', { maximumFractionDigits: 0 });
+  const nf = new Intl.NumberFormat(LOC.nf, { maximumFractionDigits: 0 });
   const fmtFull = n => (n < 0 ? '−$' : '$') + nf.format(Math.abs(Math.round(n)));
   // short form for instruments and charts ("$1.154 M"), long form for sentences ("$1.154 millones")
   const fmtNum = (n, unit) => {
     const a = Math.abs(n), sign = n < 0 ? '−' : '';
     if (a >= 1e7) return sign + '$' + nf.format(Math.round(a / 1e6)) + unit;
-    if (a >= 1e5) return sign + '$' + (a / 1e6).toLocaleString('es-CO', { maximumFractionDigits: 1 }) + unit;
+    if (a >= LOC.millionFrom) return sign + '$' + (a / 1e6).toLocaleString(LOC.nf, { maximumFractionDigits: 1 }) + unit;
     return sign + '$' + nf.format(Math.round(a));
   };
   const fmtM = n => fmtNum(n, ' M');
   const fmtL = n => fmtNum(n, ' millones');
-  const roundM = n => Math.max(1, Math.round(n / 1e6)) * 1e6;
+  const roundM = LOC.roundU;
 
   // ---------- screens ----------
   const screens = ['s-gate', 's-checkin', 's-flight', 's-land'];
@@ -748,7 +785,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   // ---------- audio: loaded clips + synthesized airport / flight sounds ----------
   const AU = { ctx: null, master: null, buf: {}, muted: false, nodes: {} };
-  const FILES = { pa_bienvenida: '/vuelo40/assets/pa_bienvenida.mp3', pa_checkin: '/vuelo40/assets/pa_checkin.mp3', pa_aterrizaje: '/vuelo40/assets/pa_aterrizaje.mp3', pa_evento: '/vuelo40/assets/pa_evento.mp3',
+  const FILES = { pa_bienvenida: '/vuelo40/assets/pa_bienvenida.mp3', pa_checkin: '/vuelo40/assets/pa_checkin.mp3', pa_aterrizaje: '/vuelo40/assets/pa_aterrizaje.mp3', pa_evento: MX ? '/vuelo40/assets/pa_evento_mx.mp3' : '/vuelo40/assets/pa_evento.mp3',
     ding: '/vuelo40/assets/sfx_ding.mp3', whoosh: '/vuelo40/assets/sfx_whoosh.mp3', drone: '/vuelo40/assets/sfx_drone.mp3', alarm: '/vuelo40/assets/sfx_alarm.mp3' };
   try { AU.muted = localStorage.getItem('v40_muted') === '1'; } catch (e) {}
   function audioSetup() {
@@ -923,7 +960,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     inp.income = +$('#f-income').value;
     const r = document.querySelector('input[name="f-s"]:checked');
     inp.s0 = r ? +r.value : 0.02;
-    if (!nifTouched) $('#f-nif').value = String(Math.min(40000000, Math.max(1000000, inp.income)));
+    if (!nifTouched) $('#f-nif').value = String(Math.min(+$('#f-nif').max, Math.max(+$('#f-nif').min, inp.income)));
     inp.nif = +$('#f-nif').value;
   }
   let fuelAnim = 0, fuelShown = 0;
@@ -966,14 +1003,14 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     };
   }
   const nwOf = st => st.A - st.D;
-  const monthlySave = st => (st.Y + st.side + (st.primaSave ? st.Y / 24 : 0) - st.E) / 12;
+  const monthlySave = st => (st.Y + st.side + (st.primaSave ? st.Y * LOC.bonus : 0) - st.E) / 12;
 
   // eps: extra return for invested money in a given year (Monte Carlo); 0 in the game itself
   function step(st, eps) {
     st.Y *= (1 + st.g);
     st.E *= (1 + CFG.gBase);              // lifestyle follows the base salary trend
     if (st.side > 0) st.side *= (1 + st.g);
-    let S = st.Y + st.side + (st.primaSave ? st.Y / 24 : 0) - st.E;
+    let S = st.Y + st.side + (st.primaSave ? st.Y * LOC.bonus : 0) - st.E;
     if (st.D > 0) st.D *= (1 + CFG.rDebt);
     if (S >= 0) { const pay = Math.min(S, st.D); st.D -= pay; S -= pay; }
     else { st.D += -S; S = 0; }
@@ -1026,7 +1063,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
            fb: 'Pagando el mínimo, una deuda cercana al 28% EA puede duplicarse en unos 3 años.', eff: 'Deuda nueva al ~28% EA' },
       b: { t: 'Solo compro lo que puedo pagar completo cada mes.', fb: 'Usada así, la tarjeta es una herramienta y no una trampa.', eff: 'Cero intereses' } },
     { pillar: 'crece', kicker: 'Ahorro',
-      q: (st, p) => `Por fin te sobraron ${fmtFull(Math.max(200000, Math.round(0.12 * p.income / 1e5) * 1e5))} este mes. ¿Dónde los pones?`,
+      q: (st, p) => `Por fin te sobraron ${fmtFull(Math.max(LOC.minSave, Math.round(0.12 * p.income / LOC.saveStep) * LOC.saveStep))} este mes. ¿Dónde los pones?`,
       a: { t: 'En la cuenta de ahorros. Ahí están seguros.', fb: 'Con inflación alrededor del 5%, la cuenta de ahorros pierde poder de compra cada año.', eff: 'Tu plata rinde menos que la inflación' },
       b: { t: 'En un fondo diversificado, a largo plazo.', apply: st => { st.r = CFG.rInv; },
            fb: 'Invertir tiene riesgo, pero diversificado y a largo plazo históricamente le ha ganado a la inflación.', eff: 'Tu plata empieza a trabajar (5% real ilustrativo)' } },
@@ -1447,14 +1484,14 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     $('#r-blind').innerHTML = wr < 1 ? `Tu punto ciego: <b>${names[worst].toUpperCase()}</b>. Acertaste ${total} de ${avail} decisiones.` : `Acertaste ${total} de ${avail} decisiones. Piloto con sistema.`;
     $('#sys-out').hidden = true; $('#go-system').hidden = false;
     $('#report-st').hidden = true;
-    const waText = `Hola ${OWNER_FIRST}, jugué VUELO 40. Mi NIF es ${fmtL(inp.nif)} al mes y mi resultado fue: ${o.title} (${o.status.toLowerCase()}). Quiero aprender el sistema para mejorar mi vuelo.`;
+    const waText = T(`Hola ${OWNER_FIRST}, ${MX ? 'te escribo desde México y ' : ''}jugué VUELO 40. Mi NIF es ${fmtL(inp.nif)} al mes y mi resultado fue: ${o.title} (${o.status.toLowerCase()}). Quiero aprender el sistema para mejorar mi vuelo.`);
     $('#cta-wa').href = `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(waText)}`;
     const bs = badgesOf(st);
     $('#r-badges-lbl').textContent = `Insignias · ${bs.length} de 10`;
     $('#r-badges').innerHTML = bs.length ? bs.map(b => `<span class="badge">${b}</span>`).join('') : '<span style="font-size:13px;color:var(--pass-mute)">Ninguna esta vez. Vuelve a volar y gánalas.</span>';
     const tok = ['r', cleanName((inp.name || '').split(' ')[0]) || 'Amigo', o.key, st.fiAge || 0, Math.min(100, RES.score.covPct), RES.score.total].join('_');
     const meTxt = o.key === 'land' ? `llegué a trabajo opcional a los ${st.fiAge}` : o.key === 'circle' ? `llegué a los 65 con el ${RES.score.covPct}% de mi meta` : 'me estrellé en deudas';
-    $('#go-duel').href = 'https://wa.me/?text=' + encodeURIComponent(`Te reto a VUELO 40 ✈️ Saqué ${RES.score.total}/100 en mi vuelo (${meTxt}). Juega con tu propia vida y comparamos: ${baseUrl()}#${tok}`);
+    $('#go-duel').href = 'https://wa.me/?text=' + encodeURIComponent(T(`Te reto a VUELO 40 ✈️ Saqué ${RES.score.total}/100 en mi vuelo (${meTxt}). Juega con tu propia vida y comparamos: ${baseUrl()}#${tok}`));
     $('#go-duel').textContent = 'Retar a un amigo'; $('#duel-res').hidden = true;
     $('#ev-from').textContent = (cleanName(inp.name).slice(0, 3) || 'TÚ').toUpperCase();
     $('#lt-name').textContent = (inp.name ? inp.name.split(' ')[0] + ', a los 65' : 'Tú, a los 65');
@@ -1521,7 +1558,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   // ---------- share image (1080x1920 boarding pass) ----------
   function wrapText(c, text, x, y, maxW, lh) {
-    const words = text.split(' '); let line = '', yy = y;
+    const words = T(text).split(' '); let line = '', yy = y;
     for (const w of words) { const t = line ? line + ' ' + w : w; if (c.measureText(t).width > maxW && line) { c.fillText(line, x, yy); line = w; yy += lh; } else line = t; }
     if (line) c.fillText(line, x, yy); return yy;
   }
@@ -1587,7 +1624,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   $('#go-share').addEventListener('click', async () => {
     const url = await makeShare();
     $('#share-img').src = url;
-    const msg = `Hice VUELO 40 y mi resultado fue: ${RES.o.title} (${RES.o.status.toLowerCase()}). ¿A dónde llega tu avión? ${CFG.shareUrl}`;
+    const msg = T(`Hice VUELO 40 y mi resultado fue: ${RES.o.title} (${RES.o.status.toLowerCase()}). ¿A dónde llega tu avión? ${CFG.shareUrl}`);
     $('#share-wa').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
     $('#share').hidden = false;
     track('V40_Share');
@@ -1664,7 +1701,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   function wrapLines(g, text, maxW) {
     const out = []; let line = '';
-    for (const w of String(text).split(' ')) { const t = line ? line + ' ' + w : w; if (g.measureText(t).width > maxW && line) { out.push(line); line = w; } else line = t; }
+    for (const w of T(String(text)).split(' ')) { const t = line ? line + ' ' + w : w; if (g.measureText(t).width > maxW && line) { out.push(line); line = w; } else line = t; }
     if (line) out.push(line); return out;
   }
   function para(g, text, x, y, w, font, color, lh) { g.font = font; g.fillStyle = color; const ls = wrapLines(g, text, w); ls.forEach((l, i) => g.fillText(l, x, y + i * lh)); return y + ls.length * lh; }
