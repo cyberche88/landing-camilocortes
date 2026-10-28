@@ -1,0 +1,2042 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08070F">
+<title>VOO 40 · Com que idade trabalhar vai ser opcional para você?</title>
+<meta name="description" content="Jogo grátis de 2 minutos: viva 40 anos de decisões de dinheiro, descubra com que idade trabalhar pode virar opcional para você e desafie seus amigos.">
+<link rel="canonical" href="https://camiloecortes.com/vuelo40/br">
+
+<!-- ===== Open Graph / redes ===== -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://camiloecortes.com/vuelo40/br">
+<meta property="og:title" content="VOO 40 · Com que idade trabalhar vai ser opcional para você?">
+<meta property="og:description" content="40 anos de decisões de dinheiro em 2 minutos. Jogue grátis, compare seu voo e desafie seus amigos.">
+<meta property="og:image" content="https://camiloecortes.com/vuelo40/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://camiloecortes.com/vuelo40/assets/og.jpg">
+
+<!-- ===== Anfitriones: el dominio decide nombre, WhatsApp, link al evento, pixel y GA4.
+     El mismo archivo corre en camiloecortes.com/vuelo40 y lauramcortes.com/vuelo40 (scripts/sync-vuelo40-laura.py) ===== -->
+<script>
+  window.V40_HOSTS = {
+    'camiloecortes.com': { owner: 'Camilo Cortés', waNumber: '573005367545', eventUrl: 'https://futureisnowevent.com/camilo-cortes?lang=pt&_l=1', pixel: '3559974890833540', ga: 'G-KLQXEPBHXZ', url: 'https://camiloecortes.com/vuelo40' },
+    'lauramcortes.com': { owner: 'Laura Cortés', waNumber: '573154112264', eventUrl: 'https://futureisnowevent.com/laura-cortes-y-santiago-carden?lang=pt&_l=1', pixel: '936449302360462', ga: 'G-RFW1JBY2TS', url: 'https://lauramcortes.com/vuelo40' }
+  };
+  window.V40_HOST = window.V40_HOSTS[location.hostname.replace(/^www\./, '')] || window.V40_HOSTS['camiloecortes.com'];
+</script>
+
+<!-- ===== Google Analytics 4 (el del anfitrión) ===== -->
+<script>
+  (function () { var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.V40_HOST.ga; document.head.appendChild(s); })();
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config',window.V40_HOST.ga);
+</script>
+
+<!-- ===== Meta Pixel (el del anfitrión) ===== -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init',window.V40_HOST.pixel);fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3559974890833540&ev=PageView&noscript=1"/></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one phone-width cockpit column. Four screens swap in place: puerta de embarque → check-in → vuelo → aterrizaje.
+   Single deliberate night-sky world (dark only), NOW brand violet→teal as the one bold accent. */
+:root{
+  --night:#08070F;
+  --panel:#12101C;
+  --panel-2:#1A1727;
+  --line:#2A2640;
+  --ink:#F4F2FB;
+  --mute:#9891B3;
+  --violet:#8F63FF;
+  --teal:#2FE6C6;
+  --amber:#FFC24B;
+  --red:#FF5577;
+  --pass-ink:#14111F;
+  --pass-mute:#6E6886;
+  --pass-bg:#F4F2FB;
+  --pass-line:#D6D2E6;
+  --glow-v:rgba(143,99,255,.35);
+  --glow-t:rgba(47,230,198,.16);
+  --veil:rgba(8,7,15,.92);
+  --grad:linear-gradient(90deg,var(--violet),var(--teal));
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;
+  background:
+    radial-gradient(520px 380px at 90% -8%, var(--glow-v), transparent 62%),
+    radial-gradient(520px 420px at -12% 108%, var(--glow-t), transparent 60%),
+    var(--night);
+  background-attachment:fixed;
+  color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+#app{
+  box-sizing:border-box;min-height:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:18px 28px;
+}
+.screen{flex:1;display:flex;flex-direction:column;gap:18px;position:relative}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+
+/* top bar */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mark{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-weight:700;font-size:13px;letter-spacing:.14em}
+.mark svg{width:18px;height:18px;flex:none}
+
+/* departure board */
+.board{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;font-family:var(--f-mono);font-size:clamp(10px,2.9vw,12px)}
+.board-head,.board-row{display:grid;grid-template-columns:4.2em 1fr auto;gap:8px;align-items:center}
+.board-head{color:var(--mute);font-size:.85em;letter-spacing:.16em;padding-bottom:8px;border-bottom:1px dashed var(--line);margin-bottom:4px}
+.board-row{padding:6px 0;font-weight:700;letter-spacing:.02em;white-space:nowrap;min-width:0}
+.board-row > span{overflow:hidden;min-width:0}
+@media (max-width:390px){.board{padding:12px 10px;font-size:10.5px}.board-head,.board-row{grid-template-columns:3.6em 1fr auto;gap:6px}.board-row{letter-spacing:0}}
+.ch{display:inline-block;min-width:.66em;text-align:center;background:var(--panel-2);border-radius:2px;margin-right:1px;animation:flip .55s both;transform-origin:50% 50%}
+.st-amber{color:var(--amber)} .st-red{color:var(--red)} .st-mute{color:var(--mute)}
+.blink{animation:blink 1.1s steps(2,start) infinite}
+@keyframes flip{0%{transform:rotateX(90deg);opacity:.2}60%{transform:rotateX(-12deg);opacity:1}100%{transform:rotateX(0)}}
+@keyframes blink{to{visibility:hidden}}
+
+.hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(27px,7.6vw,38px);line-height:1.08;letter-spacing:-.01em}
+.hero p{color:var(--mute);font-size:17px;max-width:34ch}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.meta span::before{content:"● ";color:var(--teal)}
+
+/* buttons */
+.btn{appearance:none;box-sizing:border-box;border:0;border-radius:999px;cursor:pointer;width:100%;display:inline-flex;text-align:center;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:.01em;padding:17px 22px;color:var(--night);background:var(--grad);
+  box-shadow:0 12px 34px -12px var(--glow-v);transition:transform .15s ease}
+.btn:active{transform:scale(.98)}
+.btn svg{width:18px;height:18px}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none;font-family:var(--f-body);font-weight:600;font-size:15px;padding:14px 18px}
+.btn:focus-visible,.opt:focus-visible,.chip input:focus-visible + span,input:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+a.btn{text-decoration:none}
+.spacer{flex:1}
+
+/* check-in */
+.ticket{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:18px}
+.ticket h2{font-family:var(--f-display);font-size:22px;font-weight:700}
+.field{display:flex;flex-direction:column;gap:8px}
+.field-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.field label,.field .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.field output{font-family:var(--f-mono);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.field .hint{font-size:13px;color:var(--mute)}
+input[type=text]{width:100%;box-sizing:border-box;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--ink);font:500 16px var(--f-body)}
+input[type=text]::placeholder{color:var(--mute)}
+input[type=range]{width:100%;accent-color:var(--teal);height:28px}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:block;height:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:14px;font-weight:600;background:var(--panel-2)}
+.field .chip span{font-family:var(--f-body);letter-spacing:0;text-transform:none;color:var(--ink)}
+.chip span small{display:block;letter-spacing:.04em;font-family:var(--f-mono);font-weight:500;font-size:11px;color:var(--mute);margin-top:2px}
+.chip input:checked + span{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
+.fuel{border-top:1px dashed var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.fuel b{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,7.2vw,32px);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.fuel p{color:var(--mute);font-size:14px}
+
+/* flight */
+.hud-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-right:52px} /* room for the fixed sound button */
+.route-line{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
+.route-line b{color:var(--ink)}
+.age-big{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;font-variant-numeric:tabular-nums;text-align:right}
+.age-big small{display:block;font-family:var(--f-mono);font-weight:500;font-size:10px;letter-spacing:.16em;color:var(--mute);margin-bottom:4px}
+.sky{position:relative;flex:1;min-height:180px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.sky canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.inst > div{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 8px 7px;min-width:0;transition:border-color .3s}
+.inst small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inst b{display:block;font-family:var(--f-mono);font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap;margin-top:2px}
+.inst .d{display:block;height:13px;font-family:var(--f-mono);font-size:10px;font-weight:700;white-space:nowrap;opacity:0;transition:opacity .25s}
+.inst .d.show{opacity:1}
+.inst > div.f-good{animation:fgood 1.6s ease-out}
+.inst > div.f-bad{animation:fbad 1.6s ease-out}
+@keyframes fgood{0%,30%{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal) inset}100%{border-color:var(--line);box-shadow:none}}
+@keyframes fbad{0%,30%{border-color:var(--red);box-shadow:0 0 0 2px var(--red) inset}100%{border-color:var(--line);box-shadow:none}}
+#s-flight{gap:12px}
+.neg{color:var(--red)} .pos{color:var(--teal)}
+.pillars{display:flex;gap:6px}
+.pill{flex:1;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:7px 4px;border-radius:999px;border:1px solid var(--line);color:var(--mute);white-space:nowrap}
+.pill i{font-style:normal;color:var(--teal);margin-left:4px}
+
+/* decision card */
+.card{position:relative;z-index:5;background:var(--panel-2);border:1px solid var(--line);border-radius:22px;padding:20px;
+  display:flex;flex-direction:column;gap:14px;animation:rise .32s cubic-bezier(.2,.8,.2,1);touch-action:pan-y;will-change:transform}
+#s-flight.deciding .pillars{display:none}
+.card.shock{border-color:var(--red)}
+.kick{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);display:flex;justify-content:space-between;gap:8px}
+.card.shock .kick{color:var(--red)}
+.q{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.25}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{appearance:none;cursor:pointer;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:14px;padding:13px 14px;
+  font:500 15px/1.35 var(--f-body);display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+.opt:hover{border-color:var(--violet)}
+.opt .ar{font-family:var(--f-mono);color:var(--teal);font-weight:700;flex:none}
+.swipe-hint{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-align:center}
+.verdict{align-self:flex-start;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border-radius:999px;color:var(--night)}
+.v-good{background:var(--teal)} .v-bad{background:var(--amber)} .v-shock{background:var(--red)}
+.fb{font-size:16px}
+.eff{font-family:var(--f-mono);font-size:13px;color:var(--mute)}
+@keyframes rise{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+
+/* landing */
+.pass{background:var(--pass-bg);color:var(--pass-ink);border-radius:20px;overflow:hidden;position:relative;animation:rise .5s cubic-bezier(.2,.8,.2,1)}
+.pass-head{background:var(--grad);color:var(--night);padding:13px 18px;display:flex;justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.pass-body{padding:18px;display:flex;flex-direction:column;gap:16px}
+.route{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:8px}
+.route .code{font-family:var(--f-display);font-weight:800;font-size:34px;line-height:1}
+.route .city{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pass-mute);margin-top:4px}
+.route .to{text-align:right}
+.route svg{width:26px;height:26px;margin-bottom:14px;color:var(--pass-mute)}
+.pass-name{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+.pass-name b{color:var(--pass-ink);font-size:14px;display:block;letter-spacing:.06em;margin-top:2px}
+.pass-title{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.12}
+.pass-sub{font-size:15px;color:var(--pass-ink)}
+.status{align-self:flex-start;font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.16em;padding:6px 10px;border-radius:6px;color:var(--pass-ink)}
+.s-land{background:var(--teal)} .s-circle{background:var(--amber)} .s-crash{background:var(--red)}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
+.kv small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+.kv b{font-family:var(--f-mono);font-size:15px;font-variant-numeric:tabular-nums}
+.perf{position:relative;height:1px;border-top:2px dashed var(--pass-line);margin:0 -18px}
+.perf::before,.perf::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--night)}
+.perf::before{left:-11px} .perf::after{right:-11px}
+.pdots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pdots div{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--pass-mute)}
+.pdots span{display:flex;gap:4px;margin-top:5px}
+.pdots i{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--pass-ink);box-sizing:border-box}
+.pdots i.on{background:var(--pass-ink)}
+.blind{font-size:14px}
+.blind b{font-family:var(--f-mono);letter-spacing:.06em}
+.barcode{height:44px;background:repeating-linear-gradient(90deg,var(--pass-ink) 0 2px,transparent 2px 4px,var(--pass-ink) 4px 5px,transparent 5px 8px,var(--pass-ink) 8px 11px,transparent 11px 12px,var(--pass-ink) 12px 13px,transparent 13px 17px)}
+.section{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.section h3{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.2}
+.section p{color:var(--mute);font-size:15px}
+.section p b{color:var(--ink)}
+.chart-wrap{position:relative;height:220px}
+.chart-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--mute)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.event{border-color:var(--violet);background:linear-gradient(180deg,var(--panel-2),var(--panel))}
+.event-date{font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--teal)}
+.pillar-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.pillar-list li{font-size:15px;color:var(--mute)}
+.pillar-list b{color:var(--ink);font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-right:6px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.legal{font-size:12px;color:var(--mute);line-height:1.5}
+
+/* share overlay */
+.overlay{position:fixed;inset:0;z-index:20;background:var(--veil);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.overlay img{max-height:62vh;max-width:100%;border-radius:16px;box-shadow:0 20px 60px -10px var(--glow-v)}
+.overlay p{color:var(--mute);font-size:14px;text-align:center;max-width:36ch}
+.overlay .row2{width:100%;max-width:420px}
+
+/* intro (full-bleed cinematic) */
+.intro{position:fixed;inset:0;z-index:40;background:#000;overflow:hidden;transition:opacity .8s ease}
+.intro.out{opacity:0;pointer-events:none}
+.intro video,#bgv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.iv{opacity:0;transition:opacity 1s ease;transform:scale(1.04)}
+.iv.pre{opacity:.55;filter:blur(2px)}
+.iv.on{opacity:1;filter:none;animation:kb 7s linear forwards}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.13)}}
+.intro-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,4,11,.62) 0%,rgba(5,4,11,.06) 30%,rgba(5,4,11,.22) 60%,rgba(5,4,11,.94) 100%)}
+.intro-ui{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;box-sizing:border-box;max-width:480px;margin:0 auto;
+  padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.intro-start{display:flex;flex-direction:column;gap:14px}
+.intro-start h1{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,8.4vw,42px);line-height:1.05}
+.intro-start p{color:#DAD6EC;font-size:16px}
+.intro-hp{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.intro-hp svg{width:22px;height:22px;flex:none}
+.duel-tag{align-self:flex-start;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 11px;border-radius:999px;background:var(--amber);color:var(--night)}
+.intro-cap{min-height:130px;display:flex;flex-direction:column;gap:10px}
+.intro-cap .ey{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);opacity:0;transform:translateY(10px);transition:opacity .8s ease,transform .8s ease}
+.intro-cap .big{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,10vw,52px);line-height:1.02;opacity:0;transform:translateY(16px);transition:opacity .9s ease .15s,transform .9s cubic-bezier(.2,.8,.2,1) .15s;text-wrap:balance}
+.intro-cap.show .ey,.intro-cap.show .big{opacity:1;transform:none}
+.intro-skip{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:max(14px,env(safe-area-inset-left,0px));z-index:2;appearance:none;border:1px solid rgba(255,255,255,.3);background:rgba(8,7,15,.45);color:#fff;
+  font:600 13px var(--f-body);padding:9px 14px;border-radius:999px;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.intro-skip:focus-visible,.mute:focus-visible,.dec:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+#bgv{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
+#bgv.on{opacity:1}
+#bgv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,15,.8) 0%,rgba(8,7,15,.52) 36%,rgba(8,7,15,.84) 68%,rgba(8,7,15,.97) 100%)}
+.mute{position:fixed;z-index:45;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(18,16,28,.82);color:var(--ink);display:grid;place-items:center;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:0}
+.mute svg{width:18px;height:18px}
+.topbar{padding-right:48px}
+.duel-banner{background:linear-gradient(90deg,rgba(255,194,75,.16),rgba(255,194,75,.05));border:1px solid rgba(255,194,75,.5);border-radius:14px;padding:12px 14px;font-size:15px}
+.duel-banner b{color:var(--amber)}
+.duel-lock{color:var(--amber);font-size:14px}
+/* letter from your 65-year-old self */
+.letter{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.letter-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+.letter-av{width:36px;height:36px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font:800 12px var(--f-display);color:var(--night);flex:none}
+.letter-head b{display:block;font-size:15px}
+.letter-head small{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;color:var(--teal);text-transform:uppercase}
+.letter-body{display:flex;flex-direction:column;gap:8px;padding:14px;min-height:64px}
+.bub{align-self:flex-start;max-width:88%;background:var(--panel-2);border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:10px 12px;font-size:15px;line-height:1.42;animation:rise .35s ease-out}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:var(--panel-2);border-radius:4px 16px 16px 16px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--mute);animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.letter-note{font-size:11px;color:var(--mute);padding:0 14px 12px}
+/* badges */
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.badge{font-family:var(--f-mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;background:var(--pass-ink);color:var(--pass-bg);display:inline-flex;align-items:center;gap:6px}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.badges-lbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+/* duel result */
+.duel{border-color:rgba(255,194,75,.55)}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;text-align:center}
+.vs .who{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.vs .res{font-family:var(--f-display);font-weight:800;font-size:21px;margin-top:4px;line-height:1.1}
+.vs .sub{font-size:13px;color:var(--mute);margin-top:2px}
+.vs .x{font-family:var(--f-display);font-weight:800;color:var(--amber)}
+.verdict-big{font-family:var(--f-display);font-weight:800;font-size:20px;text-align:center;text-wrap:balance}
+/* rewind */
+.decs{display:flex;flex-direction:column;gap:8px}
+.dec{appearance:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;color:var(--ink);font:500 14px var(--f-body)}
+.dec .age{font-family:var(--f-mono);font-size:11px;color:var(--mute)}
+.dec .mk{font-family:var(--f-mono);font-weight:700;font-size:11px;letter-spacing:.06em}
+.dec.good .mk{color:var(--teal)} .dec.bad .mk{color:var(--amber)}
+.dec[aria-pressed="true"]{border-color:var(--violet);box-shadow:inset 0 0 0 1px var(--violet)}
+.rw-out{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px;color:var(--mute);animation:rise .3s ease-out}
+.rw-out b{color:var(--ink)}
+/* event boarding pass */
+.evpass{background:linear-gradient(160deg,#1C1532,#0E0C18 62%);color:var(--ink);border:1px solid rgba(143,99,255,.5)}
+.evpass .route .city,.evpass .kv small,.evpass .badges-lbl{color:var(--mute)}
+.evpass .route svg{color:var(--mute)}
+.evpass .perf{border-top-color:rgba(255,255,255,.16)}
+.evpass .pass-sub{color:var(--mute)}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;margin-top:6px}
+.countdown div{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:8px 4px}
+.countdown b{display:block;font-family:var(--f-display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums}
+.countdown small{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
+.live{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--teal);text-align:center}
+
+@media (max-height:720px){
+  #app{padding-block:10px 14px}
+  .sky{min-height:150px}
+  .card{padding:16px;gap:10px}
+  .q{font-size:17px}
+  .opt{padding:11px 12px;font-size:14px}
+  .age-big{font-size:32px}
+}
+/* flight score + report */
+.score-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.score{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pass-mute)}
+.score b{font-family:var(--f-display);font-size:22px;letter-spacing:0;color:var(--pass-ink);margin-left:6px}
+.duel-note{font-size:12px;color:var(--mute);text-align:center}
+.report{border-color:rgba(47,230,198,.45)}
+.report ul{margin:0;padding-left:18px;color:var(--mute);font-size:14px;display:grid;gap:4px}
+.report-st{font-size:13px;color:var(--mute);text-align:center}
+.btn[disabled]{opacity:.6;cursor:progress}
+.side-wait{display:none}
+/* mobile keeps one column: layout wrappers vanish */
+.gate-grid,.gate-side,.flight-side,.land-a,.land-b{display:contents}
+
+/* desktop: use the width instead of a phone column floating in the middle */
+@media (min-width:900px){
+  #app{max-width:1120px;padding:30px 48px 44px}
+  .topbar{padding-right:60px}
+  .intro-ui{max-width:1120px;padding:56px 64px 64px}
+  .intro-start{max-width:640px}
+  .intro-start h1{font-size:68px}
+  .intro-start p{font-size:19px;max-width:44ch}
+  .intro-start .btn{max-width:400px}
+  .intro-cap .big{font-size:84px}
+  .intro-cap .ey{font-size:14px}
+  .btn{font-size:16px}
+
+  /* gate: hero left, departures board right */
+  .gate-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:26px 72px;align-items:center;margin:auto 0}
+  .gate-side{display:flex;flex-direction:column;gap:16px;grid-column:2;grid-row:1 / span 3}
+  .gate-grid .hero{grid-column:1;grid-row:1}
+  .gate-grid .meta{grid-column:1;grid-row:2}
+  .gate-grid .spacer{display:none}
+  #go-checkin{grid-column:1;grid-row:3;max-width:380px}
+  .hero h1{font-size:56px}
+  .hero p{font-size:19px;max-width:40ch}
+  .meta{font-size:12px}
+  .board{font-size:14px;padding:20px 22px}
+
+  /* check-in: two-column ticket */
+  #s-checkin{max-width:980px;width:100%;margin:0 auto}
+  .ticket{display:grid;grid-template-columns:1fr 1fr;gap:24px 44px;padding:32px}
+  .ticket h2{grid-column:1 / -1;grid-row:1;font-size:28px}
+  #duel-lock{grid-column:1 / -1;grid-row:2}
+  #fld-name{grid-column:1;grid-row:3}
+  #fld-age{grid-column:1;grid-row:4}
+  #fld-income{grid-column:1;grid-row:5}
+  #fld-s{grid-column:1;grid-row:6}
+  #fld-nif{grid-column:2;grid-row:3 / span 2;align-self:start}
+  .ticket .fuel{grid-column:2;grid-row:5 / span 2;align-self:end;border-top:0;padding:22px;background:var(--panel-2);border-radius:14px}
+  .fuel b{font-size:40px}
+  #go-fly{max-width:380px;align-self:flex-end}
+
+  /* flight: sky left, decisions right */
+  #s-flight{display:grid;grid-template-columns:minmax(0,1fr) 400px;grid-template-rows:auto auto minmax(0,1fr);gap:14px 20px;height:calc(100vh - 74px);min-height:600px}
+  .hud-top,.inst{grid-column:1 / -1}
+  .sky{grid-column:1;grid-row:3;min-height:0}
+  .flight-side{display:flex;flex-direction:column;gap:12px;grid-column:2;grid-row:3;min-height:0;overflow:auto}
+  #s-flight .pillars,#s-flight.deciding .pillars{display:flex}
+  .side-wait{display:block;margin:auto 0;text-align:center;color:var(--mute);font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:24px;border:1px dashed var(--line);border-radius:18px}
+  #s-flight.deciding .side-wait{display:none}
+  .age-big{font-size:54px}
+  .inst > div{padding:12px 14px}
+  .inst small{font-size:10px}
+  .inst b{font-size:20px}
+  .pill{font-size:11px;padding:9px 6px}
+  .card{animation:none}
+
+  /* landing: two columns */
+  #s-land{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px 32px;align-items:start}
+  #s-land > .topbar{grid-column:1 / -1}
+  .land-a,.land-b{display:flex;flex-direction:column;gap:18px;min-width:0}
+  .overlay img{max-height:72vh}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ch,.card,.pass,.bub,.rw-out{animation:none}
+  .iv.on{animation:none}
+  .blink{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="bgv" aria-hidden="true"><video id="bg-video" muted playsinline loop preload="metadata" poster="/vuelo40/assets/i3_lounge_poster.jpg" src="/vuelo40/assets/i3_lounge.mp4"></video></div>
+
+<div class="intro" id="intro">
+  <video id="iv1" class="iv pre" muted playsinline preload="auto" poster="/vuelo40/assets/i1_exterior_poster.jpg" src="/vuelo40/assets/i1_exterior.mp4"></video>
+  <video id="iv2" class="iv" muted playsinline preload="auto" poster="/vuelo40/assets/i2_hall_poster.jpg" src="/vuelo40/assets/i2_hall.mp4"></video>
+  <div class="intro-shade"></div>
+  <button class="intro-skip" id="intro-skip" type="button">Pular intro</button>
+  <div class="intro-ui">
+    <div class="intro-cap" id="intro-cap" hidden aria-live="polite"><span class="ey" id="cap-ey"></span><span class="big" id="cap-big"></span></div>
+    <div class="intro-start" id="intro-start">
+      <span class="duel-tag" id="duel-tag" hidden>Você foi desafiado</span>
+      <div class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>VOO 40</div>
+      <h1 id="intro-title">Seu voo vai decolar.</h1>
+      <p id="intro-sub">40 anos de decisões de dinheiro em 2 minutos. Com que idade trabalhar pode virar opcional para você?</p>
+      <div class="intro-hp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2.5" y="14" width="4.5" height="7" rx="1.5"/><rect x="17" y="14" width="4.5" height="7" rx="1.5"/></svg>Coloque fones de ouvido e aumente o volume</div>
+      <button class="btn" id="intro-enter" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg><span id="intro-enter-label">Entrar no aeroporto</span></button>
+    </div>
+  </div>
+</div>
+
+<button class="mute" id="mute" type="button" aria-label="Silenciar"></button>
+
+<div id="app">
+
+  <!-- 1 · PUERTA DE EMBARQUE -->
+  <section class="screen" id="s-gate">
+    <div class="topbar">
+      <div class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>VOO 40</div>
+      <div class="eyebrow" id="by-owner">por Camilo Cortés</div>
+    </div>
+
+    <div class="gate-grid">
+    <div class="gate-side">
+    <div class="board" aria-label="Painel de partidas">
+      <div class="board-head"><span>VOO</span><span>DESTINO</span><span>STATUS</span></div>
+      <div class="board-row" id="row1"></div>
+      <div class="board-row" id="row2"></div>
+      <div class="board-row" id="row3"></div>
+    </div>
+    <div class="duel-banner" id="duel-banner" hidden></div>
+    </div>
+
+    <div class="hero" style="display:flex;flex-direction:column;gap:14px">
+      <h1>Pelas suas mãos vão passar mais de <span class="grad">R$ 1,5 milhão</span>.</h1>
+      <p>Quanto chega com você ao destino? Viva 40 anos de decisões de dinheiro em 2 minutos e descubra com que idade trabalhar pode virar opcional para você.</p>
+    </div>
+    <div class="meta"><span>Grátis</span><span>Sem cadastro</span><span>2 minutos</span></div>
+    <div class="spacer"></div>
+    <button class="btn" id="go-checkin" type="button">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>
+      Embarcar
+    </button>
+    </div>
+  </section>
+
+  <!-- 2 · CHECK-IN -->
+  <section class="screen" id="s-checkin" hidden>
+    <div class="topbar">
+      <div class="mark">CHECK-IN</div>
+      <div class="eyebrow">V40 · SAS → TOP</div>
+    </div>
+    <form class="ticket" id="checkin-form" novalidate>
+      <h2>Seu cartão de embarque</h2>
+      <p class="duel-lock" id="duel-lock" hidden></p>
+      <div class="field" id="fld-name">
+        <label for="f-name">Nome para o seu cartão (opcional)</label>
+        <input type="text" id="f-name" maxlength="22" autocomplete="given-name" placeholder="Ex.: João">
+      </div>
+      <div class="field" id="fld-age">
+        <div class="field-top"><label for="f-age">Sua idade hoje</label><output id="o-age" for="f-age">28 anos</output></div>
+        <input type="range" id="f-age" min="18" max="50" step="1" value="28">
+      </div>
+      <div class="field" id="fld-income">
+        <div class="field-top"><label for="f-income">Renda líquida por mês</label><output id="o-income" for="f-income">R$ 3.400</output></div>
+        <input type="range" id="f-income" min="1400000" max="15000000" step="100000" value="2600000">
+        <span class="hint">Referência: o rendimento médio do trabalho no Brasil é de R$ 3.738 por mês (IBGE, PNAD Contínua, 2º tri. 2026); líquido, cerca de R$ 3.400.</span>
+      </div>
+      <div class="field" id="fld-s" role="radiogroup" aria-labelledby="lbl-left">
+        <span class="lbl" id="lbl-left">Quanto sobra no fim do mês?</span>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="f-s" id="f-s1" value="-0.05"><span>Falta dinheiro<small>gasto mais do que ganho</small></span></label>
+          <label class="chip"><input type="radio" name="f-s" id="f-s2" value="0.02" checked><span>Quase nada<small>menos de 5%</small></span></label>
+          <label class="chip"><input type="radio" name="f-s" id="f-s3" value="0.10"><span>Um pouco<small>perto de 10%</small></span></label>
+          <label class="chip"><input type="radio" name="f-s" id="f-s4" value="0.20"><span>Bastante<small>20% ou mais</small></span></label>
+        </div>
+      </div>
+      <div class="field" id="fld-nif">
+        <div class="field-top"><label for="f-nif">Seu NIF · por mês</label><output id="o-nif" for="f-nif">R$ 3.400</output></div>
+        <input type="range" id="f-nif" min="1000000" max="40000000" step="100000" value="2600000">
+        <span class="hint" id="nif-hint">Com quanto por mês você viveria tranquilo sem trabalhar? Esse é o seu Número de Independência Financeira.</span>
+      </div>
+      <div class="fuel" aria-live="polite">
+        <span class="eyebrow">Combustível da sua vida profissional</span>
+        <b id="fuel-total">R$ 1.509.600</b>
+        <p id="fuel-note">É o que vai passar pelas suas mãos daqui até os 65. Agora vamos ver quanto chega com você.</p>
+      </div>
+    </form>
+    <button class="btn" id="go-fly" type="button">Decolar</button>
+  </section>
+
+  <!-- 3 · VUELO -->
+  <section class="screen" id="s-flight" hidden>
+    <div class="hud-top">
+      <div>
+        <div class="route-line">VOO <b>V40</b></div>
+        <div class="route-line">Salário a salário <b>→</b> Trabalho opcional</div>
+      </div>
+      <div class="age-big"><small>IDADE</small><span id="h-age">28</span></div>
+    </div>
+    <div class="inst" aria-live="polite">
+      <div id="c-nw"><small>Patrimônio</small><b id="h-nw">R$ 0</b><span class="d" id="d-nw"></span></div>
+      <div id="c-debt"><small>Dívida</small><b id="h-debt">R$ 0</b><span class="d" id="d-debt"></span></div>
+      <div id="c-fuel"><small>Sobra/mês</small><b id="h-fuel">R$ 0</b><span class="d" id="d-fuel"></span></div>
+      <div id="c-nif"><small>Meta</small><b id="h-nif">R$ 0</b><span class="d" id="d-nif"></span></div>
+    </div>
+    <div class="sky" id="sky"><canvas id="sky-canvas" aria-label="Trajetória do seu patrimônio" role="img"></canvas></div>
+    <div class="flight-side">
+    <div class="pillars" aria-label="Pilares">
+      <div class="pill" id="p-genera">Gere<i>0</i></div>
+      <div class="pill" id="p-protege">Proteja<i>0</i></div>
+      <div class="pill" id="p-crece">Faça crescer<i>0</i></div>
+    </div>
+    <p class="side-wait">Em voo · sua próxima decisão aparece aqui</p>
+    <div class="card" id="card" hidden></div>
+    </div>
+  </section>
+
+  <!-- 4 · ATERRIZAJE -->
+  <section class="screen" id="s-land" hidden>
+    <div class="topbar">
+      <div class="mark">POUSO</div>
+      <div class="eyebrow">V40 · 65 anos</div>
+    </div>
+
+    <div class="land-a">
+    <div class="letter" id="letter">
+      <div class="letter-head"><div class="letter-av">65</div><div><b id="lt-name">Você, aos 65</b><small>Mensagem do futuro</small></div></div>
+      <div class="letter-body" id="lt-body" aria-live="polite"></div>
+      <p class="letter-note">Mensagem ilustrativa do seu eu do futuro, escrita de acordo com as suas decisões na simulação.</p>
+    </div>
+
+    <article class="pass" id="pass">
+      <div class="pass-head"><span>Cartão de embarque</span><span>Voo 40</span></div>
+      <div class="pass-body">
+        <div class="route">
+          <div><div class="code">SAS</div><div class="city">Salário a salário</div></div>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>
+          <div class="to"><div class="code">TOP</div><div class="city">Trabalho opcional</div></div>
+        </div>
+        <div class="pass-name">Passageiro<b id="r-name">VOCÊ</b></div>
+        <div class="score-row"><span class="status" id="r-status">POUSOU</span><span class="score">Pontuação do voo<b id="r-score">0/100</b></span></div>
+        <div>
+          <div class="pass-title" id="r-title">Pouso no trabalho opcional</div>
+          <p class="pass-sub" id="r-sub"></p>
+        </div>
+        <div class="kv">
+          <div><small>Passou pelas suas mãos</small><b id="r-life">R$ 0</b></div>
+          <div><small>Aos 65 você tem</small><b id="r-nw">R$ 0</b></div>
+          <div><small>Seu NIF</small><b id="r-nif">R$ 0</b><small id="r-goal" style="margin-top:3px;letter-spacing:.04em;text-transform:none"></small></div>
+          <div><small>Hora de chegada</small><b id="r-eta">—</b></div>
+        </div>
+        <div class="perf" aria-hidden="true"></div>
+        <div class="pdots" id="r-pillars"></div>
+        <p class="blind" id="r-blind"></p>
+        <div><div class="badges-lbl" id="r-badges-lbl">Insígnias</div><div class="badges" id="r-badges"></div></div>
+        <div class="barcode" aria-hidden="true"></div>
+      </div>
+    </article>
+
+    <div class="section duel" id="duel-res" hidden>
+      <span class="eyebrow">Duelo</span>
+      <div class="vs">
+        <div><div class="who">Você</div><div class="res" id="vs-me"></div><div class="sub" id="vs-me-sub"></div></div>
+        <div class="x">VS</div>
+        <div><div class="who" id="vs-op-name"></div><div class="res" id="vs-op"></div><div class="sub" id="vs-op-sub"></div></div>
+      </div>
+      <div class="verdict-big" id="vs-verdict"></div>
+      <p class="duel-note">Cada um jogou com a própria vida. A pontuação é comparável mesmo com salários diferentes: mede seus acertos, o quão perto você chegou da sua própria meta e quantos anos antes a alcançou.</p>
+    </div>
+
+    <div class="row2">
+      <a class="btn" id="go-duel" href="#" target="_blank" rel="noopener">Desafiar um amigo</a>
+      <button class="btn btn-ghost" id="go-share" type="button">Compartilhar meu cartão</button>
+    </div>
+
+    <div class="section report" id="report">
+      <span class="eyebrow">Raio-X financeiro · PDF</span>
+      <h3>O relatório completo do seu voo</h3>
+      <ul>
+        <li>Resumo executivo e pontuação do voo</li>
+        <li>Seu ponto de partida e o custo de esperar</li>
+        <li>Impacto de cada decisão, pilar por pilar</li>
+        <li>500 cenários simulados: sua probabilidade de chegar</li>
+        <li>Plano de ação personalizado</li>
+      </ul>
+      <button class="btn" id="go-report" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></svg><span>Relatório do seu voo · Baixe aqui</span></button>
+      <p class="report-st" id="report-st" hidden></p>
+    </div>
+    </div>
+
+    <div class="land-b">
+
+    <article class="pass evpass" id="evpass">
+      <div class="pass-head"><span>Cartão de embarque · Evento</span><span>V40 → DXB</span></div>
+      <div class="pass-body">
+        <div class="route">
+          <div><div class="code" id="ev-from">VOC</div><div class="city">Passageiro</div></div>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 13.5l7-1.5L14 3.5h2.2l-1.8 8.3 5.3-1.1c1-.2 2 .5 2 1.5s-1 1.6-2 1.4l-5.3-1.1 1.8 8.3H14l-4.5-8.5-7-1.5z" fill="currentColor"/></svg>
+          <div class="to"><div class="code">DXB</div><div class="city">Ao vivo de Dubai</div></div>
+        </div>
+        <div>
+          <div class="pass-title">The Future Is NOW</div>
+          <p class="pass-sub">Lançamento mundial, online e grátis, com tradução para o português. Aprenda o sistema completo: Gere, Proteja e Faça crescer.</p>
+        </div>
+        <div class="kv">
+          <div><small>Data</small><b>14–15 NOV</b></div>
+          <div><small>Embarque</small><b>11H BRASÍLIA</b></div>
+          <div><small>Portão</small><b>ONLINE</b></div>
+          <div><small>Tarifa</small><b>GRÁTIS</b></div>
+        </div>
+        <div class="perf" aria-hidden="true"></div>
+        <div><div class="badges-lbl">Embarque em</div>
+          <div class="countdown" id="cd"><div><b id="cd-d">--</b><small>dias</small></div><div><b id="cd-h">--</b><small>horas</small></div><div><b id="cd-m">--</b><small>min</small></div><div><b id="cd-s">--</b><small>seg</small></div></div>
+          <div class="live" id="cd-live" hidden></div>
+        </div>
+        <a class="btn" id="cta-register" href="https://futureisnowevent.com/camilo-cortes?lang=pt&amp;_l=1" target="_blank" rel="noopener">Garantir minha vaga grátis</a>
+        <a class="btn btn-ghost" id="cta-cal" href="#" target="_blank" rel="noopener">Adicionar à minha agenda</a>
+        <a class="btn btn-ghost" id="cta-wa" href="#" target="_blank" rel="noopener">Contar meu resultado para o Camilo no WhatsApp</a>
+      </div>
+    </article>
+
+    <div class="section" id="rewind">
+      <span class="eyebrow">Corrija seu voo</span>
+      <h3>Mude uma decisão e voe de novo</h3>
+      <p>Mesma vida, mesmas turbulências. Toque em uma decisão para mudá-la e veja aonde você teria chegado.</p>
+      <div class="decs" id="decs"></div>
+      <div class="rw-out" id="rw-out" hidden></div>
+    </div>
+
+    <div class="section">
+      <span class="eyebrow">Replay</span>
+      <h3>A mesma vida, três voos</h3>
+      <p>Mesmo salário, mesma idade, mesmas turbulências. Só mudam as decisões: sem sistema, as suas e com sistema.</p>
+      <button class="btn" id="go-system" type="button">Ver os três voos</button>
+      <div id="sys-out" hidden style="display:flex;flex-direction:column;gap:12px">
+        <div class="chart-wrap"><canvas id="cmp-canvas" role="img" aria-label="Comparação de patrimônio: seu voo contra o voo com sistema"></canvas></div>
+        <div class="legend"><span><i style="background:var(--red)"></i>Sem sistema</span><span><i style="background:var(--violet)"></i>Seu voo</span><span><i style="background:var(--teal)"></i>Com sistema</span></div>
+        <p id="sys-text"></p>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost" id="go-again" type="button">Voar de novo</button>
+
+    <p class="legal">Simulação educativa com premissas simplificadas, em reais de hoje: investimento diversificado com rentabilidade real ilustrativa de 5% ao ano, dinheiro parado em conta −2% real pela inflação, dívida de cartão ~35% real (conservador: o rotativo médio passa de 400% ao ano, segundo o Banco Central). Seu NIF (Número de Independência Financeira) é a renda mensal com a qual você viveria sem trabalhar; o patrimônio necessário é estimado em 28 vezes essa renda anual (retiradas de ~3,6% ao ano, mais conservador que a regra dos 4%). Não inclui aposentadoria do INSS. Não é recomendação de investimento nem promessa de resultados; investimentos podem perder valor.</p>
+    </div>
+  </section>
+</div>
+
+<div class="overlay" id="share" hidden>
+  <img id="share-img" alt="Seu cartão de embarque do Voo 40">
+  <p>Mantenha a imagem pressionada para salvá-la e poste nos seus stories.</p>
+  <div class="row2">
+    <a class="btn" id="share-wa" href="#" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+    <button class="btn btn-ghost" id="share-close" type="button">Fechar</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- country version: /vuelo40/mx → México (pesos MXN, aguinaldo, vocabulario y hora del centro de México) ----------
+  const MX = /^\/vuelo40\/mx\/?$/.test(location.pathname);
+  // /vuelo40/br is a separate file, translated at build time (scripts/build-vuelo40-br.py); here only numbers and currency
+  const BR = /^\/vuelo40\/br\/?/.test(location.pathname);
+  const LOC = BR ? {
+    code: 'br', nf: 'pt-BR', cur: 'R$ ', unit: 1 / 750, path: '/br', millionFrom: 1e6, thousandFrom: 1e4, mL: n => Math.abs(n) < 2e6 ? ' milhão' : ' milhões', mS: ' mi',
+    rDebt: 0.35, bonus: 1 / 24,
+    income: { min: 1500, max: 30000, step: 100, val: 3400 }, nif: { min: 1000, max: 60000, step: 100 },
+    roundU: n => Math.max(1, Math.round(n / 1000)) * 1000, minSave: 100, saveStep: 50, rep: []
+  } : MX ? {
+    code: 'mx', nf: 'es-MX', unit: 1 / 220, path: '/mx', millionFrom: 1e6, rDebt: 0.35, bonus: 1 / 48,
+    income: { min: 5000, max: 100000, step: 500, val: 17500 }, nif: { min: 5000, max: 200000, step: 500 },
+    roundU: n => Math.max(1, Math.round(n / 1000)) * 1000, minSave: 1000, saveStep: 500,
+    hero: 'más de <span class="grad">7 millones</span> de pesos',
+    ref: 'Referencia: el salario promedio de los trabajadores afiliados al IMSS ronda los $20,200 al mes antes de impuestos (STPS, julio 2026); neto, unos $17,700.',
+    // ordered: specific phrases first, generic words last
+    rep: [['Chegou o 13º salário.', 'Llega el aguinaldo de diciembre.'], ['Sin plan, la prima se va en una semana.', 'Sin plan, el aguinaldo se va en una semana.'],
+      ['Media prima al año, invertida durante décadas', 'Medio aguinaldo al año, invertido durante décadas'], ['+ meio 13º investido todo ano', '+ medio aguinaldo invertido cada año'],
+      ['13º: gasto', 'Aguinaldo: gastado'], ['Media prima cada diciembre', 'Medio aguinaldo cada diciembre'], ['Invertiste media prima cada diciembre', 'Invertiste medio aguinaldo cada diciembre'],
+      ['Cada prima de diciembre', 'Cada aguinaldo'], ['cada prima', 'cada aguinaldo'], ['13º salário', 'Aguinaldo'], ['PRIMA DE DICIEMBRE', 'AGUINALDO'], ['13º com propósito', 'Aguinaldo con propósito'], ['PRIMA CON PROPÓSITO', 'AGUINALDO CON PROPÓSITO'], ['Prima', 'Aguinaldo'],
+      ['una deuda cercana al 28% EA puede duplicarse en unos 3 años', 'con tasas de tarjeta cercanas al 40% anual, la deuda puede duplicarse en unos 2 años'], ['28% EA', '40% anual'],
+      ['inflación alrededor del 5%', 'inflación alrededor del 4%'], ['deuda de tarjeta ~22% real', 'deuda de tarjeta ~35% real'],
+      ['centrales de riesgo', 'el Buró de Crédito'], ['vigilada por la Superintendencia Financiera', 'autorizada por la CNBV (puedes consultarlo en la CONDUSEF)'],
+      ['la cuota del carro', 'la mensualidad del carro'], ['9:00 A.M. COL', '8:00 A.M. CDMX'], ['9:00 a.m. (hora Colombia)', '8:00 a.m. (hora del centro de México)'], ['(hora Colombia)', '(hora del centro de México)'],
+      ['tu plata quieta', 'tu dinero quieto'], ['Tu plata quieta', 'Tu dinero quieto'], ['la plata quieta', 'el dinero quieto'], ['"plata garantizada"', '"dinero garantizado"'], ['La plata que', 'El dinero que'],
+      ['tu plata', 'tu dinero'], ['Tu plata', 'Tu dinero'], ['la plata', 'el dinero'], ['Plata', 'Dinero'], ['PLATA', 'DINERO'], ['plata', 'dinero']]
+  } : { code: 'co', nf: 'es-CO', unit: 1, path: '', millionFrom: 1e5, rDebt: 0.22, bonus: 1 / 24, roundU: n => Math.max(1, Math.round(n / 1e6)) * 1e6, minSave: 200000, saveStep: 1e5, rep: [] };
+  const T = s => { if (!LOC.rep.length || typeof s !== 'string') return s; for (const [a, b] of LOC.rep) if (s.includes(a)) s = s.split(a).join(b); return s; };
+  LOC.cur = LOC.cur || '$';
+  if (BR) {
+    const setR = (id, r, v) => { const e = document.getElementById(id); e.min = r.min; e.max = r.max; e.step = r.step; e.value = v; };
+    setR('f-income', LOC.income, LOC.income.val); setR('f-nif', LOC.nif, LOC.income.val);
+  }
+  if (MX) {
+    // every text that reaches the screen goes through T: canvas text (sky, share card, PDF) and the DOM
+    const CP = CanvasRenderingContext2D.prototype, ft = CP.fillText, mt = CP.measureText;
+    CP.fillText = function (t, ...a) { return ft.call(this, T(String(t)), ...a); };
+    CP.measureText = function (t) { return mt.call(this, T(String(t))); };
+    const fix = root => { const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { const v = T(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; } };
+    fix(document.body);
+    new MutationObserver(ms => ms.forEach(m => { if (m.type === 'characterData') { const v = T(m.target.nodeValue); if (v !== m.target.nodeValue) m.target.nodeValue = v; } else m.addedNodes.forEach(n => n.nodeType === 3 ? (n.nodeValue = T(n.nodeValue)) : n.nodeType === 1 && fix(n)); }))
+      .observe(document.body, { subtree: true, childList: true, characterData: true });
+    document.querySelector('.hero h1').innerHTML = 'Por tus manos van a pasar ' + LOC.hero + '.';
+    document.querySelector('#fld-income .hint').textContent = LOC.ref;
+    const setR = (id, r, v) => { const e = document.getElementById(id); e.min = r.min; e.max = r.max; e.step = r.step; e.value = v; };
+    setR('f-income', LOC.income, LOC.income.val); setR('f-nif', LOC.nif, LOC.income.val);
+  }
+
+  const CFG = {
+    retireAge: 65,
+    rCash: -0.02, rInv: 0.05, rDebt: LOC.rDebt,
+    gBase: 0.005, gSkill: 0.015, sideShare: 0.15,
+    fiMult: 28,
+    yearMs: reduce ? 40 : 230,
+    eventUrl: window.V40_HOST.eventUrl,
+    waNumber: window.V40_HOST.waNumber,
+    shareUrl: window.V40_HOST.url + LOC.path,
+    owner: window.V40_HOST.owner
+  };
+  const OWNER_FIRST = CFG.owner.split(' ')[0];
+  document.querySelector('#by-owner').textContent = 'por ' + CFG.owner;
+  document.querySelector('#cta-wa').textContent = `Contar meu resultado para ${OWNER_FIRST} no WhatsApp`;
+  document.querySelector('#cta-register').href = CFG.eventUrl;
+
+  // ---------- tracking hook (Meta Pixel when deployed) ----------
+  function track(name, data) {
+    data = { ...(data || {}), loc: LOC.code };
+    try { if (window.fbq) window.fbq('trackCustom', name, data || {}); } catch (e) {}
+    try { if (window.gtag) window.gtag('event', name, data); } catch (e) {}
+  }
+
+  // ---------- formatting ----------
+  const nf = new Intl.NumberFormat(LOC.nf, { maximumFractionDigits: 0 });
+  const fmtFull = n => (n < 0 ? '−' : '') + LOC.cur + nf.format(Math.abs(Math.round(n)));
+  // short form for instruments and charts ("$1.154 M"), long form for sentences ("$1.154 millones")
+  const fmtNum = (n, unit) => {
+    const a = Math.abs(n), sign = n < 0 ? '−' : '';
+    if (a >= 1e7) return sign + LOC.cur + nf.format(Math.round(a / 1e6)) + unit;
+    if (a >= LOC.millionFrom) return sign + LOC.cur + (a / 1e6).toLocaleString(LOC.nf, { maximumFractionDigits: 1 }) + unit;
+    if (LOC.thousandFrom && a >= LOC.thousandFrom) return sign + LOC.cur + nf.format(Math.round(a / 1e3)) + ' mil';
+    return sign + LOC.cur + nf.format(Math.round(a));
+  };
+  const fmtM = n => fmtNum(n, LOC.mS || ' M');
+  const fmtL = n => fmtNum(n, LOC.mL ? LOC.mL(n) : ' millones');
+  const U = LOC.unit;                     // money thresholds below are written in Colombian pesos
+  const roundM = LOC.roundU;
+
+  // ---------- screens ----------
+  const screens = ['s-gate', 's-checkin', 's-flight', 's-land'];
+  const bgv = $('#bgv'), bgVideo = $('#bg-video');
+  const playV = v => { try { const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} };
+  function show(id) {
+    screens.forEach(s => { $('#' + s).hidden = s !== id; });
+    const lounge = id === 's-gate' || id === 's-checkin';
+    bgv.classList.toggle('on', lounge);
+    if (lounge) playV(bgVideo); else { try { bgVideo.pause(); } catch (e) {} }
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- audio: loaded clips + synthesized airport / flight sounds ----------
+  const AU = { ctx: null, master: null, buf: {}, muted: false, nodes: {} };
+  const PA = BR ? '_pt' : '';             // Brazil: announcements recorded in Portuguese
+  const FILES = { pa_bienvenida: `/vuelo40/assets/pa_bienvenida${PA}.mp3`, pa_checkin: `/vuelo40/assets/pa_checkin${PA}.mp3`, pa_aterrizaje: `/vuelo40/assets/pa_aterrizaje${PA}.mp3`, pa_evento: MX ? '/vuelo40/assets/pa_evento_mx.mp3' : `/vuelo40/assets/pa_evento${PA}.mp3`,
+    ding: '/vuelo40/assets/sfx_ding.mp3', whoosh: '/vuelo40/assets/sfx_whoosh.mp3', drone: '/vuelo40/assets/sfx_drone.mp3', alarm: '/vuelo40/assets/sfx_alarm.mp3' };
+  try { AU.muted = localStorage.getItem('v40_muted') === '1'; } catch (e) {}
+  function audioSetup() {
+    if (AU.ctx) return;
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+    try { AU.ctx = new AC(); } catch (e) { return; }
+    AU.master = AU.ctx.createGain(); AU.master.gain.value = AU.muted ? 0 : 0.9; AU.master.connect(AU.ctx.destination);
+    const sr = AU.ctx.sampleRate, len = sr * 3, wn = AU.ctx.createBuffer(1, len, sr), bn = AU.ctx.createBuffer(1, len, sr);
+    const w = wn.getChannelData(0), bd = bn.getChannelData(0); let last = 0;
+    for (let i = 0; i < len; i++) { w[i] = Math.random() * 2 - 1; last = (last + 0.02 * w[i]) / 1.02; bd[i] = last * 3.5; }
+    AU.white = wn; AU.brown = bn;
+    Object.entries(FILES).forEach(([k, url]) => {
+      fetch(url).then(r => r.ok ? r.arrayBuffer() : Promise.reject(new Error(url)))
+        .then(ab => new Promise((res, rej) => AU.ctx.decodeAudioData(ab, res, rej)))
+        .then(bf => { AU.buf[k] = bf; }).catch(() => {});
+    });
+  }
+  function audioUnlock() { audioSetup(); if (AU.ctx && AU.ctx.state !== 'running') { try { return Promise.race([AU.ctx.resume(), wait(600)]).catch(() => {}); } catch (e) {} } return Promise.resolve(); }
+  const actx = () => AU.ctx && AU.ctx.state === 'running';
+  const at = () => AU.ctx.currentTime;
+  function play(name, vol = 1, delay = 0) {
+    if (!actx() || !AU.buf[name]) return null;
+    const src = AU.ctx.createBufferSource(), gn = AU.ctx.createGain(); src.buffer = AU.buf[name]; gn.gain.value = vol;
+    src.connect(gn); gn.connect(AU.master); src.start(at() + delay); return src;
+  }
+  function noise(type) { const n = AU.ctx.createBufferSource(); n.buffer = type === 'white' ? AU.white : AU.brown; n.loop = true; return n; }
+  function env(gn, t0, peak, a, hold, r) { gn.gain.setValueAtTime(0.0001, t0); gn.gain.exponentialRampToValueAtTime(peak, t0 + a); gn.gain.setValueAtTime(peak, t0 + a + hold); gn.gain.exponentialRampToValueAtTime(0.0001, t0 + a + hold + r); }
+  function jet(delay = 0, dur = 4.2, vol = 0.9) { // jet fly-by with doppler sweep, left to right
+    if (!actx()) return; const t0 = at() + delay;
+    const src = noise('brown'), bp = AU.ctx.createBiquadFilter(), gn = AU.ctx.createGain();
+    bp.type = 'bandpass'; bp.Q.value = 0.7; bp.frequency.setValueAtTime(240, t0); bp.frequency.exponentialRampToValueAtTime(980, t0 + dur * 0.5); bp.frequency.exponentialRampToValueAtTime(170, t0 + dur);
+    const wh = noise('white'), hb = AU.ctx.createBiquadFilter(), wg = AU.ctx.createGain();
+    hb.type = 'bandpass'; hb.Q.value = 5; hb.frequency.setValueAtTime(3000, t0); hb.frequency.exponentialRampToValueAtTime(4300, t0 + dur * 0.5); hb.frequency.exponentialRampToValueAtTime(2200, t0 + dur);
+    env(gn, t0, vol, dur * 0.5, 0.05, dur * 0.5); env(wg, t0, vol * 0.1, dur * 0.5, 0.05, dur * 0.45);
+    src.connect(bp); bp.connect(gn); wh.connect(hb); hb.connect(wg);
+    let out = AU.master;
+    if (AU.ctx.createStereoPanner) { const pan = AU.ctx.createStereoPanner(); pan.pan.setValueAtTime(-0.9, t0); pan.pan.linearRampToValueAtTime(0.9, t0 + dur); pan.connect(AU.master); out = pan; }
+    gn.connect(out); wg.connect(out);
+    src.start(t0); wh.start(t0); src.stop(t0 + dur + 0.1); wh.stop(t0 + dur + 0.1);
+  }
+  function chime(delay = 0, vol = 0.32) { // airport public-address "ding-dong"
+    if (!actx()) return; const t0 = at() + delay;
+    [[659.25, 0], [523.25, 0.42]].forEach(([f, dt]) => [1, 2.01, 3].forEach((h, i) => {
+      const o = AU.ctx.createOscillator(), gn = AU.ctx.createGain(); o.type = 'sine'; o.frequency.value = f * h;
+      env(gn, t0 + dt, vol * [1, 0.25, 0.08][i], 0.01, 0.05, 1.6); o.connect(gn); gn.connect(AU.master); o.start(t0 + dt); o.stop(t0 + dt + 1.8);
+    }));
+  }
+  function pa(name, delay = 0) { chime(delay); play(name, 1, delay + 0.95); }
+  function bed(key, on, build) { // looping beds with fade in / out
+    if (!actx()) return; const t = at();
+    if (on && !AU.nodes[key]) { const n = build(); n.out.gain.setValueAtTime(0, t); n.out.gain.linearRampToValueAtTime(n.level, t + 1.4); AU.nodes[key] = n; }
+    else if (!on && AU.nodes[key]) { const n = AU.nodes[key]; n.out.gain.cancelScheduledValues(t); n.out.gain.setValueAtTime(n.out.gain.value, t); n.out.gain.linearRampToValueAtTime(0, t + 1.2); n.srcs.forEach(x => { try { x.stop(t + 1.3); } catch (e) {} }); AU.nodes[key] = null; }
+  }
+  const ambience = on => bed('amb', on, () => { // terminal room tone + crowd murmur
+    const out = AU.ctx.createGain(); out.connect(AU.master);
+    const n = noise('brown'), lp = AU.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 650; n.connect(lp); lp.connect(out);
+    const m = noise('white'), bp = AU.ctx.createBiquadFilter(), mg = AU.ctx.createGain(), lfo = AU.ctx.createOscillator(), lg = AU.ctx.createGain();
+    bp.type = 'bandpass'; bp.frequency.value = 520; bp.Q.value = 1.1; mg.gain.value = 0.07; lfo.frequency.value = 1.9; lg.gain.value = 0.045; lfo.connect(lg); lg.connect(mg.gain);
+    m.connect(bp); bp.connect(mg); mg.connect(out);
+    n.start(); m.start(); lfo.start();
+    const srcs = [n, m, lfo]; const d = play('drone', 0.5); if (d) { d.loop = true; srcs.push(d); }
+    return { out, level: 0.45, srcs };
+  });
+  const cabin = on => bed('cab', on, () => { // cabin engine hum
+    const out = AU.ctx.createGain(); out.connect(AU.master);
+    const n = noise('brown'), lp = AU.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 190; n.connect(lp); lp.connect(out);
+    const o = AU.ctx.createOscillator(), og = AU.ctx.createGain(); o.type = 'sine'; o.frequency.value = 92; og.gain.value = 0.05; o.connect(og); og.connect(out);
+    n.start(); o.start(); return { out, level: 0.6, srcs: [n, o] };
+  });
+  function touchdown() {
+    if (!actx()) return; const t0 = at();
+    const o = AU.ctx.createOscillator(), og = AU.ctx.createGain(); o.frequency.setValueAtTime(80, t0); o.frequency.exponentialRampToValueAtTime(38, t0 + 0.35); env(og, t0, 0.8, 0.005, 0.02, 0.4); o.connect(og); og.connect(AU.master); o.start(t0); o.stop(t0 + 0.5);
+    [0, 0.17].forEach(dt => { const n = noise('white'), bp = AU.ctx.createBiquadFilter(), gn = AU.ctx.createGain(); bp.type = 'bandpass'; bp.frequency.value = 1900; bp.Q.value = 3; env(gn, t0 + dt, 0.35, 0.01, 0.06, 0.18); n.connect(bp); bp.connect(gn); gn.connect(AU.master); n.start(t0 + dt); n.stop(t0 + dt + 0.35); });
+    const r = noise('brown'), lp = AU.ctx.createBiquadFilter(), rg = AU.ctx.createGain(); lp.type = 'lowpass'; lp.frequency.value = 300; env(rg, t0, 0.9, 0.05, 0.3, 1.4); r.connect(lp); lp.connect(rg); rg.connect(AU.master); r.start(t0); r.stop(t0 + 1.9);
+  }
+  function blip(f = 1046, vol = 0.12) { if (!actx()) return; const t0 = at(), o = AU.ctx.createOscillator(), gn = AU.ctx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(f, t0); o.frequency.exponentialRampToValueAtTime(f * 1.5, t0 + 0.06); env(gn, t0, vol, 0.005, 0.02, 0.16); o.connect(gn); gn.connect(AU.master); o.start(t0); o.stop(t0 + 0.25); }
+  function lowBeep() { if (!actx()) return; [[392, 0], [294, 0.16]].forEach(([f, dt]) => { const t0 = at() + dt, o = AU.ctx.createOscillator(), gn = AU.ctx.createGain(); o.type = 'triangle'; o.frequency.value = f; env(gn, t0, 0.22, 0.01, 0.07, 0.12); o.connect(gn); gn.connect(AU.master); o.start(t0); o.stop(t0 + 0.3); }); }
+  const vib = p => { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} };
+  const sfxGood = () => { if (!play('ding', 0.8)) blip(1320, 0.14); vib(15); };
+  const sfxBad = () => { lowBeep(); vib([30, 40, 30]); };
+  const ICON_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  const ICON_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>';
+  function setMute(m) {
+    AU.muted = m; try { localStorage.setItem('v40_muted', m ? '1' : '0'); } catch (e) {}
+    if (AU.master && AU.ctx) AU.master.gain.setTargetAtTime(m ? 0 : 0.9, AU.ctx.currentTime, 0.05);
+    $('#mute').innerHTML = m ? ICON_OFF : ICON_ON; $('#mute').setAttribute('aria-label', m ? 'Ativar som' : 'Silenciar');
+  }
+  $('#mute').addEventListener('click', () => { audioUnlock(); setMute(!AU.muted); track('V40_Mute', { muted: AU.muted }); });
+  setMute(AU.muted);
+
+  // ---------- duel (challenge link encoded in #hash: letters, digits, _ and - only) ----------
+  // Each player flies their own life; they compare a flight score that is fair across incomes:
+  // 40 pts decisions right + 40 pts how close they got to their own goal + 20 pts how early they got there.
+  const cleanName = x => (x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
+  function parseDuel() {
+    const h = (location.hash || '').slice(1), p = h.split('_'), keys = ['land', 'circle', 'crash'];
+    if (p[0] === 'r' && p.length >= 6) {           // r_NAME_KEY_FIAGE_COV%_SCORE
+      const d = { name: cleanName(p[1]) || 'Amigo', key: p[2], fiAge: +p[3] || null, cov: +p[4], score: +p[5] };
+      return keys.includes(d.key) && d.cov >= 0 && d.cov <= 100 && d.score >= 0 && d.score <= 100 && (d.key !== 'land' || (d.fiAge >= 18 && d.fiAge <= 65)) ? d : null;
+    }
+    if (p[0] === 'd' && p.length >= 9) {           // legacy links: same-life duel, no score
+      const d = { name: cleanName(p[1]) || 'Amigo', key: p[8], fiAge: +p[6] || null, nwM: +p[7], score: null };
+      return keys.includes(d.key) && isFinite(d.nwM) ? d : null;
+    }
+    return null;
+  }
+  const DUEL = parseDuel();
+  const duelLine = d => d.key === 'land' ? `chegou ao trabalho opcional aos ${d.fiAge}`
+    : d.score === null ? (d.key === 'circle' ? `ficou dando voltas com ${fmtL(d.nwM * 1e6)} aos 65` : `caiu devendo ${fmtL(-d.nwM * 1e6)}`)
+    : d.key === 'circle' ? `chegou aos 65 com ${d.cov}% da meta` : 'caiu em dívidas';
+  function scoreOf(st) {
+    const hits = st.pill.genera + st.pill.crece + st.pill.protege, avail = st.avail.genera + st.avail.crece + st.avail.protege;
+    const cov = Math.max(0, Math.min(1, nwOf(st) / st.goal));
+    const early = st.fiAge ? (CFG.retireAge - st.fiAge) / st.years : 0;
+    const pts = { dec: Math.round(40 * (avail ? hits / avail : 0)), cov: Math.round(40 * cov), early: Math.round(20 * early) };
+    return { ...pts, total: pts.dec + pts.cov + pts.early, hits, avail, covPct: Math.round(100 * Math.max(0, nwOf(st) / st.goal)) };
+  }
+  const baseUrl = () => window.V40_HOSTS[location.hostname.replace(/^www\./, '')] ? location.origin + location.pathname : CFG.shareUrl;
+
+  // ---------- departure board ----------
+  function flapRow(el, code, dest, status, statusCls, delay) {
+    const mk = (txt, d0) => [...txt].map((c, i) =>
+      `<span class="ch" style="animation-delay:${reduce ? 0 : d0 + i * 45}ms">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+    el.innerHTML = `<span>${code}</span><span>${mk(dest, delay)}</span><span class="${statusCls}">${mk(status, delay + 380)}</span>`;
+  }
+  function initBoard() {
+    flapRow($('#row1'), 'SAS', 'SALÁRIO A SALÁRIO', 'EM CÍRCULOS', 'st-mute', 100);
+    flapRow($('#row2'), 'D404', 'DÍVIDAS', 'CAIU', 'st-red', 400);
+    flapRow($('#row3'), 'V40', 'TRABALHO OPCIONAL', 'EMBARCANDO', 'st-amber', 700);
+    setTimeout(() => { const s = $('#row3 span:last-child'); if (s && !reduce) s.classList.add('blink'); }, 2400);
+  }
+  initBoard();
+
+  // ---------- intro: terminal arrival → hall → waiting lounge ----------
+  const intro = $('#intro'), iv1 = $('#iv1'), iv2 = $('#iv2');
+  let introDone = false, gatePA = false;
+  function caption(ey, big) { const c = $('#intro-cap'); c.classList.remove('show'); $('#cap-ey').textContent = ey; $('#cap-big').textContent = big; void c.offsetWidth; c.classList.add('show'); }
+  async function runIntro() {
+    track('V40_IntroStart');
+    $('#intro-start').hidden = true; $('#intro-cap').hidden = false;
+    ambience(true);
+    iv1.classList.remove('pre'); iv1.currentTime = 0; playV(iv1); iv1.classList.add('on');
+    jet(0.3, 4.6, 0.9);
+    caption('Aeroporto internacional', 'VOO 40');
+    await wait(reduce ? 1200 : 3400); if (introDone) return;
+    iv2.currentTime = 0; playV(iv2); iv2.classList.add('on'); iv1.classList.remove('on');
+    pa('pa_bienvenida', 0.2);
+    caption('Terminal de embarque', 'Bem-vindo, passageiro.');
+    await wait(reduce ? 1200 : 3900); if (introDone) return;
+    endIntro();
+  }
+  function endIntro() {
+    if (introDone) return; introDone = true;
+    intro.classList.add('out');
+    setTimeout(() => { intro.hidden = true; try { iv1.pause(); iv2.pause(); } catch (e) {} }, 850);
+    ambience(true);
+    showGate();
+  }
+  function showGate() {
+    show('s-gate'); initBoard();
+    if (!gatePA) { gatePA = true; pa('pa_checkin', 0.9); }
+  }
+  $('#intro-enter').addEventListener('click', async () => { const u = audioUnlock(); try { localStorage.setItem('v40_seen', '1'); } catch (e) {} if (DUEL) { track('V40_DuelAccept'); await u; endIntro(); } else { await u; runIntro(); } });
+  $('#intro-skip').addEventListener('click', async () => { const u = audioUnlock(); track('V40_IntroSkip'); await u; endIntro(); });
+
+  // ---------- check-in ----------
+  const inp = { name: '', age: 28, income: 2600000, s0: 0.02, nif: 2600000 };
+  let nifTouched = false;
+  function readInputs() {
+    inp.name = $('#f-name').value.trim();
+    inp.age = +$('#f-age').value;
+    inp.income = +$('#f-income').value;
+    const r = document.querySelector('input[name="f-s"]:checked');
+    inp.s0 = r ? +r.value : 0.02;
+    if (!nifTouched) $('#f-nif').value = String(Math.min(+$('#f-nif').max, Math.max(+$('#f-nif').min, inp.income)));
+    inp.nif = +$('#f-nif').value;
+  }
+  let fuelAnim = 0, fuelShown = 0;
+  function updateCheckin() {
+    readInputs();
+    $('#o-age').textContent = inp.age + ' anos';
+    $('#o-income').textContent = fmtFull(inp.income);
+    $('#o-nif').textContent = fmtFull(inp.nif);
+    $('#nif-hint').innerHTML = `Com quanto por mês você viveria tranquilo sem trabalhar? Esse é o seu Número de Independência Financeira. Para ter isso sem trabalhar, você precisa de cerca de <b>${fmtL(inp.nif * 12 * CFG.fiMult)}</b> investidos.`;
+    const years = CFG.retireAge - inp.age;
+    const target = inp.income * 12 * years;
+    $('#fuel-note').textContent = `É o que vai passar pelas suas mãos em ${years} anos de trabalho, até os 65. Agora vamos ver quanto chega com você.`;
+    cancelAnimationFrame(fuelAnim);
+    const from = fuelShown, t0 = performance.now(), dur = reduce ? 1 : 420;
+    const tick = now => {
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      fuelShown = from + (target - from) * e;
+      $('#fuel-total').textContent = fmtFull(fuelShown);
+      if (k < 1) fuelAnim = requestAnimationFrame(tick);
+    };
+    fuelAnim = requestAnimationFrame(tick);
+  }
+  ['f-age', 'f-income'].forEach(id => $('#' + id).addEventListener('input', updateCheckin));
+  $('#f-nif').addEventListener('input', () => { nifTouched = true; updateCheckin(); });
+  document.querySelectorAll('input[name="f-s"]').forEach(r => r.addEventListener('change', updateCheckin));
+  $('#checkin-form').addEventListener('submit', e => e.preventDefault());
+
+  $('#go-checkin').addEventListener('click', () => { audioUnlock(); blip(880, 0.1); show('s-checkin'); fuelShown = 0; updateCheckin(); track('V40_Checkin'); });
+  $('#go-fly').addEventListener('click', () => { readInputs(); startFlight(); });
+
+  // ---------- simulation model (pesos de hoy) ----------
+  function newState(p) {
+    const Y = p.income * 12;
+    return {
+      startAge: p.age, age: p.age, years: CFG.retireAge - p.age,
+      Y, side: 0, primaSave: false, E: Y * (1 - p.s0), A: 0, D: 0,
+      r: CFG.rCash, g: CFG.gBase, emergency: false, recovery: 0, defaulted: false,
+      goal: p.nif * 12 * CFG.fiMult, fiAge: null, path: [{ age: p.age, nw: 0 }],
+      pill: { genera: 0, crece: 0, protege: 0 }, avail: { genera: 0, crece: 0, protege: 0 }, maxD: 0
+    };
+  }
+  const nwOf = st => st.A - st.D;
+  const monthlySave = st => (st.Y + st.side + (st.primaSave ? st.Y * LOC.bonus : 0) - st.E) / 12;
+
+  // eps: extra return for invested money in a given year (Monte Carlo); 0 in the game itself
+  function step(st, eps) {
+    st.Y *= (1 + st.g);
+    st.E *= (1 + CFG.gBase);              // lifestyle follows the base salary trend
+    if (st.side > 0) st.side *= (1 + st.g);
+    let S = st.Y + st.side + (st.primaSave ? st.Y * LOC.bonus : 0) - st.E;
+    if (st.D > 0) st.D *= (1 + CFG.rDebt);
+    if (S >= 0) { const pay = Math.min(S, st.D); st.D -= pay; S -= pay; }
+    else { st.D += -S; S = 0; }
+    let ret = st.r + (eps && st.r === CFG.rInv ? eps : 0);
+    if (st.recovery > 0) { ret += 0.155; st.recovery--; }
+    st.A = st.A * (1 + ret) + S;
+    if (st.A < 0) { st.D += -st.A; st.A = 0; }
+    const cap = 3 * st.Y;                 // credit gets cut: reported to the bureaus
+    if (st.D > cap) { st.D = cap; st.defaulted = true; }
+    st.maxD = Math.max(st.maxD, st.D);
+    st.age++;
+    const nw = nwOf(st);
+    if (st.fiAge === null && nw >= st.goal) st.fiAge = st.age;
+    st.path.push({ age: st.age, nw });
+  }
+
+  function shock(costFn) {
+    return st => {
+      const cost = costFn(st);
+      if (st.emergency && st.A >= cost) { st.A -= cost; return { fb: 'Sua reserva de emergência absorveu o golpe. Você seguiu voando sem dívidas.', eff: 'Paraquedas usado: −' + fmtL(cost) + ' das suas economias' }; }
+      if (st.emergency) { const part = st.A; st.A = 0; st.D += cost - part; return { fb: 'Sua reserva ajudou, mas não foi suficiente. O resto foi para o crédito.', eff: 'Dívida nova: ' + fmtL(cost - part) }; }
+      st.D += cost;
+      return { fb: 'Sem reserva de emergência, a urgência foi para o cartão. Agora você paga juros.', eff: 'Dívida nova: ' + fmtL(cost) + ' com juros de cartão' };
+    };
+  }
+
+  const PANIC = {
+    pillar: 'crece', kicker: 'Mercado',
+    q: () => 'Pânico no mercado: seus investimentos caem 25% em semanas.',
+    a: { t: 'Vendo tudo antes que caia mais.', apply: st => { st.A *= 0.75; st.r = CFG.rCash; },
+         fb: 'Vender no pânico transforma uma queda temporária em uma perda real.', eff: 'Perda garantida e seu dinheiro volta a ficar parado na conta' },
+    b: { t: 'Eu fico. Meu plano é de longo prazo.', apply: st => { st.A *= 0.75; st.recovery = 2; },
+         fb: 'Historicamente os mercados diversificados se recuperaram, embora ninguém garanta isso. Paciência também é estratégia.', eff: 'Queda temporária; o plano continua de pé' }
+  };
+  const INFL = {
+    shock: true, kicker: 'Inflação',
+    q: () => 'Ano de inflação alta: 12%. Seu dinheiro parado na conta compra cada vez menos.',
+    apply: st => { st.A *= 0.93; return { fb: 'Dinheiro parado também perde. A inflação é um imposto silencioso.', eff: 'Suas economias perdem ~7% do poder de compra' }; }
+  };
+
+  const EVENTS = [
+    { pillar: 'genera', kicker: 'Tempo livre',
+      q: () => 'Você tem 2 horas livres por dia. O que faz com elas?',
+      a: { t: 'Séries e descanso. Eu mereço.', fb: 'Descansar é bom. Mas a sua renda fica parada enquanto o custo de vida sobe.', eff: 'Renda: a mesma de sempre' },
+      b: { t: 'Aprendo uma habilidade que paga: IA, vendas ou marketing digital.', apply: st => { st.g = CFG.gBase + CFG.gSkill; st.side = CFG.sideShare * st.Y; },
+           fb: 'Habilidades são o motor: abrem uma segunda renda, e esse extra você investe.', eff: '+15% de renda extra por ano, investida' } },
+    { pillar: 'protege', kicker: 'Crédito',
+      q: (st, p) => `Aprovam para você um cartão de crédito com limite de ${fmtL(roundM(3 * p.income))}.`,
+      a: { t: 'Uso para me dar uns mimos e pago o mínimo.', apply: (st, p) => { st.D += roundM(3 * p.income); st.E *= 1.03; },
+           fb: 'Pagando o mínimo, a dívida cai no rotativo: com juros médios perto de 445% ao ano (Banco Central), ela pode dobrar em uns 5 meses.', eff: 'Dívida nova com juros de cartão' },
+      b: { t: 'Só compro o que consigo pagar inteiro todo mês.', fb: 'Usado assim, o cartão é uma ferramenta e não uma armadilha.', eff: 'Zero juros' } },
+    { pillar: 'crece', kicker: 'Economia',
+      q: (st, p) => `Finalmente sobraram ${fmtFull(Math.max(LOC.minSave, Math.round(0.12 * p.income / LOC.saveStep) * LOC.saveStep))} este mês. Onde você coloca?`,
+      a: { t: 'Deixo na conta corrente. Lá está seguro.', fb: 'Com a inflação perto de 4,6% ao ano (IBGE), o dinheiro parado na conta perde poder de compra todo ano.', eff: 'Seu dinheiro rende menos que a inflação' },
+      b: { t: 'Num fundo diversificado, de longo prazo.', apply: st => { st.r = CFG.rInv; },
+           fb: 'Investir tem risco, mas diversificado e no longo prazo historicamente ganhou da inflação.', eff: 'Seu dinheiro começa a trabalhar (5% real ilustrativo)' } },
+    { pillar: 'protege', kicker: 'Imprevistos',
+      q: () => 'E se amanhã acontecer alguma coisa?',
+      a: { t: 'Não tenho reserva. Depois eu vejo.', fb: 'Sem reserva, qualquer urgência termina no cartão de crédito.', eff: 'Você voa sem paraquedas' },
+      b: { t: 'Monto uma reserva de emergência de 6 meses de gastos.', apply: st => { st.emergency = true; },
+           fb: 'A reserva de emergência é o paraquedas do avião.', eff: 'Paraquedas ativado' } },
+    { shock: true, kicker: 'Turbulência',
+      q: st => `Você fica 4 meses sem emprego. Precisa de ${fmtL(st.E / 3)} para se manter.`,
+      apply: shock(st => st.E / 3) },
+    { pillar: 'genera', kicker: 'Aumento',
+      q: () => 'Você ganha um aumento de 20%!',
+      a: { t: 'Finalmente: carro novo e apartamento maior.', apply: st => { st.E += 0.24 * st.Y; st.Y *= 1.2; },
+           fb: 'Se seus gastos sobem junto com o salário, nunca sobra mais. E a parcela do carro pesa.', eff: 'Gastos: +24% · Poupança: igual ou menor' },
+      b: { t: 'Melhoro meu padrão de vida com metade e invisto a outra metade.', apply: st => { st.E += 0.10 * st.Y; st.Y *= 1.2; },
+           fb: 'Cada aumento é combustível extra, se o estilo de vida não engolir.', eff: 'Poupança: +10% do salário todo ano' } },
+    { pillar: 'protege', kicker: 'Oportunidade',
+      q: () => 'Um conhecido oferece dobrar seu dinheiro em 3 meses. "Garantido".',
+      a: { t: 'Bora! Coloco minhas economias.', apply: st => { st.A *= 0.4; },
+           fb: 'Ninguém sério garante rendimento. Alto, rápido e garantido é o alarme vermelho de um golpe.', eff: 'Você perdeu 60% das suas economias' },
+      b: { t: 'Se é garantido e tão rápido, tem cheiro de golpe. Tô fora.', fb: 'Se proteger também é saber dizer não.', eff: 'Economias intactas' } },
+    { dynamic: st => (st.r === CFG.rInv && st.A > 0) ? PANIC : INFL },
+    { pillar: 'crece', kicker: '13º salário',
+      q: () => 'Chegou o 13º salário.',
+      a: { t: 'Viagem, roupa e presentes. Todo ano.', fb: 'Aproveitar é bom. Sem plano, o 13º vai embora em uma semana.', eff: '13º: gasto' },
+      b: { t: 'A partir de agora, todo dezembro: metade eu aproveito, metade vai para o meu fundo.', apply: st => { st.primaSave = true; },
+           fb: 'Meio 13º por ano, investido durante décadas, soma muito.', eff: '+ meio 13º investido todo ano' } },
+    { shock: true, kicker: 'Turbulência',
+      q: st => `Uma urgência de saúde na sua família. Você precisa de ${fmtL(st.Y / 4)}.`,
+      apply: shock(st => st.Y / 4) }
+  ];
+
+  function schedule(years) {
+    const N = EVENTS.length, out = []; let prev = 0;
+    for (let i = 0; i < N; i++) { let y = Math.round((i + 1) * years / (N + 1)); if (y <= prev) y = prev + 1; out.push(Math.min(y, years)); prev = y; }
+    return out;
+  }
+  const resolveEv = (k, st) => EVENTS[k].dynamic ? EVENTS[k].dynamic(st) : EVENTS[k];
+
+  function applyChoice(st, ev, side, p) {
+    if (ev.shock) { const r = ev.apply(st); st.maxD = Math.max(st.maxD, st.D); return { ...r, good: null }; }
+    const o = ev[side];
+    if (o.apply) o.apply(st, p);
+    st.maxD = Math.max(st.maxD, st.D);
+    st.avail[ev.pillar]++;
+    if (side === 'b') st.pill[ev.pillar]++;
+    return { fb: o.fb, eff: o.eff, good: side === 'b' };
+  }
+
+  function simulate(p, pick, noise) {
+    const st = newState(p), sched = schedule(st.years); let k = 0;
+    for (let t = 1; t <= st.years; t++) {
+      step(st, noise ? noise() : 0);
+      while (k < sched.length && sched[k] === t) { const ev = resolveEv(k, st); applyChoice(st, ev, ev.shock ? null : pick(k, ev), p); st.path[st.path.length - 1].nw = nwOf(st); k++; }
+    }
+    return st;
+  }
+
+  // ---------- sky canvas ----------
+  const sky = $('#sky'), cvs = $('#sky-canvas'), ctx = cvs.getContext('2d');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const COL = {};
+  function readCols() { ['--panel', '--panel-2', '--line', '--ink', '--mute', '--violet', '--teal', '--amber', '--red', '--night'].forEach(n => COL[n] = css(n)); }
+  readCols();
+  let W = 0, H = 0, DPR = 1;
+  const stars = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random() * 0.7, r: Math.random() * 1.3 + 0.3, a: Math.random() * 0.6 + 0.2 }));
+  function sizeCanvas(c, box) {
+    DPR = Math.min(2, window.devicePixelRatio || 1);
+    const r = box.getBoundingClientRect();
+    c.width = Math.max(1, Math.round(r.width * DPR)); c.height = Math.max(1, Math.round(r.height * DPR));
+    return { w: r.width, h: r.height };
+  }
+  let ST = null, head = null, shake = 0;
+  const geo = () => ({ padL: 16, padR: 34, top: H * 0.16, zero: H * 0.70, bottom: H * 0.93 });
+  function xOf(age) { const g = geo(); return g.padL + (age - ST.startAge) / ST.years * (W - g.padL - g.padR); }
+  function yOf(nw) {
+    const g = geo(), nif = ST.goal;
+    if (nw >= 0) { const r = Math.min(1.25, nw / nif); return g.zero - Math.sqrt(r) * (g.zero - g.top); }
+    const d = Math.min(1, -nw / Math.max(1, ST.Y)); return g.zero + d * (g.bottom - g.zero);
+  }
+  function drawSky(time) {
+    if (!ST || !W) return;
+    const g = geo();
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    const sx = shake > 0 ? (Math.random() - 0.5) * shake : 0, sy = shake > 0 ? (Math.random() - 0.5) * shake : 0;
+    ctx.translate(sx, sy);
+    ctx.fillStyle = COL['--panel']; ctx.fillRect(-10, -10, W + 20, H + 20);
+    // stars
+    const drift = (time || 0) / 60000;
+    stars.forEach(s => { ctx.globalAlpha = s.a; ctx.fillStyle = COL['--ink']; const x = ((s.x - drift) % 1 + 1) % 1 * W; ctx.fillRect(x, s.y * H, s.r, s.r); });
+    ctx.globalAlpha = 1;
+    // debt zone
+    const dz = ctx.createLinearGradient(0, g.zero, 0, H);
+    dz.addColorStop(0, 'rgba(255,85,119,0)'); dz.addColorStop(1, 'rgba(255,85,119,.22)');
+    ctx.fillStyle = dz; ctx.fillRect(0, g.zero, W, H - g.zero);
+    ctx.font = '600 9px ' + css('--f-mono'); ctx.letterSpacing = '1.5px';
+    ctx.fillStyle = COL['--red']; ctx.globalAlpha = .8; ctx.fillText('ZONA DE DÍVIDA', 10, H - 10); ctx.globalAlpha = 1;
+    // zero line
+    ctx.strokeStyle = COL['--line']; ctx.lineWidth = 1; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(0, g.zero); ctx.lineTo(W, g.zero); ctx.stroke();
+    ctx.fillStyle = COL['--mute']; const z0 = LOC.cur.trim() + '0'; ctx.fillText(z0, W - 12 - ctx.measureText(z0).width, g.zero - 6);
+    // FI line
+    ctx.strokeStyle = COL['--teal']; ctx.setLineDash([5, 6]); ctx.globalAlpha = .75;
+    ctx.beginPath(); ctx.moveTo(0, g.top); ctx.lineTo(W, g.top); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    ctx.fillStyle = COL['--teal']; ctx.fillText('TRABALHO OPCIONAL · NIF ' + fmtM(inp.nif).toUpperCase() + '/MÊS', 10, g.top - 7);
+    // age ticks
+    ctx.fillStyle = COL['--mute'];
+    for (let a = Math.ceil(ST.startAge / 10) * 10; a <= CFG.retireAge; a += 10) { const x = xOf(a); if (x > 20 && x < W - 20) ctx.fillText(String(a), x - 6, g.zero + 14); }
+    ctx.letterSpacing = '0px';
+    // trail
+    const pts = ST.path.map(p => [xOf(p.age), yOf(p.nw)]);
+    if (head) pts[pts.length - 1] = head;
+    if (pts.length > 1) {
+      const tg = ctx.createLinearGradient(0, 0, W, 0);
+      tg.addColorStop(0, COL['--violet']); tg.addColorStop(1, COL['--teal']);
+      ctx.strokeStyle = tg; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.shadowColor = COL['--violet']; ctx.shadowBlur = 12;
+      ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+    // plane
+    const [px, py] = pts[pts.length - 1];
+    let ang = 0;
+    if (pts.length > 1) { const [qx, qy] = pts[pts.length - 2]; ang = Math.atan2(py - qy, Math.max(1, px - qx)); ang = Math.max(-0.9, Math.min(0.9, ang)); }
+    const nwNow = head ? null : nwOf(ST);
+    const inDebt = (nwNow !== null ? nwNow : ST.path[ST.path.length - 1].nw) < 0;
+    ctx.save(); ctx.translate(px, py); ctx.rotate(ang);
+    ctx.shadowColor = inDebt ? COL['--red'] : COL['--teal']; ctx.shadowBlur = 16;
+    ctx.fillStyle = inDebt ? COL['--red'] : COL['--ink'];
+    ctx.beginPath();
+    ctx.moveTo(16, 0); ctx.lineTo(4, -2.2); ctx.lineTo(-4, -12); ctx.lineTo(-8, -12); ctx.lineTo(-4, -2.2); ctx.lineTo(-12, -2.2);
+    ctx.lineTo(-15, -7); ctx.lineTo(-17.5, -7); ctx.lineTo(-15.5, 0); ctx.lineTo(-17.5, 7); ctx.lineTo(-15, 7); ctx.lineTo(-12, 2.2);
+    ctx.lineTo(-4, 2.2); ctx.lineTo(-8, 12); ctx.lineTo(-4, 12); ctx.lineTo(4, 2.2); ctx.closePath(); ctx.fill();
+    ctx.restore();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+  let rafLoop = 0;
+  function loop(t) { drawSky(t); if (shake > 0) shake = Math.max(0, shake - 0.6); rafLoop = requestAnimationFrame(loop); }
+  const ro = new ResizeObserver(() => { const s = sizeCanvas(cvs, sky); W = s.w; H = s.h; });
+  ro.observe(sky);
+
+  // ---------- HUD ----------
+  let prevHud = null;
+  const fmtD = n => (n > 0 ? '▲ +' : '▼ ') + fmtM(n);
+  function flash(key, delta, goodWhenUp, min) {
+    if (Math.abs(delta) < min) return;
+    const cell = $('#c-' + key), d = $('#d-' + key), good = goodWhenUp ? delta > 0 : delta < 0;
+    cell.classList.remove('f-good', 'f-bad'); void cell.offsetWidth; cell.classList.add(good ? 'f-good' : 'f-bad');
+    d.textContent = fmtD(delta); d.className = 'd show ' + (good ? 'pos' : 'neg');
+    clearTimeout(d._t); d._t = setTimeout(() => { d.className = 'd'; }, 2200);
+  }
+  function hud(withFlash) {
+    const now = { nw: nwOf(ST), debt: ST.D, fuel: monthlySave(ST) };
+    if (withFlash && prevHud) {
+      flash('nw', now.nw - prevHud.nw, true, 1e5 * U);
+      flash('debt', now.debt - prevHud.debt, false, 1e5 * U);
+      flash('fuel', now.fuel - prevHud.fuel, true, 1e4 * U);
+    }
+    prevHud = now;
+    const nw = nwOf(ST);
+    $('#h-age').textContent = ST.age;
+    const hn = $('#h-nw'); hn.textContent = fmtM(nw); hn.className = nw < 0 ? 'neg' : '';
+    const hd = $('#h-debt'); hd.textContent = fmtM(ST.D); hd.className = ST.D > 0 ? 'neg' : '';
+    const ms = monthlySave(ST); const hf = $('#h-fuel'); hf.textContent = fmtM(ms); hf.className = ms < 0 ? 'neg' : (ms > 0 ? 'pos' : '');
+    $('#h-nif').textContent = fmtM(ST.goal);
+    for (const k of ['genera', 'protege', 'crece']) $('#p-' + k + ' i').textContent = ST.pill[k];
+  }
+
+  // ---------- animation helpers ----------
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  function glide(from, to, ms) {
+    return new Promise(res => {
+      const t0 = performance.now();
+      const f = now => {
+        const k = Math.min(1, (now - t0) / ms);
+        head = [from[0] + (to[0] - from[0]) * k, from[1] + (to[1] - from[1]) * k];
+        if (k < 1) requestAnimationFrame(f); else { head = null; res(); }
+      };
+      requestAnimationFrame(f);
+    });
+  }
+
+  // ---------- decision card ----------
+  const card = $('#card'), flightEl = $('#s-flight');
+  const PL = { genera: 'Gere', protege: 'Proteja', crece: 'Faça crescer' };
+  function askCard(ev) {
+    return new Promise(resolve => {
+      document.querySelectorAll('.inst .d').forEach(d => { d.className = 'd'; });
+      play('whoosh', 0.45);
+      const order = Math.random() < 0.5 ? ['a', 'b'] : ['b', 'a'];
+      card.className = 'card'; card.style.transform = '';
+      card.innerHTML = `
+        <div class="kick"><span>${PL[ev.pillar]} · ${ev.kicker}</span><span>${ST.age} anos</span></div>
+        <div class="q">${ev.q(ST, inp)}</div>
+        <div class="opts">
+          <button class="opt" type="button" data-side="${order[0]}"><span class="ar">←</span><span>${ev[order[0]].t}</span></button>
+          <button class="opt" type="button" data-side="${order[1]}"><span class="ar">→</span><span>${ev[order[1]].t}</span></button>
+        </div>
+        <div class="swipe-hint">Toque em uma opção ou deslize o cartão</div>`;
+      card.hidden = false; flightEl.classList.add('deciding');
+      let done = false;
+      const pick = side => { if (done) return; done = true; cleanup(); resolve(side); };
+      card.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => pick(b.dataset.side)));
+      // swipe
+      let x0 = null, dx = 0;
+      const down = e => { if (e.target.closest('.opt')) return; x0 = e.clientX; dx = 0; card.setPointerCapture(e.pointerId); };
+      const move = e => { if (x0 === null) return; dx = e.clientX - x0; card.style.transform = `translateX(${dx}px) rotate(${dx / 24}deg)`; };
+      const up = () => { if (x0 === null) return; x0 = null; if (dx < -70) pick(order[0]); else if (dx > 70) pick(order[1]); else card.style.transform = ''; };
+      card.addEventListener('pointerdown', down); card.addEventListener('pointermove', move);
+      card.addEventListener('pointerup', up); card.addEventListener('pointercancel', up);
+      function cleanup() { card.removeEventListener('pointerdown', down); card.removeEventListener('pointermove', move); card.removeEventListener('pointerup', up); card.removeEventListener('pointercancel', up); }
+      setTimeout(() => { const f = card.querySelector('.opt'); if (f) f.focus({ preventScroll: true }); }, 50);
+    });
+  }
+  function showFeedback(ev, res, before) {
+    return new Promise(resolve => {
+      card.style.transform = '';
+      const isShock = !!ev.shock;
+      card.className = 'card' + (isShock ? ' shock' : '');
+      const delta = nwOf(ST) - before;
+      const deltaTxt = Math.abs(delta) >= 1e5 * U ? `<div class="eff">Patrimônio: ${delta > 0 ? '+' : ''}${fmtM(delta)}</div>` : '';
+      const verdict = isShock ? '<span class="verdict v-shock">Turbulência</span>' : (res.good ? '<span class="verdict v-good">Boa jogada</span>' : '<span class="verdict v-bad">Cuidado com isso</span>');
+      card.innerHTML = `
+        <div class="kick"><span>${isShock ? ev.kicker : PL[ev.pillar] + ' · ' + ev.kicker}</span><span>${ST.age} anos</span></div>
+        ${isShock ? `<div class="q">${ev.q(ST, inp)}</div>` : ''}
+        ${verdict}
+        <p class="fb">${res.fb}</p>
+        <div class="eff">${res.eff || ''}</div>
+        ${deltaTxt}
+        <button class="btn" type="button" id="cont">Seguir voando</button>`;
+      card.hidden = false; flightEl.classList.add('deciding');
+      const b = card.querySelector('#cont');
+      b.addEventListener('click', () => { card.hidden = true; flightEl.classList.remove('deciding'); resolve(); }, { once: true });
+      setTimeout(() => b.focus({ preventScroll: true }), 50);
+    });
+  }
+
+  // ---------- flight ----------
+  let flying = false;
+  async function startFlight() {
+    if (flying) return; flying = true;
+    ST = newState(inp); head = null; prevHud = null; CH = []; SH = [];
+    ambience(false); jet(0, 3.4, 0.75); cabin(true);
+    show('s-flight'); card.hidden = true; flightEl.classList.remove('deciding');
+    const s = sizeCanvas(cvs, sky); W = s.w; H = s.h;
+    cancelAnimationFrame(rafLoop); rafLoop = requestAnimationFrame(loop);
+    hud();
+    track('V40_GameStart', { age: inp.age, income: inp.income, s0: inp.s0 });
+    const sched = schedule(ST.years); let k = 0;
+    await wait(reduce ? 50 : 500);
+    for (let t = 1; t <= ST.years; t++) {
+      const prev = ST.path[ST.path.length - 1];
+      const from = [xOf(prev.age), yOf(prev.nw)];
+      step(ST);
+      const last = ST.path[ST.path.length - 1];
+      await glide(from, [xOf(last.age), yOf(last.nw)], CFG.yearMs);
+      hud();
+      while (k < sched.length && sched[k] === t) {
+        const ev = resolveEv(k, ST);
+        const before = nwOf(ST);
+        let side = null;
+        let shockQ = '';
+        if (ev.shock) { shake = 9; vib([60, 40, 90]); play('alarm', 0.7); shockQ = ev.q(ST, inp); }
+        else side = await askCard(ev);
+        hud();
+        const res = applyChoice(ST, ev, side, inp);
+        if (ev.shock) SH.push({ age: ST.age, kicker: ev.kicker, q: shockQ, fb: res.fb, eff: res.eff });
+        if (!ev.shock) { CH.push({ k, ev, side, age: ST.age }); res.good ? sfxGood() : sfxBad(); }
+        ST.path[ST.path.length - 1].nw = nwOf(ST);
+        hud(true);
+        await showFeedback(ev, res, before);
+        k++;
+      }
+    }
+    cabin(false); touchdown(); vib([20, 30, 60]);
+    await wait(reduce ? 50 : 900);
+    cancelAnimationFrame(rafLoop);
+    flying = false;
+    land();
+  }
+
+  // ---------- landing ----------
+  let RES = null, CH = [], SH = [];
+  const endText = st => st.fiAge ? `trabalho opcional aos <b>${st.fiAge}</b>` : (nwOf(st) < 0 ? `<b>${fmtL(nwOf(st))}</b> em dívida aos 65` : `<b>${fmtL(nwOf(st))}</b> aos 65, sem chegar ao trabalho opcional`);
+
+  // letter from your 65-year-old self, built from the decisions taken
+  const MEM = {
+    0: { bad: a => `Lembra daquelas 2 horas por dia aos ${a}? Quem dera tivéssemos usado para aprender algo que pagasse.`, good: a => `As 2 horas por dia que você investiu em aprender aos ${a} mudaram tudo: essa renda extra ainda paga as nossas viagens.` },
+    1: { bad: a => `O cartão que tiramos aos ${a}… pagando o mínimo, virou uma bola de neve.`, good: () => 'Obrigado por nunca pagar só o mínimo do cartão.' },
+    2: { bad: a => `Desde os ${a} deixamos o dinheiro parado na conta. A inflação foi comendo, ano após ano.`, good: a => `Aquelas primeiras economias que você investiu aos ${a} cresceram mais do que imaginávamos.` },
+    3: { bad: () => 'Nunca montamos a reserva de emergência. Cada imprevisto terminou no cartão.', good: () => 'A reserva de emergência nos salvou mais de uma vez.' },
+    5: { bad: a => `Quando veio aquele aumento aos ${a}, foi tudo em carro e apartamento.`, good: () => 'Quando veio o aumento, você investiu metade. Essa decisão vale muito hoje.' },
+    6: { bad: a => `Aquele "negócio garantido" aos ${a}… perdemos mais da metade do que tínhamos guardado.`, good: () => 'Você disse não ao "dinheiro garantido". Esse não nos protegeu.' },
+    7: { bad: a => `Vendemos tudo no pânico do mercado aos ${a} e perdemos a recuperação.`, good: () => 'No pânico do mercado você ficou firme. Foi o mais difícil e o mais rentável.' },
+    8: { bad: () => 'Todo 13º salário ia embora em uma semana.', good: () => 'Meio 13º todo dezembro, durante décadas. Quem diria.' }
+  };
+  const ORDER_BAD = [1, 0, 2, 5, 6, 3, 7, 8], ORDER_GOOD = [0, 2, 5, 1, 3, 6, 7, 8];
+  function buildLetter() {
+    const first = (inp.name || '').split(' ')[0], hi = first ? first + ', e' : 'E';
+    const byK = Object.fromEntries(CH.map(c => [c.k, c]));
+    const pick = (order, side) => order.filter(k => byK[k] && byK[k].side === side).slice(0, 2).map(k => MEM[k][side === 'b' ? 'good' : 'bad'](byK[k].age));
+    const key = RES.o.key;
+    if (key === 'land') return [`${hi}stou te escrevendo dos 65. Hoje trabalhar é opcional, e quero te agradecer.`, ...pick(ORDER_GOOD, 'b'), 'Continue assim. E ensine mais alguém a voar.'];
+    const bad = pick(ORDER_BAD, 'a');
+    return [key === 'crash' ? `${hi}stou te escrevendo dos 65. Não é fácil te dizer isso: ainda estamos pagando dívidas.` : `${hi}stou te escrevendo dos 65. Ainda trabalho todos os dias. Não tenho escolha.`,
+      ...(bad.length ? bad : ['Fizemos quase tudo certo, mas sem o sistema completo não deu.']),
+      key === 'crash' ? 'Você ainda está em tempo. Aprenda o sistema agora.' : 'Não é tarde: você ainda pode mudar o plano de voo.'];
+  }
+  let letterRun = 0;
+  async function playLetter(lines) {
+    const run = ++letterRun, body = $('#lt-body'); body.innerHTML = '';
+    for (const l of lines) {
+      const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(ty);
+      await wait(reduce ? 0 : 950); if (run !== letterRun) return; ty.remove();
+      const b = document.createElement('div'); b.className = 'bub'; b.textContent = l; body.appendChild(b); blip(988, 0.1);
+      await wait(reduce ? 0 : 420); if (run !== letterRun) return;
+    }
+  }
+
+  // badges
+  const BADGES = [[0, 'Motor ligado'], [1, 'Livre do cartão'], [2, 'Dinheiro que trabalha'], [3, 'Paraquedas pronto'], [5, 'Aumento inteligente'], [6, 'Piloto antigolpe'], [7, 'Investidor paciente'], [8, '13º com propósito']];
+  function badgesOf(st) {
+    const byK = Object.fromEntries(CH.map(c => [c.k, c.side]));
+    const out = BADGES.filter(([k]) => byK[k] === 'b').map(x => x[1]);
+    if (st.maxD === 0) out.push('Zero dívidas');
+    if (st.fiAge && st.fiAge <= 60) out.push('Chegada antecipada');
+    return out;
+  }
+
+  // rewind: change one decision and re-fly the same life
+  const DEC_LABEL = { 0: 'Tempo livre', 1: 'Cartão de crédito', 2: 'Onde guardar', 3: 'Reserva de emergência', 5: 'Aumento de salário', 6: 'Negócio "garantido"', 7: 'Pânico no mercado', 8: '13º salário' };
+  function renderRewind() {
+    $('#decs').innerHTML = CH.map(c => `<button type="button" class="dec ${c.side === 'b' ? 'good' : 'bad'}" data-k="${c.k}" aria-pressed="false"><span class="age">${c.age} anos</span><span>${DEC_LABEL[c.k]}</span><span class="mk">${c.side === 'b' ? '✓ CERTO' : '✗ ERRO'}</span></button>`).join('');
+    $('#rw-out').hidden = true;
+    document.querySelectorAll('#decs .dec').forEach(btn => btn.addEventListener('click', () => rewind(+btn.dataset.k, btn)));
+  }
+  function rewind(k, btn) {
+    document.querySelectorAll('#decs .dec').forEach(x => x.setAttribute('aria-pressed', String(x === btn)));
+    const map = Object.fromEntries(CH.map(c => [c.k, c.side])), c = CH.find(x => x.k === k);
+    map[k] = c.side === 'b' ? 'a' : 'b';
+    const alt = simulate(inp, kk => map[kk] || (kk === 7 ? 'b' : 'a'));
+    const diff = nwOf(alt) - RES.nw;
+    $('#rw-out').innerHTML = `Se aos ${c.age} você tivesse escolhido «${c.ev[map[k]].t}»: ${endText(alt)}.<br>Seu voo real: ${endText(RES.st)}. Diferença aos 65: <b>${diff > 0 ? '+' : ''}${fmtL(diff)}</b>.`;
+    $('#rw-out').hidden = false;
+    diff > 0 ? sfxGood() : sfxBad();
+    track('V40_Rewind', { k });
+  }
+
+  // event pass: countdown + calendar
+  const EV_T = Date.UTC(2026, 10, 14, 14, 0, 0), EV_END = Date.UTC(2026, 10, 15, 18, 0, 0);
+  const pad2 = n => String(n).padStart(2, '0');
+  let cdTimer = 0;
+  function tickCountdown() {
+    const ms = EV_T - Date.now();
+    if (ms <= 0) { $('#cd').hidden = true; const lv = $('#cd-live'); lv.hidden = false; lv.textContent = Date.now() < EV_END ? 'AO VIVO AGORA' : 'EVENTO ENCERRADO'; return; }
+    const s = Math.floor(ms / 1000);
+    $('#cd-d').textContent = Math.floor(s / 86400); $('#cd-h').textContent = pad2(Math.floor(s % 86400 / 3600)); $('#cd-m').textContent = pad2(Math.floor(s % 3600 / 60)); $('#cd-s').textContent = pad2(s % 60);
+  }
+  $('#cta-cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('The Future Is NOW · Lançamento online (dia 1)') +
+    '&dates=20261114T140000Z/20261114T170000Z&details=' + encodeURIComponent('Evento online e grátis, ao vivo de Dubai, com tradução para o português. Dia 2: 15 de novembro no mesmo horário. Inscrição: ' + CFG.eventUrl) + '&location=Online';
+  let evPA = false;
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !evPA && !$('#s-land').hidden) { evPA = true; pa('pa_evento'); } }), { threshold: 0.55 }).observe($('#evpass'));
+
+  // duel result
+  const rankOf = (key, fi, nwM) => key === 'land' ? 2e6 - fi : key === 'circle' ? 1e6 + nwM : nwM;   // legacy links only
+  const resSub = (key, fi, cov) => key === 'land' ? `trabalho opcional aos ${fi}` : key === 'circle' ? `${cov}% da meta aos 65` : 'caiu em dívidas';
+  function showDuel() {
+    if (!DUEL) return;
+    let me, op;
+    if (DUEL.score !== null) {
+      me = RES.score.total; op = DUEL.score;
+      $('#vs-me').textContent = me + ' pts'; $('#vs-me-sub').textContent = resSub(RES.o.key, RES.st.fiAge, RES.score.covPct).replace('da meta', 'da sua meta');
+      $('#vs-op').textContent = op + ' pts'; $('#vs-op-sub').textContent = resSub(DUEL.key, DUEL.fiAge, DUEL.cov);
+    } else {
+      const meNW = Math.round(RES.nw / 1e6);
+      me = rankOf(RES.o.key, RES.st.fiAge, meNW); op = rankOf(DUEL.key, DUEL.fiAge, DUEL.nwM);
+      $('#vs-me').textContent = RES.score.total + ' pts'; $('#vs-me-sub').textContent = resSub(RES.o.key, RES.st.fiAge, RES.score.covPct).replace('da meta', 'da sua meta');
+      $('#vs-op').textContent = DUEL.key === 'land' ? DUEL.fiAge + ' anos' : DUEL.key === 'circle' ? 'Em círculos' : 'Caiu'; $('#vs-op-sub').textContent = duelLine(DUEL);
+    }
+    $('#vs-op-name').textContent = DUEL.name;
+    $('#vs-verdict').textContent = me > op ? `Você ganhou de ${DUEL.name}!` : me < op ? `${DUEL.name} ganhou de você${DUEL.score !== null ? ' por ' + (op - me) + (op - me === 1 ? ' ponto' : ' pontos') : ''}` : 'Empate';
+    $('#duel-res').hidden = false; $('#go-duel').textContent = 'Devolver o desafio';
+    track('V40_DuelResult', { win: me > op });
+  }
+  function outcome(st) {
+    const nw = nwOf(st), E = st.E;
+    if (st.fiAge !== null) return { key: 'land', status: 'POUSOU', title: 'Pouso no trabalho opcional',
+      sub: `A partir dos ${st.fiAge}, seu patrimônio poderia te dar o seu NIF de ${fmtL(inp.nif)} por mês. Trabalhar viraria uma opção.`, eta: st.fiAge + ' ANOS' };
+    if (nw < 0) return { key: 'crash', status: 'CAIU', title: 'Kamikaze financeiro',
+      sub: `Você chega aos 65 devendo ${fmtL(-nw)}.${st.defaulted ? ' Nome negativado no Serasa.' : ''} A dívida comeu o combustível.`, eta: 'NÃO CHEGOU' };
+    const monthly = nw / CFG.fiMult / 12, cov = Math.max(0, Math.round(monthly / inp.nif * 100));
+    return { key: 'circle', status: 'ATRASADO', title: 'Voo em círculos',
+      sub: `Você chega aos 65 com ${fmtL(nw)}: isso renderia cerca de ${fmtL(monthly)} por mês, ${cov}% do seu NIF. Trabalhar continuaria sendo obrigatório.`, eta: 'SEM HORÁRIO' };
+  }
+  function land() {
+    const st = ST, o = outcome(st), nw = nwOf(st);
+    const life = inp.income * 12 * st.years;
+    RES = { o, nw, life, nif: inp.nif, goal: st.goal, st, score: scoreOf(st), ch: CH.slice(), sh: SH.slice(), inp: { ...inp } };
+    $('#r-score').textContent = RES.score.total + '/100';
+    $('#r-name').textContent = (inp.name || 'Você').toUpperCase();
+    const rs = $('#r-status'); rs.textContent = o.status; rs.className = 'status s-' + o.key;
+    $('#r-title').textContent = o.title;
+    $('#r-sub').textContent = o.sub;
+    $('#r-life').textContent = fmtL(life);
+    $('#r-nw').textContent = fmtL(nw);
+    $('#r-nif').textContent = fmtM(RES.nif) + ' por mês';
+    $('#r-goal').textContent = 'Meta: ' + fmtL(RES.goal) + ' investidos';
+    $('#r-eta').textContent = o.eta;
+    const names = { genera: 'Gere', protege: 'Proteja', crece: 'Faça crescer' };
+    let worst = null, wr = 2;
+    $('#r-pillars').innerHTML = ['genera', 'protege', 'crece'].map(k => {
+      const n = st.avail[k], g = st.pill[k], ratio = n ? g / n : 1;
+      if (ratio < wr) { wr = ratio; worst = k; }
+      return `<div>${names[k]}<span>${Array.from({ length: n }, (_, i) => `<i class="${i < g ? 'on' : ''}"></i>`).join('')}</span></div>`;
+    }).join('');
+    const total = st.pill.genera + st.pill.crece + st.pill.protege, avail = st.avail.genera + st.avail.crece + st.avail.protege;
+    $('#r-blind').innerHTML = wr < 1 ? `Seu ponto cego: <b>${names[worst].toUpperCase()}</b>. Você acertou ${total} de ${avail} decisões.` : `Você acertou ${total} de ${avail} decisões. Piloto com sistema.`;
+    $('#sys-out').hidden = true; $('#go-system').hidden = false;
+    $('#report-st').hidden = true;
+    const waText = T(`Oi ${OWNER_FIRST}, estou no Brasil e joguei o VOO 40. Meu NIF é ${fmtL(inp.nif)} por mês e meu resultado foi: ${o.title} (${o.status.toLowerCase()}). Quero aprender o sistema para melhorar o meu voo.`);
+    $('#cta-wa').href = `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(waText)}`;
+    const bs = badgesOf(st);
+    $('#r-badges-lbl').textContent = `Insígnias · ${bs.length} de 10`;
+    $('#r-badges').innerHTML = bs.length ? bs.map(b => `<span class="badge">${b}</span>`).join('') : '<span style="font-size:13px;color:var(--pass-mute)">Nenhuma desta vez. Voe de novo e conquiste.</span>';
+    const tok = ['r', cleanName((inp.name || '').split(' ')[0]) || 'Amigo', o.key, st.fiAge || 0, Math.min(100, RES.score.covPct), RES.score.total].join('_');
+    const meTxt = o.key === 'land' ? `cheguei ao trabalho opcional aos ${st.fiAge}` : o.key === 'circle' ? `cheguei aos 65 com ${RES.score.covPct}% da minha meta` : 'caí em dívidas';
+    $('#go-duel').href = 'https://wa.me/?text=' + encodeURIComponent(T(`Te desafio no VOO 40 ✈️ Fiz ${RES.score.total}/100 no meu voo (${meTxt}). Jogue com a sua própria vida e vamos comparar: ${baseUrl()}#${tok}`));
+    $('#go-duel').textContent = 'Desafiar um amigo'; $('#duel-res').hidden = true;
+    $('#ev-from').textContent = (cleanName(inp.name).slice(0, 3) || 'VOC').toUpperCase();
+    $('#lt-name').textContent = (inp.name ? inp.name.split(' ')[0] + ', aos 65' : 'Você, aos 65');
+    show('s-land');
+    showDuel(); renderRewind(); playLetter(buildLetter());
+    clearInterval(cdTimer); tickCountdown(); cdTimer = setInterval(tickCountdown, 1000);
+    pa('pa_aterrizaje', 0.4);
+    track('V40_GameComplete', { outcome: o.key, fiAge: st.fiAge || 0, score: total, badges: bs.length });
+  }
+
+  // compare with system
+  const cmp = $('#cmp-canvas');
+  function drawCompare(series, prog) {
+    const a = series[1].st, b = series[2].st;
+    const box = cmp.parentElement, s = sizeCanvas(cmp, box), w = s.w, h = s.h, c = cmp.getContext('2d');
+    c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, w, h);
+    const all = series.flatMap(x => x.st.path.map(p => p.nw));
+    let max = Math.max(1, ...all), min = Math.min(0, ...all);
+    const pad = { l: 52, r: 12, t: 14, b: 22 };
+    const X = age => pad.l + (age - a.startAge) / a.years * (w - pad.l - pad.r);
+    const Y = v => pad.t + (max - v) / (max - min) * (h - pad.t - pad.b);
+    c.font = '500 10px ' + css('--f-mono'); c.fillStyle = COL['--mute']; c.strokeStyle = COL['--line']; c.lineWidth = 1;
+    [min, 0, max / 2, max].filter((v, i, arr) => arr.indexOf(v) === i).forEach(v => {
+      const y = Y(v); c.beginPath(); c.moveTo(pad.l, y); c.lineTo(w - pad.r, y); c.stroke();
+      c.fillText(fmtM(v), 2, y + 3);
+    });
+    [a.startAge, Math.round((a.startAge + 65) / 2), 65].forEach(age => c.fillText(String(age), X(age) - 7, h - 6));
+    const line = (st, col, k) => {
+      const n = Math.max(2, Math.ceil(st.path.length * k));
+      c.strokeStyle = col; c.lineWidth = 3; c.lineJoin = 'round'; c.beginPath();
+      st.path.slice(0, n).forEach((p, i) => i ? c.lineTo(X(p.age), Y(p.nw)) : c.moveTo(X(p.age), Y(p.nw))); c.stroke();
+    };
+    series.forEach(x => line(x.st, x.col, prog));
+    if (prog >= 1 && b.fiAge) {
+      const p = b.path.find(q => q.age === b.fiAge);
+      if (p) { c.fillStyle = COL['--teal']; c.beginPath(); c.arc(X(p.age), Y(p.nw), 5, 0, Math.PI * 2); c.fill();
+        c.font = '700 10px ' + css('--f-mono'); const lbl = 'OPCIONAL AOS ' + b.fiAge; const tw = c.measureText(lbl).width;
+        c.fillText(lbl, Math.min(w - pad.r - tw, Math.max(pad.l, X(p.age) - tw / 2)), Math.max(12, Y(p.nw) - 10)); }
+    }
+  }
+  $('#go-system').addEventListener('click', () => {
+    const sys = simulate(inp, () => 'b'), none = simulate(inp, () => 'a');
+    $('#go-system').hidden = true; $('#sys-out').hidden = false;
+    const a = RES.st;
+    const perfect = a.pill.genera + a.pill.crece + a.pill.protege === a.avail.genera + a.avail.crece + a.avail.protege;
+    const end = endText;
+    let txt;
+    if (perfect) txt = `Você voou com sistema: ${end(a)}. A mesma vida no piloto automático terminava com ${end(none)}. Diferença: <b>${fmtL(nwOf(a) - nwOf(none))}</b>.`;
+    else txt = `Seu voo: ${end(a)}. Com sistema: ${end(sys)}. Diferença aos 65: <b>${fmtL(nwOf(sys) - RES.nw)}</b>.`;
+    $('#sys-text').innerHTML = `${txt} Mesmo salário, mesmas turbulências. Outro sistema.`;
+    const series = [{ st: none, col: COL['--red'] }, { st: a, col: COL['--violet'] }, { st: sys, col: COL['--teal'] }];
+    const t0 = performance.now(), dur = reduce ? 1 : 1400;
+    const f = now => { const k = Math.min(1, (now - t0) / dur); drawCompare(series, k); if (k < 1) requestAnimationFrame(f); };
+    requestAnimationFrame(f);
+    RES.sys = sys;
+    track('V40_SystemReplay', { sysFiAge: sys.fiAge || 0 });
+  });
+
+  $('#cta-register').addEventListener('click', () => { track('V40_ClickRegister'); try { window.fbq && window.fbq('track', 'Lead'); } catch (e) {} });
+  $('#cta-wa').addEventListener('click', () => { track('V40_ClickWhatsApp'); try { window.fbq && window.fbq('track', 'Contact'); } catch (e) {} });
+  $('#go-again').addEventListener('click', () => { letterRun++; clearInterval(cdTimer); ambience(true); show('s-checkin'); updateCheckin(); track('V40_Replay'); });
+  $('#go-duel').addEventListener('click', () => track('V40_DuelShare'));
+  $('#cta-cal').addEventListener('click', () => track('V40_Calendar'));
+
+  // ---------- share image (1080x1920 boarding pass) ----------
+  function wrapText(c, text, x, y, maxW, lh) {
+    const words = T(text).split(' '); let line = '', yy = y;
+    for (const w of words) { const t = line ? line + ' ' + w : w; if (c.measureText(t).width > maxW && line) { c.fillText(line, x, yy); line = w; yy += lh; } else line = t; }
+    if (line) c.fillText(line, x, yy); return yy;
+  }
+  async function makeShare() {
+    try { await document.fonts.ready; } catch (e) {}
+    const W2 = 1080, H2 = 1920, c = document.createElement('canvas'); c.width = W2; c.height = H2;
+    const g = c.getContext('2d'), o = RES.o;
+    const F = { d: css('--f-display'), b: css('--f-body'), m: css('--f-mono') };
+    g.fillStyle = COL['--night']; g.fillRect(0, 0, W2, H2);
+    const rg = g.createRadialGradient(900, 120, 10, 900, 120, 900); rg.addColorStop(0, 'rgba(143,99,255,.45)'); rg.addColorStop(1, 'rgba(143,99,255,0)');
+    g.fillStyle = rg; g.fillRect(0, 0, W2, H2);
+    const rg2 = g.createRadialGradient(80, 1850, 10, 80, 1850, 800); rg2.addColorStop(0, 'rgba(47,230,198,.22)'); rg2.addColorStop(1, 'rgba(47,230,198,0)');
+    g.fillStyle = rg2; g.fillRect(0, 0, W2, H2);
+    g.fillStyle = COL['--ink']; g.font = `700 34px ${F.m}`; g.fillText('VOO 40', 90, 150);
+    g.fillStyle = COL['--mute']; g.font = `500 28px ${F.m}`; g.fillText('AONDE CHEGA O SEU AVIÃO?', 90, 200);
+    // pass
+    const px = 70, py = 280, pw = W2 - 140, ph = 1300, rad = 40;
+    g.fillStyle = css('--pass-bg'); g.beginPath(); g.roundRect(px, py, pw, ph, rad); g.fill();
+    const hg = g.createLinearGradient(px, 0, px + pw, 0); hg.addColorStop(0, COL['--violet']); hg.addColorStop(1, COL['--teal']);
+    g.save(); g.beginPath(); g.roundRect(px, py, pw, 110, [rad, rad, 0, 0]); g.clip(); g.fillStyle = hg; g.fillRect(px, py, pw, 110); g.restore();
+    g.fillStyle = COL['--night']; g.font = `700 30px ${F.m}`; g.fillText('CARTÃO DE EMBARQUE', px + 50, py + 68);
+    const t2 = 'VOO 40'; g.fillText(t2, px + pw - 50 - g.measureText(t2).width, py + 68);
+    const ink = css('--pass-ink'), pm = css('--pass-mute');
+    g.fillStyle = ink; g.font = `800 120px ${F.d}`; g.fillText('SAS', px + 50, py + 290);
+    const tc = 'TOP'; g.fillText(tc, px + pw - 50 - g.measureText(tc).width, py + 290);
+    g.fillStyle = pm; g.font = `500 26px ${F.m}`; g.fillText('SALÁRIO A SALÁRIO', px + 50, py + 335);
+    const tcity = 'TRABALHO OPCIONAL'; g.fillText(tcity, px + pw - 50 - g.measureText(tcity).width, py + 335);
+    g.fillText('PASSAGEIRO', px + 50, py + 420);
+    g.fillStyle = ink; g.font = `700 44px ${F.m}`; g.fillText((inp.name || 'Você').toUpperCase(), px + 50, py + 475);
+    const sc = { land: COL['--teal'], circle: COL['--amber'], crash: COL['--red'] }[o.key];
+    g.font = `700 34px ${F.m}`; const sw = g.measureText(o.status).width + 44;
+    g.fillStyle = sc; g.beginPath(); g.roundRect(px + 50, py + 520, sw, 64, 10); g.fill();
+    g.fillStyle = ink; g.fillText(o.status, px + 72, py + 564);
+    g.font = `800 62px ${F.d}`; const yEnd = wrapText(g, o.title, px + 50, py + 690, pw - 100, 74);
+    g.font = `500 34px ${F.b}`; g.fillStyle = ink; wrapText(g, o.sub, px + 50, yEnd + 70, pw - 100, 46);
+    // key values
+    const kvY = py + 1010;
+    const kv = [['PASSOU PELAS SUAS MÃOS', fmtL(RES.life)], ['AOS 65 VOCÊ TEM', fmtL(RES.nw)], ['SEU NIF', fmtM(RES.nif) + ' por mês'], ['HORA DE CHEGADA', o.eta]];
+    kv.forEach(([k, v], i) => {
+      const x = px + 50 + (i % 2) * (pw - 100) / 2, y = kvY + Math.floor(i / 2) * 120;
+      g.fillStyle = pm; g.font = `500 24px ${F.m}`; g.fillText(k, x, y);
+      g.fillStyle = ink; g.font = `700 40px ${F.m}`; g.fillText(v, x, y + 50);
+    });
+    // perforation + notches
+    g.strokeStyle = css('--pass-line'); g.setLineDash([16, 14]); g.lineWidth = 4;
+    g.beginPath(); g.moveTo(px + 30, py + 960); g.lineTo(px + pw - 30, py + 960); g.stroke(); g.setLineDash([]);
+    g.fillStyle = COL['--night']; [px, px + pw].forEach(x => { g.beginPath(); g.arc(x, py + 960, 28, 0, Math.PI * 2); g.fill(); });
+    // barcode
+    let bx = px + 50; const by = py + ph - 90; g.fillStyle = ink;
+    const seed = (RES.nw + RES.life) % 997;
+    for (let i = 0; bx < px + pw - 50; i++) { const w = 2 + ((i * 7 + seed) % 5) * 2; if (i % 2 === 0) g.fillRect(bx, by, w, 56); bx += w; }
+    // badges
+    const bs = badgesOf(RES.st).slice(0, 3); let bx2 = 90;
+    g.font = `700 24px ${F.m}`;
+    bs.forEach(b => { const tw = g.measureText(b.toUpperCase()).width + 64; if (bx2 + tw > W2 - 90) return; g.fillStyle = 'rgba(255,255,255,.08)'; g.strokeStyle = 'rgba(255,255,255,.25)'; g.lineWidth = 2; g.beginPath(); g.roundRect(bx2, 1612, tw, 56, 28); g.fill(); g.stroke();
+      g.fillStyle = COL['--teal']; g.beginPath(); g.arc(bx2 + 26, 1640, 7, 0, Math.PI * 2); g.fill(); g.fillStyle = COL['--ink']; g.fillText(b.toUpperCase(), bx2 + 44, 1649); bx2 += tw + 12; });
+    // footer
+    g.fillStyle = COL['--ink']; g.font = `800 52px ${F.d}`;
+    const fEnd = wrapText(g, 'Jogue grátis e descubra o seu', 90, 1745, W2 - 180, 62);
+    g.fillStyle = COL['--teal']; g.font = `700 32px ${F.m}`; g.fillText(CFG.shareUrl.replace('https://', ''), 90, fEnd + 66);
+    return c.toDataURL('image/png');
+  }
+  $('#go-share').addEventListener('click', async () => {
+    const url = await makeShare();
+    $('#share-img').src = url;
+    const msg = T(`Joguei o VOO 40 e meu resultado foi: ${RES.o.title} (${RES.o.status.toLowerCase()}). Aonde chega o seu avião? ${CFG.shareUrl}`);
+    $('#share-wa').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+    $('#share').hidden = false;
+    track('V40_Share');
+  });
+  $('#share-wa').addEventListener('click', () => track('V40_ShareWhatsApp'));
+  $('#share-close').addEventListener('click', () => { $('#share').hidden = true; });
+
+  // ---------- PDF report: consultant-style "radiografía", drawn on canvas pages and bundled with jsPDF ----------
+  const loadJsPDF = () => window.jspdf ? Promise.resolve(window.jspdf) : new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.onload = () => res(window.jspdf); s.onerror = rej; document.head.appendChild(s);
+  });
+  function mulberry32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const gauss = rnd => { let u = 0; while (!u) u = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * rnd()); };
+  const quant = (arr, f) => { const s = [...arr].sort((a, b) => a - b); return s[Math.min(s.length - 1, Math.floor(f * s.length))]; };
+  function withCfg(patch, fn) { const old = {}; for (const k in patch) { old[k] = CFG[k]; CFG[k] = patch[k]; } try { return fn(); } finally { Object.assign(CFG, old); } }
+  const pct = x => Math.round(x * 100) + '%';
+  const endPlain = st => st.fiAge ? `trabalho opcional aos ${st.fiAge}` : (nwOf(st) < 0 ? `${fmtL(-nwOf(st))} em dívida aos 65` : `${fmtL(nwOf(st))} aos 65, sem chegar ao trabalho opcional`);
+  const PNAME = { genera: 'Gere', protege: 'Proteja', crece: 'Faça crescer' };
+  const S0_LABEL = { '-0.05': 'Falta dinheiro', '0.02': 'Quase nada (<5%)', '0.1': 'Um pouco (~10%)', '0.2': 'Bastante (20% ou mais)' };
+
+  // 500 lives with the same decisions; invested money gets a random real return each year (normal, σ 12%)
+  const MC_N = 500, MC_SIG = 0.12;
+  function monteCarlo(p, pick, seed) {
+    const rnd = mulberry32(seed), runs = [];
+    for (let i = 0; i < MC_N; i++) runs.push(simulate(p, pick, () => gauss(rnd) * MC_SIG));
+    const band = runs[0].path.map((pt, j) => { const v = runs.map(r => r.path[j].nw); return { age: pt.age, p10: quant(v, .1), p50: quant(v, .5), p90: quant(v, .9) }; });
+    const end = runs.map(nwOf), land = runs.filter(r => r.fiAge !== null);
+    return { pLand: land.length / MC_N, p10: quant(end, .1), p50: quant(end, .5), p90: quant(end, .9), fiMed: land.length ? quant(land.map(r => r.fiAge), .5) : null, band };
+  }
+  function analyze() {
+    const p = RES.inp, st = RES.st, map = Object.fromEntries(RES.ch.map(c => [c.k, c.side]));
+    const mine = kk => map[kk] || (kk === 7 ? 'b' : 'a');
+    const none = simulate(p, () => 'a'), sys = simulate(p, () => 'b');
+    const impacts = RES.ch.map(c => {
+      const m2 = { ...map, [c.k]: c.side === 'b' ? 'a' : 'b' };
+      return { ...c, impact: RES.nw - nwOf(simulate(p, kk => m2[kk] || (kk === 7 ? 'b' : 'a'))) };
+    }).sort((a, b) => Math.abs(b.impact) - Math.abs(a.impact));
+    const r = CFG.rInv, need = yrs => yrs > 0 ? st.goal * r / (Math.pow(1 + r, yrs) - 1) / 12 : null;
+    const sens = [
+      { label: 'Seu voo (investimento a 5% real)', st },
+      { label: 'Se o investimento render 3% real', st: withCfg({ rInv: 0.03 }, () => simulate(p, mine)) },
+      { label: 'Se o investimento render 7% real', st: withCfg({ rInv: 0.07 }, () => simulate(p, mine)) },
+      { label: 'Se você poupar 5 pontos a mais da renda', st: simulate({ ...p, s0: p.s0 + 0.05 }, mine) },
+      { label: 'Se você começar 5 anos depois', st: simulate({ ...p, age: p.age + 5 }, mine) }
+    ];
+    let worst = null, wr = 2;
+    ['genera', 'protege', 'crece'].forEach(k => { const n = st.avail[k], ratio = n ? st.pill[k] / n : 1; if (ratio < wr) { wr = ratio; worst = k; } });
+    return { none, sys, impacts, sens, worst: wr < 1 ? worst : null, invested: map[2] === 'b', panicSold: map[7] === 'a',
+      mcMe: monteCarlo(p, mine, 40), mcSys: monteCarlo(p, () => 'b', 41),
+      save0: p.income * p.s0, need: { now: need(st.years), in5: need(st.years - 5), in10: need(st.years - 10) } };
+  }
+
+  const RC = { ink: '#14111F', mute: '#6B6585', line: '#E4E1EE', soft: '#F5F3FA', violet: '#7446F0', teal: '#0E9F86', amber: '#C98A0B', red: '#D93A5B', white: '#FFFFFF' };
+  const PW = 1240, PH = 1754, PM = 96, PS = 1.5, CW = PW - 2 * PM;
+  // NOW order: Genera → Protege → Haz crecer
+  const PORDER = ['genera', 'protege', 'crece'], PKEYS = { genera: [0, 5], protege: [1, 3, 6], crece: [2, 7, 8] };
+  const PCOL = { genera: '#1F8FD6', protege: RC.violet, crece: RC.teal };
+  const DIAG = {
+    0: ['Você usou suas horas livres só para descansar, e a sua renda ficou parada.', 'Você investiu o tempo livre em aprender habilidades que pagam.'],
+    5: ['Seu aumento de salário foi embora em carro e apartamento.', 'Você investiu metade do seu aumento.'],
+    1: ['Você pagou o mínimo do cartão e a dívida cresceu como bola de neve.', 'Você usou o cartão sem pagar juros.'],
+    3: ['Você voou sem reserva de emergência: cada imprevisto virou dívida.', 'Você montou a sua reserva de emergência.'],
+    6: ['Você caiu em um negócio "garantido" e perdeu boa parte das suas economias.', 'Você disse não ao dinheiro "garantido".'],
+    2: ['Você deixou o dinheiro parado na conta, perdendo para a inflação.', 'Você colocou o seu dinheiro para trabalhar cedo.'],
+    7: ['Você vendeu no pânico quando o mercado caiu e perdeu a recuperação.', 'Você manteve o seu plano quando o mercado caiu.'],
+    8: ['Todo 13º salário foi embora em uma semana.', 'Você investiu meio 13º todo dezembro.']
+  };
+  const NOWHELP = {
+    genera: 'Você aprende habilidades com demanda real, como inteligência artificial, vendas e marketing digital, que podem te ajudar a aumentar a sua renda. Mais combustível para o seu voo, sem depender só de um salário.',
+    protege: 'Prepara você para os imprevistos e ensina a proteger o que você constrói: controlar dívidas, montar a sua reserva e reconhecer as ofertas "garantidas" antes que elas custem as suas economias.',
+    crece: 'Você aprende a colocar o seu dinheiro para trabalhar e a construir opções de longo prazo, escolhendo por onde começar, com um plano que não quebra na primeira queda do mercado.'
+  };
+
+  function wrapLines(g, text, maxW) {
+    const out = []; let line = '';
+    for (const w of T(String(text)).split(' ')) { const t = line ? line + ' ' + w : w; if (g.measureText(t).width > maxW && line) { out.push(line); line = w; } else line = t; }
+    if (line) out.push(line); return out;
+  }
+  function para(g, text, x, y, w, font, color, lh) { g.font = font; g.fillStyle = color; const ls = wrapLines(g, text, w); ls.forEach((l, i) => g.fillText(l, x, y + i * lh)); return y + ls.length * lh; }
+  function fitFont(g, text, weight, size, fam, maxW) { let s = size; do { g.font = `${weight} ${s}px ${fam}`; s -= 2; } while (g.measureText(text).width > maxW && s > 14); }
+  function spaced(g, text, x, y, sp) { g.letterSpacing = sp + 'px'; g.fillText(text, x, y); const w = g.measureText(text).width; g.letterSpacing = '0px'; return w; }
+
+  function rPage(F, n, total, name) {
+    const c = document.createElement('canvas'); c.width = PW * PS; c.height = PH * PS;
+    const g = c.getContext('2d'); g.scale(PS, PS); g.textBaseline = 'alphabetic';
+    g.fillStyle = RC.white; g.fillRect(0, 0, PW, PH);
+    const gr = g.createLinearGradient(0, 0, PW, 0); gr.addColorStop(0, RC.violet); gr.addColorStop(1, RC.teal);
+    g.fillStyle = gr; g.fillRect(0, 0, PW, 12);
+    g.font = `700 16px ${F.m}`; g.fillStyle = RC.ink; const w1 = spaced(g, 'VOO 40', PM, 70, 3);
+    g.font = `500 16px ${F.m}`; g.fillStyle = RC.mute; spaced(g, '· RELATÓRIO DE VOO FINANCEIRO', PM + w1 + 14, 70, 2);
+    const nm = ('PASSAGEIRO: ' + name).toUpperCase(); g.letterSpacing = '2px'; const nw = g.measureText(nm).width; g.fillText(nm, PW - PM - nw, 70); g.letterSpacing = '0px';
+    g.fillStyle = RC.line; g.fillRect(PM, 92, CW, 2); g.fillRect(PM, PH - 100, CW, 2);
+    g.font = `400 15px ${F.b}`; g.fillStyle = RC.mute;
+    g.fillText('Simulação educativa, em reais de hoje. Não é recomendação de investimento nem promessa de resultados.', PM, PH - 66);
+    const pg = `Página ${n} de ${total}`; g.font = `600 15px ${F.m}`; g.fillText(pg, PW - PM - g.measureText(pg).width, PH - 66);
+    g.font = `500 15px ${F.m}`; g.fillText(CFG.shareUrl.replace('https://', '') + ' · ' + CFG.owner, PM, PH - 40);
+    return { c, g, links: [] };
+  }
+  function h2(g, F, eyebrow, title, y) {
+    g.font = `700 16px ${F.m}`; g.fillStyle = RC.teal; spaced(g, eyebrow.toUpperCase(), PM, y, 3);
+    return para(g, title, PM, y + 56, CW, `800 42px ${F.d}`, RC.ink, 52) + 12;
+  }
+  function h3(g, F, t, y) { g.font = `700 25px ${F.d}`; g.fillStyle = RC.ink; g.fillText(t, PM, y); return y + 40; }
+  function tile(g, F, x, y, w, h, label, value, note, color) {
+    g.fillStyle = RC.soft; g.beginPath(); g.roundRect(x, y, w, h, 16); g.fill();
+    g.fillStyle = color || RC.violet; g.fillRect(x, y + 20, 5, h - 40);
+    g.font = `600 14px ${F.m}`; g.fillStyle = RC.mute; spaced(g, label.toUpperCase(), x + 26, y + 40, 2);
+    fitFont(g, value, 800, 38, F.d, w - 46); g.fillStyle = RC.ink; g.fillText(value, x + 26, y + 92);
+    if (note) para(g, note, x + 26, y + 126, w - 46, `400 16px ${F.b}`, RC.mute, 21);
+  }
+  function hbar(g, F, x, y, w, label, val, max, color, valTxt) {
+    g.font = `500 19px ${F.b}`; g.fillStyle = RC.ink; g.fillText(label, x, y);
+    g.font = `700 19px ${F.m}`; g.fillText(valTxt, x + w - g.measureText(valTxt).width, y);
+    g.fillStyle = RC.soft; g.beginPath(); g.roundRect(x, y + 14, w, 20, 10); g.fill();
+    const k = Math.max(0, Math.min(1, val / max));
+    if (k > 0) { g.fillStyle = color; g.beginPath(); g.roundRect(x, y + 14, Math.max(20, w * k), 20, 10); g.fill(); }
+    return y + 70;
+  }
+  function bullets(g, F, items, y, color) {
+    items.forEach(t => { g.fillStyle = color || RC.teal; g.fillRect(PM, y - 13, 10, 10); y = para(g, t, PM + 28, y, CW - 28, `400 20px ${F.b}`, RC.ink, 29) + 12; });
+    return y;
+  }
+  // cols: [{t, w, right}], rows: [[cell...]] where cell is a string or {t, c, b}
+  function table(g, F, x, y, cols, rows) {
+    g.font = `600 13px ${F.m}`; g.fillStyle = RC.mute;
+    let cx = x; cols.forEach(col => { g.letterSpacing = '1.5px'; const t = col.t.toUpperCase(); g.fillText(t, col.right ? cx + col.w - 12 - g.measureText(t).width : cx + 12, y); g.letterSpacing = '0px'; cx += col.w; });
+    y += 14; g.fillStyle = RC.ink; g.fillRect(x, y, CW, 2); y += 2;
+    rows.forEach((row, ri) => {
+      const cells = row.map((cell, i) => { const o = typeof cell === 'string' ? { t: cell } : cell; g.font = `${o.b ? 700 : 400} 18px ${o.b ? F.m : F.b}`; return { ...o, font: g.font, lines: wrapLines(g, o.t, cols[i].w - 24) }; });
+      const rh = Math.max(...cells.map(c => c.lines.length)) * 24 + 22;
+      if (ri % 2 === 0) { g.fillStyle = RC.soft; g.fillRect(x, y, CW, rh); }
+      let cx2 = x;
+      cells.forEach((c, i) => { g.font = c.font; g.fillStyle = c.c || RC.ink; c.lines.forEach((l, j) => g.fillText(l, cols[i].right ? cx2 + cols[i].w - 12 - g.measureText(l).width : cx2 + 12, y + 30 + j * 24)); cx2 += cols[i].w; });
+      y += rh;
+    });
+    g.fillStyle = RC.line; g.fillRect(x, y, CW, 2);
+    return y + 20;
+  }
+  function chart(g, F, x, y, w, h, series, goal, band) {
+    const all = series.flatMap(s => s.pts.map(p => p.nw)).concat(band ? band.flatMap(b => [b.p10, b.p90]) : []).concat([goal]);
+    const max = Math.max(...all) * 1.06, min = Math.min(0, ...all) * 1.06;
+    const a0 = series[0].pts[0].age, a1 = series[0].pts[series[0].pts.length - 1].age, pl = 112;
+    const X = age => x + pl + (age - a0) / (a1 - a0) * (w - pl - 10), Y = v => y + (max - v) / (max - min) * (h - 34);
+    g.font = `500 14px ${F.m}`;
+    for (let i = 0; i <= 4; i++) { const v = min + (max - min) * i / 4, yy = Y(v); g.fillStyle = RC.line; g.fillRect(x + pl, yy, w - pl - 10, 1); g.fillStyle = RC.mute; g.fillText(fmtM(v), x, yy + 5); }
+    if (min < 0) { g.fillStyle = RC.mute; g.fillRect(x + pl, Y(0), w - pl - 10, 2); }
+    for (let a = Math.ceil(a0 / 10) * 10; a <= a1; a += 10) { g.fillStyle = RC.mute; g.fillText(String(a), X(a) - 9, y + h - 6); }
+    g.fillStyle = RC.mute; g.fillText(String(a1), X(a1) - 18, y + h - 6);
+    if (band) {
+      g.fillStyle = 'rgba(116,70,240,.16)'; g.beginPath();
+      band.forEach((b, i) => i ? g.lineTo(X(b.age), Y(b.p90)) : g.moveTo(X(b.age), Y(b.p90)));
+      [...band].reverse().forEach(b => g.lineTo(X(b.age), Y(b.p10))); g.closePath(); g.fill();
+    }
+    g.strokeStyle = RC.teal; g.lineWidth = 2; g.setLineDash([10, 8]); g.beginPath(); g.moveTo(x + pl, Y(goal)); g.lineTo(x + w - 10, Y(goal)); g.stroke(); g.setLineDash([]);
+    g.font = `700 14px ${F.m}`; g.fillStyle = RC.teal; g.fillText('META · ' + fmtM(goal), x + pl + 8, Y(goal) - 8);
+    series.forEach(s => {
+      g.strokeStyle = s.color; g.lineWidth = s.width || 4; g.lineJoin = 'round'; g.setLineDash(s.dash || []);
+      g.beginPath(); s.pts.forEach((p, i) => i ? g.lineTo(X(p.age), Y(p.nw)) : g.moveTo(X(p.age), Y(p.nw))); g.stroke(); g.setLineDash([]);
+    });
+    return y + h + 16;
+  }
+  function legend(g, F, items, y) {
+    let x = PM; g.font = `500 16px ${F.m}`;
+    items.forEach(([t, col, dash]) => { g.strokeStyle = col; g.lineWidth = 4; g.setLineDash(dash || []); g.beginPath(); g.moveTo(x, y - 6); g.lineTo(x + 30, y - 6); g.stroke(); g.setLineDash([]); g.fillStyle = RC.ink; g.fillText(t, x + 40, y); x += 40 + g.measureText(t).width + 36; });
+    return y + 36;
+  }
+  function btnBox(pg, F, x, y, w, h, label, url, fill, ink) {
+    const g = pg.g; g.fillStyle = fill; g.beginPath(); g.roundRect(x, y, w, h, h / 2); g.fill();
+    fitFont(g, label, 700, 20, F.d, w - 40); g.fillStyle = ink; g.fillText(label, x + (w - g.measureText(label).width) / 2, y + h / 2 + 7);
+    pg.links.push({ x, y, w, h, url });
+  }
+
+  function buildPages(A, F) {
+    const p = RES.inp, st = RES.st, sc = RES.score, o = RES.o, nw = RES.nw, T = 6;
+    const name = (p.name || 'Você').split(' ')[0], NAME = name.toUpperCase();
+    const keyCol = { land: RC.teal, circle: RC.amber, crash: RC.red }[o.key];
+    const pages = [];
+
+    // 1 · resumen ejecutivo
+    let pg = rPage(F, 1, T, NAME), g = pg.g, y = 170;
+    g.font = `700 16px ${F.m}`; g.fillStyle = RC.teal; spaced(g, 'RAIO-X FINANCEIRO', PM, y, 3);
+    y = para(g, `Relatório de voo de ${name}`, PM, y + 76, CW, `800 60px ${F.d}`, RC.ink, 70);
+    const fecha = new Date().toLocaleDateString(LOC.nf, { day: 'numeric', month: 'long', year: 'numeric' });
+    y = para(g, `Gerado em ${fecha} · Preparado por ${CFG.owner} com o VOO 40`, PM, y + 4, CW, `400 20px ${F.b}`, RC.mute, 28) + 26;
+    g.font = `400 21px ${F.b}`; const subL = wrapLines(g, o.sub, CW - 80), boxH = 150 + subL.length * 30;
+    g.fillStyle = RC.soft; g.beginPath(); g.roundRect(PM, y, CW, boxH, 20); g.fill(); g.fillStyle = keyCol; g.fillRect(PM, y + 22, 7, boxH - 44);
+    g.font = `700 16px ${F.m}`; const sw = g.measureText(o.status).width + 36; g.fillStyle = keyCol; g.beginPath(); g.roundRect(PM + 40, y + 30, sw, 38, 8); g.fill();
+    g.fillStyle = RC.ink; spaced(g, o.status, PM + 58, y + 55, 2);
+    g.font = `800 34px ${F.d}`; g.fillText(o.title, PM + 40, y + 112);
+    g.font = `400 21px ${F.b}`; subL.forEach((l, i) => g.fillText(l, PM + 40, y + 150 + i * 30));
+    y += boxH + 28;
+    const tw = (CW - 48) / 3, th = 176;
+    const tiles = [
+      ['Pontuação do voo', `${sc.total}/100`, `${sc.dec} decisões · ${sc.cov} meta · ${sc.early} chegada`, RC.violet],
+      ['Trabalho opcional', st.fiAge ? `${st.fiAge} anos` : 'Não chegou', st.fiAge ? `${CFG.retireAge - st.fiAge} anos antes dos 65` : 'antes dos 65 com as suas decisões', keyCol],
+      ['Patrimônio aos 65', fmtL(nw), 'em reais de hoje', nw < 0 ? RC.red : RC.teal],
+      ['Cobertura da sua meta', `${sc.covPct}%`, `meta: ${fmtL(st.goal)} investidos`, sc.covPct >= 100 ? RC.teal : RC.amber],
+      ['Decisões certas', `${sc.hits} de ${sc.avail}`, A.worst ? `ponto cego: ${PNAME[A.worst]}` : 'sem ponto cego', A.worst ? RC.amber : RC.teal],
+      ['Probabilidade de chegar', pct(A.mcMe.pLand), `em ${MC_N} cenários · com sistema: ${pct(A.mcSys.pLand)}`, RC.violet]
+    ];
+    tiles.forEach((t, i) => tile(g, F, PM + (i % 3) * (tw + 24), y + Math.floor(i / 3) * (th + 20), tw, th, ...t));
+    y += 2 * th + 20 + 56;
+    y = h3(g, F, 'Principais conclusões', y);
+    const worstD = A.impacts.filter(d => d.impact < 0)[0], bestD = A.impacts.filter(d => d.impact > 0)[0];
+    const finds = [`Pelas suas mãos vão passar ${fmtL(RES.life)} até os 65. Você chega com ${fmtL(nw)}: ${sc.covPct}% do que precisa para viver do seu NIF de ${fmtL(p.nif)} por mês.`];
+    if (worstD) finds.push(`Sua decisão mais cara: «${DEC_LABEL[worstD.k]}» aos ${worstD.age}. Escolher diferente teria somado ${fmtL(-worstD.impact)} ao seu patrimônio aos 65.`);
+    if (bestD) finds.push(`Sua melhor decisão: «${DEC_LABEL[bestD.k]}» aos ${bestD.age}. Sozinha, ela soma ${fmtL(bestD.impact)} ao seu patrimônio aos 65.`);
+    finds.push(`Com as mesmas turbulências e todas as decisões do sistema, a mesma vida terminava em ${endPlain(A.sys)}.`);
+    finds.push(`Em ${MC_N} cenários com rentabilidades que sobem e descem, você chega ao trabalho opcional antes dos 65 em ${pct(A.mcMe.pLand)} dos casos.`);
+    bullets(g, F, finds, y + 6);
+    pages.push(pg);
+
+    // 2 · punto de partida
+    pg = rPage(F, 2, T, NAME); g = pg.g;
+    y = h2(g, F, 'Ponto de partida', 'Assim começa o seu voo', 170);
+    y = table(g, F, PM, y + 10, [{ t: 'Item', w: 640 }, { t: 'Seu dado', w: CW - 640, right: true }], [
+      ['Idade hoje', { t: p.age + ' anos', b: 1 }],
+      ['Anos de vida profissional até os 65', { t: String(st.years), b: 1 }],
+      ['Renda líquida mensal', { t: fmtFull(p.income), b: 1 }],
+      ['O que sobra no fim do mês', { t: S0_LABEL[String(p.s0)] || pct(p.s0), b: 1 }],
+      ['Poupança mensal estimada', { t: fmtFull(A.save0), b: 1, c: A.save0 < 0 ? RC.red : RC.ink }],
+      ['Seu NIF: com quanto você viveria sem trabalhar', { t: fmtFull(p.nif) + ' / mês', b: 1 }],
+      ['Meta de patrimônio (28 vezes o seu NIF anual)', { t: fmtL(st.goal), b: 1 }],
+      ['Renda total da sua vida profissional', { t: fmtL(RES.life), b: 1 }]
+    ]);
+    y = h3(g, F, 'Quanto você precisa investir por mês?', y + 30);
+    y = para(g, `Para ter ${fmtL(st.goal)} aos 65, investindo com uma rentabilidade real ilustrativa de 5% ao ano, você precisaria separar todo mês, a partir de hoje:`, PM, y, CW, `400 20px ${F.b}`, RC.mute, 29) + 24;
+    const ref20 = p.income * 0.2, mx = Math.max(A.need.now || 0, ref20, A.save0) * 1.05;
+    y = hbar(g, F, PM, y, CW, 'O que você poupa hoje', Math.max(0, A.save0), mx, A.save0 < 0 ? RC.red : RC.amber, A.save0 < 0 ? fmtFull(A.save0) + ' (falta)' : fmtFull(A.save0));
+    y = hbar(g, F, PM, y, CW, 'Referência saudável: 20% da sua renda', ref20, mx, RC.violet, fmtFull(ref20));
+    y = hbar(g, F, PM, y, CW, 'Necessário para chegar à sua meta aos 65', A.need.now, mx, RC.teal, fmtFull(A.need.now));
+    const needRate = A.need.now / p.income;
+    y = para(g, needRate > 0.6
+      ? `Sua meta exige investir ${pct(needRate)} da sua renda atual. Com essa renda, só poupar não basta: a alavanca principal é aumentar o que você gera (pilar Gere) e investir cada aumento.`
+      : `Sua meta exige investir ${pct(needRate)} da sua renda atual. ${A.save0 >= A.need.now ? 'Hoje você já poupa o suficiente: o segredo é esse dinheiro trabalhar e não ficar parado.' : `Hoje você separa ${fmtFull(Math.max(0, A.save0))}: a diferença é de ${fmtFull(A.need.now - Math.max(0, A.save0))} por mês.`}`,
+      PM, y + 4, CW, `400 20px ${F.b}`, RC.ink, 29) + 30;
+    y = h3(g, F, 'O custo de esperar', y);
+    const waits = [['Se você começar hoje', A.need.now], ['Se começar em 5 anos', A.need.in5], ['Se começar em 10 anos', A.need.in10]].filter(w => w[1]);
+    const mw = Math.max(...waits.map(w => w[1])) * 1.05;
+    waits.forEach(([t, v], i) => { y = hbar(g, F, PM, y, CW, t, v, mw, [RC.teal, RC.amber, RC.red][i], fmtFull(v) + ' / mês'); });
+    if (A.need.in5) para(g, `Esperar 5 anos faz o esforço mensal subir ${pct(A.need.in5 / A.need.now - 1)}. Os juros compostos premiam quem começa antes.`, PM, y + 4, CW, `400 20px ${F.b}`, RC.ink, 29);
+    pages.push(pg);
+
+    // 3 · trayectoria
+    pg = rPage(F, 3, T, NAME); g = pg.g;
+    y = h2(g, F, 'Trajetória', 'Seu patrimônio, ano a ano', 170);
+    y = para(g, 'Três voos da mesma vida: mesmo salário, mesma idade e mesmas turbulências. Só mudam as decisões: sem sistema, as suas e com sistema.', PM, y, CW, `400 20px ${F.b}`, RC.mute, 29) + 20;
+    y = chart(g, F, PM, y, CW, 520, [{ pts: A.none.path, color: RC.red }, { pts: st.path, color: RC.violet, width: 5 }, { pts: A.sys.path, color: RC.teal }], st.goal);
+    y = legend(g, F, [['Sem sistema', RC.red], ['Seu voo', RC.violet], ['Com sistema', RC.teal], ['Meta', RC.teal, [10, 8]]], y + 10);
+    const ages = []; for (let a = Math.ceil((p.age + 1) / 10) * 10; a < CFG.retireAge; a += 10) ages.push(a); ages.push(CFG.retireAge);
+    const at = (s, a) => (s.path.find(q => q.age === a) || s.path[s.path.length - 1]).nw;
+    y = table(g, F, PM, y + 10, [{ t: 'Idade', w: 160 }, { t: 'Sem sistema', w: 296, right: true }, { t: 'Seu voo', w: 296, right: true }, { t: 'Com sistema', w: CW - 752, right: true }],
+      ages.map(a => [{ t: a + ' anos', b: 1 }, fmtL(at(A.none, a)), { t: fmtL(at(st, a)), b: 1, c: RC.violet }, fmtL(at(A.sys, a))]));
+    if (RES.sh.length) {
+      y = h3(g, F, 'Turbulências que você enfrentou', y + 24);
+      bullets(g, F, RES.sh.map(s => `Aos ${s.age}: ${s.q} ${s.fb}`), y + 4, RC.red);
+    }
+    pages.push(pg);
+
+    // 4 · decisiones
+    pg = rPage(F, 4, T, NAME); g = pg.g;
+    y = h2(g, F, 'Análise de decisões', 'O que moveu o seu resultado', 170);
+    const pw3 = (CW - 48) / 3;
+    ['genera', 'protege', 'crece'].forEach((k, i) => {
+      const n = st.avail[k], hit = st.pill[k], r = n ? hit / n : 1, col = r >= 1 ? RC.teal : r >= 0.5 ? RC.amber : RC.red, x = PM + i * (pw3 + 24);
+      g.fillStyle = RC.soft; g.beginPath(); g.roundRect(x, y, pw3, 150, 16); g.fill();
+      g.font = `600 14px ${F.m}`; g.fillStyle = RC.mute; spaced(g, PNAME[k].toUpperCase() + (A.worst === k ? ' · PONTO CEGO' : ''), x + 24, y + 40, 2);
+      g.font = `800 40px ${F.d}`; g.fillStyle = RC.ink; g.fillText(`${hit}/${n}`, x + 24, y + 92);
+      g.fillStyle = RC.white; g.beginPath(); g.roundRect(x + 24, y + 112, pw3 - 48, 14, 7); g.fill();
+      if (r > 0) { g.fillStyle = col; g.beginPath(); g.roundRect(x + 24, y + 112, Math.max(14, (pw3 - 48) * r), 14, 7); g.fill(); }
+    });
+    y += 190;
+    y = h3(g, F, 'Impacto de cada decisão no seu patrimônio aos 65', y);
+    y = table(g, F, PM, y, [{ t: 'Idade', w: 96 }, { t: 'Decisão', w: 230 }, { t: 'O que você escolheu', w: 372 }, { t: 'Avaliação', w: 150 }, { t: 'Impacto', w: CW - 848, right: true }],
+      A.impacts.map(d => [d.age + ' anos', { t: DEC_LABEL[d.k], b: 1 }, d.ev[d.side].t, d.side === 'b' ? { t: '✓ Acerto', c: RC.teal, b: 1 } : { t: '✗ A melhorar', c: RC.red, b: 1 },
+        { t: Math.abs(d.impact) < 1e6 * U ? '≈ ' + LOC.cur.trim() + '0' : (d.impact > 0 ? '+' : '') + fmtL(d.impact), b: 1, c: d.impact > 0 ? RC.teal : d.impact < 0 ? RC.red : RC.mute }]));
+    y = para(g, 'Como ler o impacto: é quanto o seu patrimônio aos 65 muda só por essa decisão, comparado a ter escolhido a outra opção e mantendo todo o resto igual (análise de sensibilidade). Positivo: essa decisão somou. Negativo: tirou.', PM, y + 6, CW, `400 18px ${F.b}`, RC.mute, 26) + 22;
+    if (worstD) {
+      const tot = A.impacts.filter(d => d.impact < 0).reduce((s, d) => s - d.impact, 0);
+      para(g, `As decisões a melhorar tiram, somadas, cerca de ${fmtL(tot)} aos 65 (somadas uma a uma; juntas podem pesar mais por causa dos juros compostos).`, PM, y, CW, `600 20px ${F.b}`, RC.ink, 29);
+    }
+    y = PH - 268;
+    g.font = `700 13px ${F.m}`; g.fillStyle = RC.mute; spaced(g, 'METODOLOGIA E PREMISSAS', PM, y, 2);
+    para(g, `Simulação educativa em reais de hoje. Investimento diversificado com rentabilidade real ilustrativa de 5% ao ano; dinheiro parado em conta −2% real pela inflação; dívida de cartão ~35% real (conservador: o rotativo médio passa de 400% ao ano, segundo o Banco Central). Meta: 28 vezes o seu NIF anual (retiradas de ~3,6% ao ano). Cenários: ${MC_N} simulações com rentabilidade anual aleatória (normal, volatilidade de 12%) sobre a parte investida; P10, P50 e P90 são percentis. Pontuação: 40 pontos por decisões, 40 pela cobertura da sua meta e 20 por chegar antes dos 65. Não inclui aposentadoria do INSS. A NOW é educação financeira: não é recomendação de investimento nem promete rentabilidade; investimentos podem perder valor.`, PM, y + 26, CW, `400 15px ${F.b}`, RC.mute, 21);
+    pages.push(pg);
+
+    // 5 · estadística
+    pg = rPage(F, 5, T, NAME); g = pg.g;
+    y = h2(g, F, 'Análise estatística', `${MC_N} vidas possíveis com as suas decisões`, 170);
+    y = para(g, `Na vida real a rentabilidade não é a mesma todo ano. Simulamos ${MC_N} vezes a sua mesma vida e as suas mesmas decisões, mas com uma rentabilidade que sobe e desce a cada ano (volatilidade de 12%). A faixa mostra o intervalo provável: entre o cenário pessimista (P10) e o otimista (P90).`, PM, y, CW, `400 20px ${F.b}`, RC.mute, 29) + 20;
+    y = chart(g, F, PM, y, CW, 440, [{ pts: A.mcMe.band.map(b => ({ age: b.age, nw: b.p50 })), color: RC.violet, width: 5 }, { pts: A.mcSys.band.map(b => ({ age: b.age, nw: b.p50 })), color: RC.teal, dash: [14, 8] }], st.goal, A.mcMe.band);
+    y = legend(g, F, [['Seu voo (mediana)', RC.violet], ['Com sistema (mediana)', RC.teal, [14, 8]], ['Meta', RC.teal, [10, 8]]], y + 10);
+    const t2 = (CW - 24) / 2;
+    tile(g, F, PM, y, t2, 150, 'Probabilidade de chegar · você', pct(A.mcMe.pLand), A.mcMe.fiMed ? `idade típica de chegada: ${A.mcMe.fiMed}` : 'trabalho opcional antes dos 65', RC.violet);
+    tile(g, F, PM + t2 + 24, y, t2, 150, 'Probabilidade · com sistema', pct(A.mcSys.pLand), A.mcSys.fiMed ? `idade típica de chegada: ${A.mcSys.fiMed}` : 'trabalho opcional antes dos 65', RC.teal);
+    y += 170;
+    const t3 = (CW - 48) / 3;
+    [['Pessimista · P10', A.mcMe.p10, RC.red], ['Provável · P50', A.mcMe.p50, RC.violet], ['Otimista · P90', A.mcMe.p90, RC.teal]].forEach(([l, v, c], i) => tile(g, F, PM + i * (t3 + 24), y, t3, 150, l, fmtL(v), 'patrimônio aos 65', c));
+    y += 196;
+    y = h3(g, F, 'Sensibilidade: e se…?', y);
+    y = table(g, F, PM, y, [{ t: 'Cenário', w: 420 }, { t: 'Trabalho opcional', w: 190 }, { t: 'Aos 65', w: 210, right: true }, { t: 'Vs. seu voo', w: CW - 820, right: true }],
+      A.sens.map((s, i) => { const d = nwOf(s.st) - RES.nw; return [{ t: s.label, b: i === 0 }, s.st.fiAge ? `aos ${s.st.fiAge}` : 'não chega', { t: fmtL(nwOf(s.st)), b: 1 }, i === 0 ? '—' : { t: (d > 0 ? '+' : '') + fmtL(d), b: 1, c: d > 0 ? RC.teal : d < 0 ? RC.red : RC.mute }]; }));
+    if (!A.invested) para(g, 'Como o seu dinheiro não ficou investido, a rentabilidade do mercado quase não muda o seu resultado. O que pesa é a inflação: dinheiro parado perde poder de compra todo ano.', PM, y + 4, CW, `400 18px ${F.b}`, RC.mute, 26);
+    else if (A.panicSold) para(g, 'Ao vender no pânico do mercado, o seu dinheiro saiu do investimento: a partir desse ano deixou de crescer com o mercado, e por isso a faixa de cenários fica mais estreita.', PM, y + 4, CW, `400 18px ${F.b}`, RC.mute, 26);
+    pages.push(pg);
+
+    // 6 · plan de acción: each NOW pillar, diagnosed from their own flight, then the step into NOW
+    pg = rPage(F, 6, T, NAME); g = pg.g;
+    y = h2(g, F, 'Plano de ação', 'Como a NOW te leva até a sua meta', 170);
+    y = para(g, 'Seu voo mostrou onde você está forte e onde perdeu altitude. A NOW é um sistema completo de educação financeira que trabalha exatamente essas três frentes, nesta ordem:', PM, y - 4, CW, `400 20px ${F.b}`, RC.mute, 29) + 22;
+    const byK = Object.fromEntries(RES.ch.map(c => [c.k, c])), impK = Object.fromEntries(A.impacts.map(d => [d.k, d.impact]));
+    PORDER.forEach((pk, i) => {
+      const ks = PKEYS[pk].filter(k => byK[k]), bad = ks.filter(k => byK[k].side === 'a'), good = ks.filter(k => byK[k].side === 'b');
+      const worstK = [...bad].sort((x, z) => (impK[x] || 0) - (impK[z] || 0))[0], bestK = [...good].sort((x, z) => (impK[z] || 0) - (impK[x] || 0))[0];
+      const diag = bad.length ? DIAG[worstK][0] : (bestK !== undefined ? DIAG[bestK][1] + ' Você está no caminho certo; agora é hora de aplicar na vida real.' : 'Agora é hora de aplicar na vida real.');
+      const lost = bad.reduce((s, k) => s + Math.min(0, impK[k] || 0), 0), won = good.reduce((s, k) => s + Math.max(0, impK[k] || 0), 0);
+      const imp = bad.length && lost < -1e6 * U ? [`Na sua simulação, este pilar tirou ${fmtL(-lost)} aos 65${bad.length > 1 ? ` (${bad.length} decisões)` : ''}.`, RC.red] : won > 1e6 * U ? [`Na sua simulação, este pilar somou ${fmtL(won)} aos 65.`, RC.teal] : null;
+      g.font = `400 19px ${F.b}`; const dl = wrapLines(g, diag, CW - 140);
+      g.font = `400 19px ${F.b}`; const nl = wrapLines(g, NOWHELP[pk], CW - 140);
+      const h = 58 + dl.length * 27 + (imp ? 32 : 0) + 34 + nl.length * 27 + 18;
+      g.fillStyle = RC.soft; g.beginPath(); g.roundRect(PM, y, CW, h, 16); g.fill();
+      g.fillStyle = PCOL[pk]; g.fillRect(PM, y + 20, 5, h - 40);
+      g.font = `800 40px ${F.d}`; g.fillStyle = PCOL[pk]; g.fillText(String(i + 1), PM + 36, y + 62);
+      g.font = `700 15px ${F.m}`; g.fillStyle = PCOL[pk]; const tagW = spaced(g, PNAME[pk].toUpperCase(), PM + 110, y + 40, 2.5);
+      g.font = `500 15px ${F.m}`; g.fillStyle = RC.mute; spaced(g, `· SEU VOO: ${st.pill[pk]}/${st.avail[pk]}`, PM + 124 + tagW, y + 40, 2);
+      let yy = y + 68; g.font = `400 19px ${F.b}`; g.fillStyle = RC.ink; dl.forEach(l => { g.fillText(l, PM + 110, yy); yy += 27; });
+      if (imp) { g.font = `700 18px ${F.m}`; g.fillStyle = imp[1]; g.fillText(imp[0], PM + 110, yy + 4); yy += 32; }
+      yy += 10; g.font = `700 14px ${F.m}`; g.fillStyle = RC.violet; spaced(g, 'COMO A NOW TE AJUDA', PM + 110, yy, 2.5); yy += 28;
+      g.font = `500 19px ${F.b}`; g.fillStyle = RC.ink; nl.forEach(l => { g.fillText(l, PM + 110, yy); yy += 27; });
+      y += h + 12;
+    });
+    y += 4;
+    const gap = nwOf(A.sys) - RES.nw;
+    g.font = `400 20px ${F.b}`;
+    const p4 = `Na simulação, a sua mesma vida com as decisões do sistema chegava a ${endPlain(A.sys)}${gap > 1e6 * U ? `: ${fmtL(gap)} a mais que o seu voo` : ''}. A NOW reúne em um só lugar a educação e as ferramentas para aplicar Gere, Proteja e Faça crescer na sua vida real. O primeiro passo é conhecer ao vivo e grátis no The Future Is NOW, com tradução para o português: 14 e 15 de novembro, às 11h (horário de Brasília).`;
+    const l4 = wrapLines(g, p4, CW - 154), bh = 186 + l4.length * 29 + 96;
+    const bg = g.createLinearGradient(PM, y, PM + CW, y + bh); bg.addColorStop(0, '#1C1532'); bg.addColorStop(1, '#0E0C18');
+    g.fillStyle = bg; g.beginPath(); g.roundRect(PM, y, CW, bh, 22); g.fill();
+    g.font = `800 40px ${F.d}`; g.fillStyle = '#2FE6C6'; g.fillText('4', PM + 36, y + 66);
+    g.font = `700 15px ${F.m}`; g.fillStyle = '#2FE6C6'; spaced(g, 'SEU PRÓXIMO PASSO', PM + 110, y + 44, 3);
+    para(g, 'Ative o sistema completo com a NOW', PM + 110, y + 98, CW - 154, `800 34px ${F.d}`, '#F4F2FB', 42);
+    g.font = `400 20px ${F.b}`; g.fillStyle = '#C9C4DD'; l4.forEach((l, j) => g.fillText(l, PM + 110, y + 150 + j * 29));
+    const bw = (CW - 154 - 20) / 2, by2 = y + 150 + l4.length * 29 + 18;
+    btnBox(pg, F, PM + 110, by2, bw, 64, 'Garantir minha vaga grátis', CFG.eventUrl, '#2FE6C6', '#08070F');
+    btnBox(pg, F, PM + 130 + bw, by2, bw, 64, `Quero a NOW · falar com ${OWNER_FIRST}`, `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(`Oi ${OWNER_FIRST}, estou no Brasil e baixei o relatório do meu voo no VOO 40 (pontuação ${sc.total}/100). Quero conhecer a NOW para começar a aplicar Gere, Proteja e Faça crescer.`)}`, '#F4F2FB', '#14111F');
+    pages.push(pg);
+    return pages;
+  }
+
+  async function makeReport() {
+    const [{ jsPDF }] = await Promise.all([loadJsPDF(), document.fonts ? Promise.all(['800 40px Unbounded', '700 20px Unbounded', '400 20px Onest', '500 20px Onest', '600 20px Onest', '700 20px Onest', '500 16px "JetBrains Mono"', '700 16px "JetBrains Mono"'].map(f => document.fonts.load(f))).catch(() => {}) : null]);
+    const F = { d: css('--f-display'), b: css('--f-body'), m: css('--f-mono') };
+    const pages = buildPages(analyze(), F), K = 210 / PW;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
+    pages.forEach((pg, i) => {
+      if (i) doc.addPage();
+      doc.addImage(pg.c.toDataURL('image/jpeg', 0.86), 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+      pg.links.forEach(l => doc.link(l.x * K, l.y * K, l.w * K, l.h * K, { url: l.url }));
+    });
+    doc.setProperties({ title: 'Relatório de voo · VOO 40', subject: 'Raio-X financeiro', author: CFG.owner });
+    return doc;
+  }
+  $('#go-report').addEventListener('click', async () => {
+    const b = $('#go-report'), msg = $('#report-st');
+    if (b.disabled || !RES) return;
+    b.disabled = true; msg.hidden = false; msg.textContent = 'Preparando o seu relatório…';
+    const inApp = /Instagram|FBAN|FBAV|FB_IAB|Line\//i.test(navigator.userAgent);
+    try {
+      await wait(40);
+      const doc = await makeReport();
+      const fname = `Relatorio-Voo40-${cleanName((RES.inp.name || '').split(' ')[0]) || 'passageiro'}.pdf`;
+      const file = new File([doc.output('blob')], fname, { type: 'application/pdf' });
+      if (inApp && navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], title: 'Relatório do seu voo' }); } catch (e) {} }
+      else doc.save(fname);
+      msg.textContent = inApp ? 'Se não baixou, abra esta página no Chrome ou no Safari (menu ··· → Abrir no navegador) e toque no botão de novo.' : 'Pronto. Confira os seus downloads.';
+      track('V40_Report', { outcome: RES.o.key, score: RES.score.total });
+    } catch (e) {
+      msg.textContent = 'Não conseguimos gerar o relatório. Confira a sua conexão e tente de novo.';
+    }
+    b.disabled = false;
+  });
+
+  if (DUEL) {
+    $('#duel-tag').hidden = false;
+    $('#intro-title').textContent = `${DUEL.name} te desafiou no VOO 40`;
+    const pts = DUEL.score !== null ? ` e fez ${DUEL.score}/100 pontos` : '';
+    $('#intro-sub').textContent = `${DUEL.name} ${duelLine(DUEL)}${pts}. Jogue com a sua própria vida e compare. Consegue superar?`;
+    $('#intro-enter-label').textContent = 'Aceitar o desafio';
+    const bn = $('#duel-banner'); bn.hidden = false; bn.innerHTML = `<b>${DUEL.name}</b> te desafia: ${duelLine(DUEL)}${pts}. Coloque os seus próprios dados, tome as suas decisões e compare as pontuações.`;
+    const dl = $('#duel-lock'); dl.hidden = false; dl.textContent = `Duelo com ${DUEL.name}: coloque os seus dados reais. No final comparamos as pontuações do voo.`;
+    track('V40_DuelOpen');
+  }
+  audioSetup();
+  track('V40_View');
+})();
+</script>
+
+</body>
+</html>

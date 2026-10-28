@@ -158,7 +158,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 .fuel p{color:var(--mute);font-size:14px}
 
 /* flight */
-.hud-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.hud-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-right:52px} /* room for the fixed sound button */
 .route-line{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
 .route-line b{color:var(--ink)}
 .age-big{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;font-variant-numeric:tabular-nums;text-align:right}
@@ -700,8 +700,15 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   // ---------- country version: /vuelo40/mx → México (pesos MXN, aguinaldo, vocabulario y hora del centro de México) ----------
   const MX = /^\/vuelo40\/mx\/?$/.test(location.pathname);
-  const LOC = MX ? {
-    code: 'mx', nf: 'es-MX', millionFrom: 1e6, rDebt: 0.35, bonus: 1 / 48,
+  // /vuelo40/br is a separate file, translated at build time (scripts/build-vuelo40-br.py); here only numbers and currency
+  const BR = /^\/vuelo40\/br\/?/.test(location.pathname);
+  const LOC = BR ? {
+    code: 'br', nf: 'pt-BR', cur: 'R$ ', unit: 1 / 750, path: '/br', millionFrom: 1e6, thousandFrom: 1e4, mL: n => Math.abs(n) < 2e6 ? ' milhão' : ' milhões', mS: ' mi',
+    rDebt: 0.35, bonus: 1 / 24,
+    income: { min: 1500, max: 30000, step: 100, val: 3400 }, nif: { min: 1000, max: 60000, step: 100 },
+    roundU: n => Math.max(1, Math.round(n / 1000)) * 1000, minSave: 100, saveStep: 50, rep: []
+  } : MX ? {
+    code: 'mx', nf: 'es-MX', unit: 1 / 220, path: '/mx', millionFrom: 1e6, rDebt: 0.35, bonus: 1 / 48,
     income: { min: 5000, max: 100000, step: 500, val: 17500 }, nif: { min: 5000, max: 200000, step: 500 },
     roundU: n => Math.max(1, Math.round(n / 1000)) * 1000, minSave: 1000, saveStep: 500,
     hero: 'más de <span class="grad">7 millones</span> de pesos',
@@ -717,8 +724,13 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       ['la cuota del carro', 'la mensualidad del carro'], ['9:00 A.M. COL', '8:00 A.M. CDMX'], ['9:00 a.m. (hora Colombia)', '8:00 a.m. (hora del centro de México)'], ['(hora Colombia)', '(hora del centro de México)'],
       ['tu plata quieta', 'tu dinero quieto'], ['Tu plata quieta', 'Tu dinero quieto'], ['la plata quieta', 'el dinero quieto'], ['"plata garantizada"', '"dinero garantizado"'], ['La plata que', 'El dinero que'],
       ['tu plata', 'tu dinero'], ['Tu plata', 'Tu dinero'], ['la plata', 'el dinero'], ['Plata', 'Dinero'], ['PLATA', 'DINERO'], ['plata', 'dinero']]
-  } : { code: 'co', nf: 'es-CO', millionFrom: 1e5, rDebt: 0.22, bonus: 1 / 24, roundU: n => Math.max(1, Math.round(n / 1e6)) * 1e6, minSave: 200000, saveStep: 1e5, rep: [] };
+  } : { code: 'co', nf: 'es-CO', unit: 1, path: '', millionFrom: 1e5, rDebt: 0.22, bonus: 1 / 24, roundU: n => Math.max(1, Math.round(n / 1e6)) * 1e6, minSave: 200000, saveStep: 1e5, rep: [] };
   const T = s => { if (!LOC.rep.length || typeof s !== 'string') return s; for (const [a, b] of LOC.rep) if (s.includes(a)) s = s.split(a).join(b); return s; };
+  LOC.cur = LOC.cur || '$';
+  if (BR) {
+    const setR = (id, r, v) => { const e = document.getElementById(id); e.min = r.min; e.max = r.max; e.step = r.step; e.value = v; };
+    setR('f-income', LOC.income, LOC.income.val); setR('f-nif', LOC.nif, LOC.income.val);
+  }
   if (MX) {
     // every text that reaches the screen goes through T: canvas text (sky, share card, PDF) and the DOM
     const CP = CanvasRenderingContext2D.prototype, ft = CP.fillText, mt = CP.measureText;
@@ -742,7 +754,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     yearMs: reduce ? 40 : 230,
     eventUrl: window.V40_HOST.eventUrl,
     waNumber: window.V40_HOST.waNumber,
-    shareUrl: window.V40_HOST.url + (MX ? '/mx' : ''),
+    shareUrl: window.V40_HOST.url + LOC.path,
     owner: window.V40_HOST.owner
   };
   const OWNER_FIRST = CFG.owner.split(' ')[0];
@@ -759,16 +771,18 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   // ---------- formatting ----------
   const nf = new Intl.NumberFormat(LOC.nf, { maximumFractionDigits: 0 });
-  const fmtFull = n => (n < 0 ? '−$' : '$') + nf.format(Math.abs(Math.round(n)));
+  const fmtFull = n => (n < 0 ? '−' : '') + LOC.cur + nf.format(Math.abs(Math.round(n)));
   // short form for instruments and charts ("$1.154 M"), long form for sentences ("$1.154 millones")
   const fmtNum = (n, unit) => {
     const a = Math.abs(n), sign = n < 0 ? '−' : '';
-    if (a >= 1e7) return sign + '$' + nf.format(Math.round(a / 1e6)) + unit;
-    if (a >= LOC.millionFrom) return sign + '$' + (a / 1e6).toLocaleString(LOC.nf, { maximumFractionDigits: 1 }) + unit;
-    return sign + '$' + nf.format(Math.round(a));
+    if (a >= 1e7) return sign + LOC.cur + nf.format(Math.round(a / 1e6)) + unit;
+    if (a >= LOC.millionFrom) return sign + LOC.cur + (a / 1e6).toLocaleString(LOC.nf, { maximumFractionDigits: 1 }) + unit;
+    if (LOC.thousandFrom && a >= LOC.thousandFrom) return sign + LOC.cur + nf.format(Math.round(a / 1e3)) + ' mil';
+    return sign + LOC.cur + nf.format(Math.round(a));
   };
-  const fmtM = n => fmtNum(n, ' M');
-  const fmtL = n => fmtNum(n, ' millones');
+  const fmtM = n => fmtNum(n, LOC.mS || ' M');
+  const fmtL = n => fmtNum(n, LOC.mL ? LOC.mL(n) : ' millones');
+  const U = LOC.unit;                     // money thresholds below are written in Colombian pesos
   const roundM = LOC.roundU;
 
   // ---------- screens ----------
@@ -785,7 +799,8 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
 
   // ---------- audio: loaded clips + synthesized airport / flight sounds ----------
   const AU = { ctx: null, master: null, buf: {}, muted: false, nodes: {} };
-  const FILES = { pa_bienvenida: '/vuelo40/assets/pa_bienvenida.mp3', pa_checkin: '/vuelo40/assets/pa_checkin.mp3', pa_aterrizaje: '/vuelo40/assets/pa_aterrizaje.mp3', pa_evento: MX ? '/vuelo40/assets/pa_evento_mx.mp3' : '/vuelo40/assets/pa_evento.mp3',
+  const PA = BR ? '_pt' : '';             // Brazil: announcements recorded in Portuguese
+  const FILES = { pa_bienvenida: `/vuelo40/assets/pa_bienvenida${PA}.mp3`, pa_checkin: `/vuelo40/assets/pa_checkin${PA}.mp3`, pa_aterrizaje: `/vuelo40/assets/pa_aterrizaje${PA}.mp3`, pa_evento: MX ? '/vuelo40/assets/pa_evento_mx.mp3' : `/vuelo40/assets/pa_evento${PA}.mp3`,
     ding: '/vuelo40/assets/sfx_ding.mp3', whoosh: '/vuelo40/assets/sfx_whoosh.mp3', drone: '/vuelo40/assets/sfx_drone.mp3', alarm: '/vuelo40/assets/sfx_alarm.mp3' };
   try { AU.muted = localStorage.getItem('v40_muted') === '1'; } catch (e) {}
   function audioSetup() {
@@ -1165,7 +1180,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     // zero line
     ctx.strokeStyle = COL['--line']; ctx.lineWidth = 1; ctx.setLineDash([]);
     ctx.beginPath(); ctx.moveTo(0, g.zero); ctx.lineTo(W, g.zero); ctx.stroke();
-    ctx.fillStyle = COL['--mute']; ctx.fillText('$0', W - 26, g.zero - 6);
+    ctx.fillStyle = COL['--mute']; const z0 = LOC.cur.trim() + '0'; ctx.fillText(z0, W - 12 - ctx.measureText(z0).width, g.zero - 6);
     // FI line
     ctx.strokeStyle = COL['--teal']; ctx.setLineDash([5, 6]); ctx.globalAlpha = .75;
     ctx.beginPath(); ctx.moveTo(0, g.top); ctx.lineTo(W, g.top); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
@@ -1219,9 +1234,9 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
   function hud(withFlash) {
     const now = { nw: nwOf(ST), debt: ST.D, fuel: monthlySave(ST) };
     if (withFlash && prevHud) {
-      flash('nw', now.nw - prevHud.nw, true, 1e5);
-      flash('debt', now.debt - prevHud.debt, false, 1e5);
-      flash('fuel', now.fuel - prevHud.fuel, true, 1e4);
+      flash('nw', now.nw - prevHud.nw, true, 1e5 * U);
+      flash('debt', now.debt - prevHud.debt, false, 1e5 * U);
+      flash('fuel', now.fuel - prevHud.fuel, true, 1e4 * U);
     }
     prevHud = now;
     const nw = nwOf(ST);
@@ -1285,7 +1300,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       const isShock = !!ev.shock;
       card.className = 'card' + (isShock ? ' shock' : '');
       const delta = nwOf(ST) - before;
-      const deltaTxt = Math.abs(delta) >= 1e5 ? `<div class="eff">Patrimonio: ${delta > 0 ? '+' : ''}${fmtM(delta)}</div>` : '';
+      const deltaTxt = Math.abs(delta) >= 1e5 * U ? `<div class="eff">Patrimonio: ${delta > 0 ? '+' : ''}${fmtM(delta)}</div>` : '';
       const verdict = isShock ? '<span class="verdict v-shock">Turbulencia</span>' : (res.good ? '<span class="verdict v-good">Buen movimiento</span>' : '<span class="verdict v-bad">Ojo con esto</span>');
       card.innerHTML = `
         <div class="kick"><span>${isShock ? ev.kicker : PL[ev.pillar] + ' · ' + ev.kicker}</span><span>${ST.age} años</span></div>
@@ -1808,7 +1823,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     let pg = rPage(F, 1, T, NAME), g = pg.g, y = 170;
     g.font = `700 16px ${F.m}`; g.fillStyle = RC.teal; spaced(g, 'RADIOGRAFÍA FINANCIERA', PM, y, 3);
     y = para(g, `Reporte de vuelo de ${name}`, PM, y + 76, CW, `800 60px ${F.d}`, RC.ink, 70);
-    const fecha = new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+    const fecha = new Date().toLocaleDateString(LOC.nf, { day: 'numeric', month: 'long', year: 'numeric' });
     y = para(g, `Generado el ${fecha} · Preparado por ${CFG.owner} con VUELO 40`, PM, y + 4, CW, `400 20px ${F.b}`, RC.mute, 28) + 26;
     g.font = `400 21px ${F.b}`; const subL = wrapLines(g, o.sub, CW - 80), boxH = 150 + subL.length * 30;
     g.fillStyle = RC.soft; g.beginPath(); g.roundRect(PM, y, CW, boxH, 20); g.fill(); g.fillStyle = keyCol; g.fillRect(PM, y + 22, 7, boxH - 44);
@@ -1901,7 +1916,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     y = h3(g, F, 'Impacto de cada decisión en tu patrimonio a los 65', y);
     y = table(g, F, PM, y, [{ t: 'Edad', w: 96 }, { t: 'Decisión', w: 230 }, { t: 'Lo que elegiste', w: 372 }, { t: 'Evaluación', w: 150 }, { t: 'Impacto', w: CW - 848, right: true }],
       A.impacts.map(d => [d.age + ' años', { t: DEC_LABEL[d.k], b: 1 }, d.ev[d.side].t, d.side === 'b' ? { t: '✓ Acierto', c: RC.teal, b: 1 } : { t: '✗ A mejorar', c: RC.red, b: 1 },
-        { t: Math.abs(d.impact) < 1e6 ? '≈ $0' : (d.impact > 0 ? '+' : '') + fmtL(d.impact), b: 1, c: d.impact > 0 ? RC.teal : d.impact < 0 ? RC.red : RC.mute }]));
+        { t: Math.abs(d.impact) < 1e6 * U ? '≈ ' + LOC.cur.trim() + '0' : (d.impact > 0 ? '+' : '') + fmtL(d.impact), b: 1, c: d.impact > 0 ? RC.teal : d.impact < 0 ? RC.red : RC.mute }]));
     y = para(g, 'Cómo leer el impacto: es cuánto cambia tu patrimonio a los 65 por esa sola decisión, comparado con haber elegido la otra opción y dejando todo lo demás igual (análisis de sensibilidad). Positivo: esa decisión te sumó. Negativo: te restó.', PM, y + 6, CW, `400 18px ${F.b}`, RC.mute, 26) + 22;
     if (worstD) {
       const tot = A.impacts.filter(d => d.impact < 0).reduce((s, d) => s - d.impact, 0);
@@ -1942,7 +1957,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
       const worstK = [...bad].sort((x, z) => (impK[x] || 0) - (impK[z] || 0))[0], bestK = [...good].sort((x, z) => (impK[z] || 0) - (impK[x] || 0))[0];
       const diag = bad.length ? DIAG[worstK][0] : (bestK !== undefined ? DIAG[bestK][1] + ' Vas por buen camino; ahora toca aplicarlo en tu vida real.' : 'Ahora toca aplicarlo en tu vida real.');
       const lost = bad.reduce((s, k) => s + Math.min(0, impK[k] || 0), 0), won = good.reduce((s, k) => s + Math.max(0, impK[k] || 0), 0);
-      const imp = bad.length && lost < -1e6 ? [`En tu simulación, este pilar te restó ${fmtL(-lost)} a los 65${bad.length > 1 ? ` (${bad.length} decisiones)` : ''}.`, RC.red] : won > 1e6 ? [`En tu simulación, este pilar te sumó ${fmtL(won)} a los 65.`, RC.teal] : null;
+      const imp = bad.length && lost < -1e6 * U ? [`En tu simulación, este pilar te restó ${fmtL(-lost)} a los 65${bad.length > 1 ? ` (${bad.length} decisiones)` : ''}.`, RC.red] : won > 1e6 * U ? [`En tu simulación, este pilar te sumó ${fmtL(won)} a los 65.`, RC.teal] : null;
       g.font = `400 19px ${F.b}`; const dl = wrapLines(g, diag, CW - 140);
       g.font = `400 19px ${F.b}`; const nl = wrapLines(g, NOWHELP[pk], CW - 140);
       const h = 58 + dl.length * 27 + (imp ? 32 : 0) + 34 + nl.length * 27 + 18;
@@ -1960,7 +1975,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:28px}
     y += 4;
     const gap = nwOf(A.sys) - RES.nw;
     g.font = `400 20px ${F.b}`;
-    const p4 = `En la simulación, tu misma vida con las decisiones del sistema llegaba a ${endPlain(A.sys)}${gap > 1e6 ? `: ${fmtL(gap)} más que tu vuelo` : ''}. NOW reúne en un solo lugar la educación y las herramientas para aplicar Genera, Protege y Haz crecer en tu vida real. El primer paso es conocerlo en vivo y gratis en The Future Is NOW: 14 y 15 de noviembre, 9:00 a.m. (hora Colombia).`;
+    const p4 = `En la simulación, tu misma vida con las decisiones del sistema llegaba a ${endPlain(A.sys)}${gap > 1e6 * U ? `: ${fmtL(gap)} más que tu vuelo` : ''}. NOW reúne en un solo lugar la educación y las herramientas para aplicar Genera, Protege y Haz crecer en tu vida real. El primer paso es conocerlo en vivo y gratis en The Future Is NOW: 14 y 15 de noviembre, 9:00 a.m. (hora Colombia).`;
     const l4 = wrapLines(g, p4, CW - 154), bh = 186 + l4.length * 29 + 96;
     const bg = g.createLinearGradient(PM, y, PM + CW, y + bh); bg.addColorStop(0, '#1C1532'); bg.addColorStop(1, '#0E0C18');
     g.fillStyle = bg; g.beginPath(); g.roundRect(PM, y, CW, bh, 22); g.fill();

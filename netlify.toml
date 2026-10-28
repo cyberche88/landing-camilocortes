@@ -44,3 +44,9 @@
   from   = "/vuelo40/mx/"
   to     = "/vuelo40/index.html"
   status = 200
+
+# VOO 40 versión Brasil (portugués): archivo propio en vuelo40/br/
+[[redirects]]
+  from   = "/vuelo40/br"
+  to     = "/vuelo40/br/index.html"
+  status = 200
